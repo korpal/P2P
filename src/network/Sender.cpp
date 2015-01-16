@@ -9,12 +9,12 @@
 #include "../../include/network/Sender.hpp"
 #include "../../include/network/BroadcastMessage.hpp"
 #include "../../include/network/UnicastMessage.hpp"
-#include "../../include/utils/SynchronisedQueue.hpp"
+#include "../../include/utils/SynchronizedQueue.hpp"
 
 #define PORT 8888
 
 
-Sender::Sender(SynchronisedQueue<Message*> *squeue)
+Sender::Sender(SynchronizedQueue<Message*> *squeue)
 {
     this->squeue = squeue;
     sockBC = createBroadcastSocket();

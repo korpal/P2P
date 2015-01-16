@@ -2,7 +2,7 @@
 #define SENDER_HPP
 
 #include "../utils/Thread.hpp"
-#include "../utils/SynchronisedQueue.hpp"
+#include "../utils/SynchronizedQueue.hpp"
 #include "Message.hpp"
 #include "BroadcastMessage.hpp"
 #include "UnicastMessage.hpp"
@@ -10,7 +10,7 @@
 
 class Sender : public Thread {
     public:
-        Sender(SynchronisedQueue<Message*> *squeue);
+        Sender(SynchronizedQueue<Message*> *squeue);
         virtual ~Sender();
 
         void sendBroadcast(BroadcastMessage *msg);
@@ -19,7 +19,7 @@ class Sender : public Thread {
     private:
         int sockBC;
         int sockUC;
-        SynchronisedQueue<Message*> *squeue;
+        SynchronizedQueue<Message*> *squeue;
 
         virtual void run();
 

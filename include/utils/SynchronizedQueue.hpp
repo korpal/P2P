@@ -11,7 +11,7 @@
 using namespace std;
 // Queue class that has thread synchronisation
 template <typename T>
-class SynchronisedQueue
+class SynchronizedQueue
 {
 private:
     std::queue<T> m_queue;            // Use STL queue to store data
@@ -21,8 +21,8 @@ private:
 
 public:
 
-    SynchronisedQueue() : m_size(0) { }
-    virtual ~SynchronisedQueue() throw () { }
+    SynchronizedQueue() : m_size(0) { }
+    virtual ~SynchronizedQueue() throw () { }
 
     long Size()
     {

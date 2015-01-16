@@ -5,7 +5,7 @@
 #include "../../include/network/Sender.hpp"
 #include "../../include/network/Message.hpp"
 #include "../../include/network/BroadcastMessage.hpp"
-#include "../../include/utils/SynchronisedQueue.hpp"
+#include "../../include/utils/SynchronizedQueue.hpp"
 
 
 
@@ -17,7 +17,7 @@ int main() {
     Receiver *receiver = new Receiver();
     receiver->start();
 
-    SynchronisedQueue<Message*> *squeue = new SynchronisedQueue<Message*>();
+    SynchronizedQueue<Message*> *squeue = new SynchronizedQueue<Message*>();
 
     Sender *sender = new Sender(squeue);
     sender->start();
