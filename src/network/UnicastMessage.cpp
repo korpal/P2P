@@ -8,7 +8,6 @@ UnicastMessage::UnicastMessage() {}
 
 UnicastMessage::UnicastMessage(char *msg, int length) {
     memset(&message, 0, sizeof(message));
-    //memset(&message, 0, sizeof(message));
     memcpy(&message, msg, length);
 }
 
