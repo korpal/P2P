@@ -7,14 +7,12 @@
 #include <netdb.h>
 
 #include "../../include/network/Sender.hpp"
-#include "../../include/network/BroadcastMessage.hpp"
-#include "../../include/network/UnicastMessage.hpp"
 #include "../../include/utils/SynchronizedQueue.hpp"
 
 #define PORT 8888
 
 
-Sender::Sender(SynchronizedQueue<Message*> *squeue)
+Sender::Sender(SynchronizedQueue<BroadcastMessage*> *squeue)
 {
     this->squeue = squeue;
     sockBC = createBroadcastSocket();
@@ -27,22 +25,22 @@ Sender::~Sender(){}
 
 void Sender::run()
 {
-    while(1)
+    while(!isFinished())
     {
-        Message *msg = squeue->pop();
+        BroadcastMessage *msg = squeue->pop();
 
         BroadcastMessage *bm = dynamic_cast<BroadcastMessage*>(msg);
-        UnicastMessage *um = dynamic_cast<UnicastMessage*>(msg);
+        //UnicastMessage *um = dynamic_cast<UnicastMessage*>(msg);
         if(bm != 0)
         {
-            std::cout << "Sender: Odczytano z kolejki wiadomosc broadcast" << std::endl;
+            std::cout << "Sender: Odczytano z kolejki wiadomosc broadcast typu " << bm->getType() << std::endl;
             sendBroadcast(bm);
         }
-        if(um != 0)
+        /*if(um != 0)
         {
             std::cout << "Sender: Odczytano z kolejki wiadomosc unicast" << std::endl;
             sendUnicast(um);
-        }
+        }*/
     }
 }
 
@@ -59,6 +57,7 @@ void Sender::sendBroadcast(BroadcastMessage *msg)
         std::cout<<"Niepowodzenie";
 }
 
+/*
 
 void Sender::sendUnicast(UnicastMessage *msg)
 {
@@ -73,6 +72,7 @@ void Sender::sendUnicast(UnicastMessage *msg)
     if(sendto(sockUC, msg, sizeof(*msg), 0, (struct sockaddr *)&addr, sizeof(addr)) < 0)
         std::cout<<"Niepowodzenie";
 }
+*/
 
 
 

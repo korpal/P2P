@@ -3,23 +3,21 @@
 
 #include "../utils/Thread.hpp"
 #include "../utils/SynchronizedQueue.hpp"
-#include "Message.hpp"
-#include "BroadcastMessage.hpp"
-#include "UnicastMessage.hpp"
+#include "protocol/broadcast/BroadcastMessage.hpp"
 
 
 class Sender : public Thread {
     public:
-        Sender(SynchronizedQueue<Message*> *squeue);
+        Sender(SynchronizedQueue<BroadcastMessage*> *squeue);
         virtual ~Sender();
 
         void sendBroadcast(BroadcastMessage *msg);
-        void sendUnicast(UnicastMessage *msg);
+        //void sendUnicast(UnicastMessage *msg);
 
     private:
         int sockBC;
         int sockUC;
-        SynchronizedQueue<Message*> *squeue;
+        SynchronizedQueue<BroadcastMessage*> *squeue;
 
         virtual void run();
 
