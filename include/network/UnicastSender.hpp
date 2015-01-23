@@ -9,10 +9,10 @@ public:
     UnicastSender();
     virtual ~UnicastSender();
 
-    void requestRequest(char *msg);
-    void requestConfirmation(char *msg);
-    void requestPartRequest();
-    void requestPart();
+    void requestRequest(char *msg, char *address);
+    void requestConfirmation(char *msg, char *address);
+    void requestPartRequest(char *address);
+    void requestPart(char *address);
 
 private:
     int sock;

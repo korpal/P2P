@@ -27,14 +27,14 @@ UnicastSender::~UnicastSender(){}
 void UnicastSender::run() {}
 
 
-void UnicastSender::requestRequest(char *name)
+void UnicastSender::requestRequest(char *name, char *address)
 {
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_port = htons(PORT);
     // TODO - address
-    addr.sin_addr.s_addr = htonl(INADDR_ANY);
+    addr.sin_addr.s_addr = inet_addr(address);
 
     UnicastRequest *msg = new UnicastRequest(name);
 
@@ -43,14 +43,14 @@ void UnicastSender::requestRequest(char *name)
 }
 
 
-void UnicastSender::requestConfirmation(char *name)
+void UnicastSender::requestConfirmation(char *name, char *address)
 {
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_port = htons(PORT);
     // TODO - address
-    addr.sin_addr.s_addr = htonl(INADDR_ANY);
+    addr.sin_addr.s_addr = inet_addr(address);
 
     UnicastConfirmation *msg = new UnicastConfirmation(name);
 
@@ -59,14 +59,14 @@ void UnicastSender::requestConfirmation(char *name)
 }
 
 
-void UnicastSender::requestPartRequest()
+void UnicastSender::requestPartRequest(char *address)
 {
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_port = htons(PORT);
     // TODO - address
-    addr.sin_addr.s_addr = htonl(INADDR_ANY);
+    addr.sin_addr.s_addr = inet_addr(address);
 
     UnicastPartRequest *msg = new UnicastPartRequest();
 
@@ -75,14 +75,14 @@ void UnicastSender::requestPartRequest()
 }
 
 
-void UnicastSender::requestPart()
+void UnicastSender::requestPart(char *address)
 {
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_port = htons(PORT);
     // TODO - address
-    addr.sin_addr.s_addr = htonl(INADDR_ANY);
+    addr.sin_addr.s_addr = inet_addr(address);
 
     UnicastPart *msg = new UnicastPart();
 

@@ -21,8 +21,8 @@ int main()
     broadcastSender->requestRevoke();
 
     UnicastSender *unicastSender = new UnicastSender();
-    unicastSender->requestConfirmation((char*)"Do you have smth?");
-    unicastSender->requestPart();
+    unicastSender->requestConfirmation((char*)"Do you have smth?", (char *)"192.168.2.106");
+    unicastSender->requestPart((char *)"192.168.2.106");
 
 
     getchar();
