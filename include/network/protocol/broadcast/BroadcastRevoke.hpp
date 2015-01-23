@@ -5,7 +5,17 @@
 
 class BroadcastRevoke : public BroadcastMessage {
     public:
-    BroadcastRevoke() : BroadcastMessage(BroadcastMessage::Type::REVOKE) {}
+        BroadcastRevoke() : BroadcastMessage(BroadcastMessage::Type::REVOKE) {}
+        BroadcastRevoke(char *resourceName) : BroadcastMessage(BroadcastMessage::Type::REVOKE)
+        {
+            this->resourceName = resourceName;
+        }
+
+        char* getResourceName() { return resourceName; }
+
+    private:
+        // TODO - temporary
+        char *resourceName;
 };
 
 #endif

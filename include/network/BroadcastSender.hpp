@@ -2,7 +2,6 @@
 #define BROADCASTSENDER_HPP
 
 #include "../utils/Thread.hpp"
-#include "../utils/SynchronizedQueue.hpp"
 #include "protocol/broadcast/BroadcastMessage.hpp"
 
 

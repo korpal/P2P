@@ -2,25 +2,37 @@
 
 #include "../../include/network/BroadcastSender.hpp"
 #include "../../include/network/BroadcastReceiver.hpp"
+#include "../../include/network/UnicastReceiver.hpp"
+#include "../../include/network/UnicastSender.hpp"
 
 
-
-int main() {
-    BroadcastReceiver *receiver = new BroadcastReceiver();
-    receiver->start();
-
-    getchar();
-
-    BroadcastSender *sender = new BroadcastSender();
-    sender->requestAllResources();
-    sender->requestResource((char*)"some name");
-    sender->requestRevoke();
-
+int main()
+{
+    BroadcastReceiver *broadcastReceiver = new BroadcastReceiver();
+    broadcastReceiver->start();
+    UnicastReceiver *unicastReceiver = new UnicastReceiver();
+    unicastReceiver->start();
 
     getchar();
-    receiver->stop();
-    receiver->join();
-    delete receiver;
-    delete sender;
+
+    BroadcastSender *broadcastSender = new BroadcastSender();
+    broadcastSender->requestAllResources();
+    broadcastSender->requestResource((char*)"some name");
+    broadcastSender->requestRevoke();
+
+    UnicastSender *unicastSender = new UnicastSender();
+    unicastSender->requestConfirmation((char*)"Do you have smth?");
+    unicastSender->requestPart();
+
+
+    getchar();
+    broadcastReceiver->stop();
+    broadcastReceiver->join();
+    unicastReceiver->stop();
+    unicastReceiver->join();
+    delete broadcastReceiver;
+    delete unicastReceiver;
+    delete broadcastSender;
+    delete unicastSender;
     return 0;
 }

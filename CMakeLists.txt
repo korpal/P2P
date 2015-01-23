@@ -8,17 +8,24 @@ set(SOURCE_FILES
     include/network/protocol/broadcast/BroadcastMessage.hpp
     include/network/protocol/broadcast/BroadcastResource.hpp
     include/network/protocol/broadcast/BroadcastRevoke.hpp
+    include/network/protocol/unicast/UnicastMessage.hpp
+    include/network/protocol/unicast/UnicastRequest.hpp
+    include/network/protocol/unicast/UnicastConfirmation.hpp
+    include/network/protocol/unicast/UnicastPartRequest.hpp
+    include/network/protocol/unicast/UnicastPart.hpp
     include/network/BroadcastReceiver.hpp
     include/network/BroadcastSender.hpp
-    include/network/Sender.hpp
+    include/network/UnicastReceiver.hpp
+    include/network/UnicastSender.hpp
     include/utils/Lock.hpp
     include/utils/ScopedLock.hpp
     include/utils/SynchronizedQueue.hpp
     include/utils/Thread.hpp
     src/network/BroadcastReceiver.cpp
     src/network/BroadcastSender.cpp
+    src/network/UnicastReceiver.cpp
+    src/network/UnicastSender.cpp
     src/network/main.cpp
-    src/network/Sender.cpp
     src/utils/Thread.cpp)
 
 add_executable(P2P ${SOURCE_FILES})
