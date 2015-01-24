@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdio.h>
 
 #include "../../include/network/BroadcastSender.hpp"
 #include "../../include/network/BroadcastReceiver.hpp"
@@ -21,8 +22,8 @@ int main()
     broadcastSender->requestRevoke();
 
     UnicastSender *unicastSender = new UnicastSender();
-    unicastSender->requestConfirmation((char*)"Do you have smth?", (char *)"192.168.2.106");
-    unicastSender->requestPart((char *)"192.168.2.106");
+    unicastSender->requestConfirmation((char*)"Siema Heniu", (char *)"192.168.2.107");
+    unicastSender->requestPart((char *)"192.168.2.107");
 
 
     getchar();

@@ -1,11 +1,15 @@
 #include <iostream>
 #include <cstring>
 #include <cstdio>
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
+#include <ws2tcpip.h>
+#else
 #include <netinet/in.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <netdb.h>
+#endif
 
 #include "../../include/network/BroadcastReceiver.hpp"
 #include "../../include/network/protocol/broadcast/BroadcastMessage.hpp"
