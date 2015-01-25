@@ -19,6 +19,7 @@ set(SOURCE_FILES
     include/network/UnicastSender.hpp
     include/resourcemanager/LocalResource.hpp
     include/resourcemanager/Part.hpp
+    include/resourcemanager/DownloadedResource.hpp
     include/resourcemanager/ResourceIdentifier.hpp
     include/resourcemanager/RemoteResource.hpp
     include/resourcemanager/ResourceManager.hpp
@@ -35,6 +36,7 @@ set(SOURCE_FILES
     src/network/main.cpp
     src/resourcemanager/LocalResource.cpp
     src/resourcemanager/Part.cpp
+    src/resourcemanager/DownloadedResource.cpp
     src/resourcemanager/ResourceIdentifier.cpp
     src/resourcemanager/RemoteResource.cpp
     src/resourcemanager/ResourceManager.cpp

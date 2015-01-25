@@ -23,19 +23,19 @@ ResourceIdentifier& Part::getResourceIdentifier()
 }
 
 
-unsigned Part::getId()
+unsigned Part::getId() const
 {
     return id;
 }
 
 
-unsigned Part::getSize()
+unsigned Part::getSize() const
 {
     return size;
 }
 
 
-uint8_t* Part::getData()
+const uint8_t* Part::getData() const
 {
     return data;
 }

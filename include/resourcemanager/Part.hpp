@@ -15,9 +15,9 @@ class Part
         Part();
         Part(const ResourceIdentifier &ri, unsigned id, unsigned size, std::istream &data_stream);
         ResourceIdentifier& getResourceIdentifier();
-        unsigned getId();
-        unsigned getSize();
-        uint8_t* getData();
+        unsigned getId() const;
+        unsigned getSize() const;
+        const uint8_t* getData() const;
 
     private:
         ResourceIdentifier resourceIdentifier;

@@ -20,6 +20,8 @@ public:
     void addRemote(const ResourceIdentifier& identifier, const Source& source);
 
 
+    void getPartForSending(const unsigned& id);
+
 private:
     std::map<unsigned int, boost::shared_ptr<LocalResource>> localData;
     std::map<unsigned int, boost::shared_ptr<RemoteResource>> remoteData;
