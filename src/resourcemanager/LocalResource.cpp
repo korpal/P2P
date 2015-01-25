@@ -10,7 +10,7 @@ LocalResource::LocalResource(const std::string &path)
     if(!boost::filesystem::exists(fpath) || !boost::filesystem::is_regular_file(fpath))
         throw "Invalid file";
     std::string name = fpath.filename().string();
-    int size = (int)boost::filesystem::file_size(fpath);
+    unsigned size = (unsigned)boost::filesystem::file_size(fpath);
     ResourceIdentifier ri(name, size);
     this->resourceIdentifier = ri;
 }
@@ -22,29 +22,13 @@ LocalResource::~LocalResource()
 }
 
 
-Part& LocalResource::getPart(int id) const
+Part& LocalResource::getPart(unsigned id) const
 {
-/*    int partSize = getPartSize(id);
-
-    resFile_.seekg(id*Configuration::getInstance().getPartSize(), std::ios::beg);
-
-    return PPart(new Part(getIdentifier(), part_id, part_size, resFile_));*/
+    unsigned size = resourceIdentifier.getSize();
+    int partSize = Configuration::PART_SIZE;
+    file.seekg(id*partSize, std::ios::beg);
+    return *(new Part(resourceIdentifier, id, size, file));
 }
-
-/*
-
-Part::Size Resource::getPartSize(Part::Id part_id) const
-{
-    const ResourceIdentifier::Size s = resIdent_.getSize();
-    const unsigned part_size = Configuration::getInstance().getPartSize();
-    const unsigned full_parts_num = s / part_size;
-
-    if(part_id < full_parts_num)
-        return part_size;
-    else
-        return s % part_size;
-}
-*/
 
 
 ResourceIdentifier& LocalResource::getResourceIdentifier()

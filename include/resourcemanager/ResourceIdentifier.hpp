@@ -7,16 +7,16 @@ class ResourceIdentifier
 {
     public:
         ResourceIdentifier();
-        ResourceIdentifier(const std::string &name, int size);
+        ResourceIdentifier(const std::string &name, unsigned size);
         std::string& getName();
-        int getSize() const;
+        unsigned getSize() const;
         std::string getID() const;
         bool operator<(const ResourceIdentifier &ri) const;
         bool operator==(const ResourceIdentifier &ri) const;
 
     private:
         std::string name;
-        int size;
+        unsigned size;
 };
 
 

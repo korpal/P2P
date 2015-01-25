@@ -18,11 +18,11 @@ int main()
 
     BroadcastSender *broadcastSender = new BroadcastSender();
     //broadcastSender->requestAllResources();
-    //broadcastSender->requestResource((char*)"some name");
+    broadcastSender->requestResource((char*)"Siema broadcast");
     //broadcastSender->requestRevoke();
 
     UnicastSender *unicastSender = new UnicastSender();
-    unicastSender->requestRequest((char*)"Siema Heniu", (char *)"192.168.2.107");
+    //unicastSender->requestRequest((char*)"Siema Heniu", (char *)"25.9.227.212");
     //unicastSender->requestPart((char *)"25.9.227.212");
 
 

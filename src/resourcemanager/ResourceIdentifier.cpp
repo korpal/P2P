@@ -5,7 +5,7 @@
 
 ResourceIdentifier::ResourceIdentifier() {}
 
-ResourceIdentifier::ResourceIdentifier(const std::string &name, int size)
+ResourceIdentifier::ResourceIdentifier(const std::string &name, unsigned size)
 {
     this->name = name;
     this->size = size;
@@ -16,7 +16,7 @@ std::string& ResourceIdentifier::getName()
     return this->name;
 }
 
-int ResourceIdentifier::getSize() const
+unsigned ResourceIdentifier::getSize() const
 {
     return size;
 }

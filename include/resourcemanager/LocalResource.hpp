@@ -12,7 +12,7 @@ class LocalResource
         LocalResource(const std::string &path);
         ~LocalResource();
 
-        Part& getPart(int part_id) const;
+        Part& getPart(unsigned id) const;
         ResourceIdentifier& getResourceIdentifier();
 
     private:

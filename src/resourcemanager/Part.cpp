@@ -2,7 +2,7 @@
 #include "../../include/resourcemanager/Part.hpp"
 
 
-Part::Part(ResourceIdentifier &ri, unsigned id, unsigned size, std::istream &data_stream) :
+Part::Part(const ResourceIdentifier &ri, unsigned id, unsigned size, std::istream &data_stream) :
         resourceIdentifier(ri)
 {
     this->id = id;

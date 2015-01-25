@@ -12,7 +12,7 @@
 class Part
 {
     public:
-        Part(ResourceIdentifier &ri, unsigned id, unsigned size, std::istream &data_stream);
+        Part(const ResourceIdentifier &ri, unsigned id, unsigned size, std::istream &data_stream);
         ResourceIdentifier& getResourceIdentifier();
         unsigned getId();
         unsigned getSize();
