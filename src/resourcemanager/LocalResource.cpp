@@ -4,7 +4,7 @@
 #include "../../include/resourcemanager/ResourceIdentifier.hpp"
 
 
-LocalResource::LocalResource(const std::string &path)
+LocalResource::LocalResource(const std::string &path) : file(path.c_str())
 {
     boost::filesystem::path fpath(path);
     if(!boost::filesystem::exists(fpath) || !boost::filesystem::is_regular_file(fpath))

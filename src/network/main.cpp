@@ -13,9 +13,9 @@
 int main()
 {
 
-    ResourceManager resourceManager;
-    ResourceIdentifier resourceIdentifier;
-    resourceManager.addRemote(ResourceIdentifier("nam",2), Source(sockaddr_in()));
+    //ResourceManager resourceManager;
+    //ResourceIdentifier resourceIdentifier;
+    //resourceManager.addRemote(ResourceIdentifier("nam",2), Source(sockaddr_in()));
     BroadcastReceiver *broadcastReceiver = new BroadcastReceiver();
     broadcastReceiver->start();
     UnicastReceiver *unicastReceiver = new UnicastReceiver();
@@ -23,19 +23,14 @@ int main()
     printf("Przed stworzeniem local resource\n");
     getchar();
 
-    //BroadcastSender *broadcastSender = new BroadcastSender();
-    //broadcastSender->requestAllResources();
-    //broadcastSender->requestResource((char*)"Siema broadcast");
-    //broadcastSender->requestRevoke();
-    printf("Przed stworzeniem local resource\n");
-    //UnicastSender *unicastSender = new UnicastSender();
-    //unicastSender->requestRequest((char*)"Siema Heniu", (char *)"25.9.227.212");
+
+    UnicastSender *unicastSender = new UnicastSender();
 
     printf("Przed stworzeniem local resource\n");
-    //LocalResource lr("test.txt");
-    //Part p = lr.getPart(0);
-    //unicastSender->requestPart(&p, (char *)"192.168.2.107");
-
+    LocalResource lr("test.txt");
+    Part p = lr.getPart(0);
+    unicastSender->requestPart(&p, (char *)"192.168.2.107");
+    fflush(stdout);
 
     getchar();
     broadcastReceiver->stop();
