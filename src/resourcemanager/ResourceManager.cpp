@@ -35,15 +35,9 @@ void ResourceManager::addRemote(const ResourceIdentifier &identifier, const Sour
 
     if(!resource)
     {
-        // TU jest coś nie tak.....
         resource = boost::shared_ptr<RemoteResource>(new RemoteResource(identifier));
+        remoteData[identifier.getID()] = resource;
     }
-
-    boost::shared_ptr<RemoteResource> resource2 = remoteData[identifier.getID()] ;
-
-    // sprawdza czy dalej wskazuje na NULL czy już na obiekt
-    if(!resource2)
-        std::printf("STEFAN");
 
     resource->addSource(source);
 }
