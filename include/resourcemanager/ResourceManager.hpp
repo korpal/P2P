@@ -1,10 +1,10 @@
 #ifndef RESOURCE_MANAGER
 #define RESOURCE_MANAGER
 
-#include <bits/unordered_map.h>
 #include <boost/smart_ptr/shared_ptr.hpp>
 #include "LocalResource.hpp"
 #include "RemoteResource.hpp"
+#include <map>
 #include <mutex>
 
 class ResourceManager
@@ -15,13 +15,15 @@ public:
     // Adds a local source stored at given path
     void addLocal(const std::string &path);
 
-    // Adds a remote source
+    // Adds a new Source to given RemoteResource, if it does not exist it is created
+    void addRemote(const ResourceIdentifier& identifier, const Source& source);
+
 
 private:
     std::map<unsigned int, boost::shared_ptr<LocalResource>> localData;
     std::map<unsigned int, boost::shared_ptr<RemoteResource>> remoteData;
 
-    mutex mutex;
+    Lock mutex;
 };
 
-#endif RESOURCE_MANAGER
+#endif // RESOURCE_MANAGER

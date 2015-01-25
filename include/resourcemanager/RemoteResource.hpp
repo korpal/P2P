@@ -8,7 +8,6 @@ class RemoteResource
 {
 public:
     RemoteResource(const ResourceIdentifier &resourceIdentifier);
-    ~RemoteResource();
 
     void addSource(const Source& source);
     const std::vector<Source> getSources() const;

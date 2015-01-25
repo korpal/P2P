@@ -1,14 +1,21 @@
 #include <iostream>
 #include <stdio.h>
+#include <netinet/in.h>
 
 #include "../../include/network/BroadcastSender.hpp"
 #include "../../include/network/BroadcastReceiver.hpp"
 #include "../../include/network/UnicastReceiver.hpp"
 #include "../../include/network/UnicastSender.hpp"
+#include "../resourcemanager/ResourceManager.cpp"
+#include "../resourcemanager/Source.cpp"
 
 
 int main()
 {
+
+    ResourceManager resourceManager;
+    ResourceIdentifier resourceIdentifier;
+    resourceManager.addRemote(ResourceIdentifier("nam",2), Source(sockaddr_in()));
     BroadcastReceiver *broadcastReceiver = new BroadcastReceiver();
     broadcastReceiver->start();
     UnicastReceiver *unicastReceiver = new UnicastReceiver();
