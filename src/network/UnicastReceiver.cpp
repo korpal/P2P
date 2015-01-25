@@ -27,7 +27,7 @@ void UnicastReceiver::run()
     struct sockaddr_in si_me, si_other;
     socklen_t slen = sizeof(si_other);
     int s, recv_len;
-    const int buffSize = Configuration::PART_SIZE+100;
+    const int buffSize = 100000;
     char buf[buffSize];
 
     if ((s=socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1)

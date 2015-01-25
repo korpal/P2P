@@ -13,7 +13,7 @@ Part::Part(const ResourceIdentifier &ri, unsigned id, unsigned size, std::istrea
     data_stream.read((char*)data, size);
     printf("Nowy part: %s\n", (char *)data);
     printf("Nazwa: %s\n", resourceIdentifier.getName().c_str());
-    printf("Rozmiar: %d\n", resourceIdentifier.getSize());
+    printf("Rozmiar: %d\n", size);
 }
 
 
