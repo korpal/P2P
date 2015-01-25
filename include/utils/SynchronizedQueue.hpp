@@ -2,11 +2,10 @@
 #define _QUEUE_
 
 #include <iostream>
-#include <boost/thread/thread.hpp>
-#include <boost/thread/mutex.hpp>
-#include <boost/thread/condition.hpp>
+#include <mutex>
 
 #include <queue>
+#include <condition_variable>
 
 using namespace std;
 // Queue class that has thread synchronisation
@@ -15,8 +14,8 @@ class SynchronizedQueue
 {
 private:
     std::queue<T> m_queue;            // Use STL queue to store data
-    boost::mutex m_mutex;            // The mutex to synchronise on
-    boost::condition_variable m_cond;    // The condition to wait for
+    std::mutex m_mutex;            // The mutex to synchronise on
+    std::condition_variable m_cond;    // The condition to wait for
     long m_size; // for help
 
 public:
@@ -33,7 +32,7 @@ public:
     void push(const T& data)
     {
         // Acquire lock on the queue
-        boost::unique_lock<boost::mutex> lock(m_mutex);
+        std::unique_lock<std::mutex> lock(m_mutex);
 
         // Add the data to the queue
         m_queue.push(data);
@@ -49,7 +48,7 @@ public:
     {
 
         // Acquire lock on the queue
-        boost::unique_lock<boost::mutex> lock(m_mutex);
+        std::unique_lock<std::mutex> lock(m_mutex);
 
         // When there is no data, wait till someone fills it.
         // Lock is automatically released in the wait and obtained
