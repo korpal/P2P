@@ -5,10 +5,11 @@
 Part::Part(){}
 
 Part::Part(const ResourceIdentifier &ri, unsigned id, unsigned size, std::istream &data_stream) :
-        resourceIdentifier(ri)
+        resourceIdentifier(ri),
+        id(id),
+        size(size)
 {
-    this->id = id;
-    this->size = size;
+    data_stream.read((char*)data, size);
 }
 
 
