@@ -2,6 +2,7 @@
 #define RESOURCE_IDENTIFIER_HPP
 
 #include <string>
+#include "../utils/Configuration.hpp"
 
 class ResourceIdentifier
 {
@@ -17,7 +18,7 @@ class ResourceIdentifier
         bool operator==(const ResourceIdentifier &ri) const;
 
     private:
-        std::string name;
+        char name[Configuration::MAX_FILE_NAME_LENGTH];
         unsigned size;
         unsigned hash;
 };

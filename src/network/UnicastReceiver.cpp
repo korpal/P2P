@@ -27,7 +27,7 @@ void UnicastReceiver::run()
     struct sockaddr_in si_me, si_other;
     socklen_t slen = sizeof(si_other);
     int s, recv_len;
-    const int buffSize = 100000;
+    const int buffSize = Configuration::PART_SIZE+100;
     char buf[buffSize];
 
     if ((s=socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1)
@@ -102,8 +102,11 @@ void UnicastReceiver::handleIncomingPartRequest(UnicastPartRequest &msg)
 
 void UnicastReceiver::handleIncomingPart(UnicastPart &msg)
 {
-    printf("Received UnicastPart that containts: ");
+    printf("Received UnicastPart: Size: ");
     fflush(stdout);
-    printf("%s\n", (char*)msg.getPart().getData());
+    std::cout << msg.getPart().getSize();
+    fflush(stdout);
+    std::cout << " Msg: " << (char*)msg.getPart().getData() << std::endl;
+    //printf("%s\n", (char*)msg.getPart().getData());
     fflush(stdout);
 }

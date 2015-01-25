@@ -7,7 +7,8 @@
 class Configuration
 {
     public:
-        static const int PART_SIZE = 32*1024;
+        static const int PART_SIZE = 1*1024;
+        static const int MAX_FILE_NAME_LENGTH = 128;
 };
 
 #endif

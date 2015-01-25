@@ -29,7 +29,7 @@ int main()
 
     LocalResource lr("test.txt");
     Part p = lr.getPart(0);
-    unicastSender->requestConfirmation((char*)"Siema", (char *)"192.168.2.107");
+    //unicastSender->requestConfirmation((char*)"Siema", (char *)"25.9.227.212");
     unicastSender->requestPart(&p, (char *)"192.168.2.107");
     fflush(stdout);
 
