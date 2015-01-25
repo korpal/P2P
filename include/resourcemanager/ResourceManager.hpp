@@ -4,6 +4,7 @@
 #include <boost/smart_ptr/shared_ptr.hpp>
 #include "LocalResource.hpp"
 #include "RemoteResource.hpp"
+#include "../utils/Lock.hpp"
 #include <map>
 #include <mutex>
 

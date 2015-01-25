@@ -1,9 +1,7 @@
-//#include <bits/stl_map.h>
 #include "../../include/resourcemanager/ResourceManager.hpp"
 #include "../../include/utils/ScopedLock.hpp"
 #include <stdio.h>
 #include <iostream>
-#include "RemoteResource.cpp"
 
 ResourceManager::ResourceManager()
 {

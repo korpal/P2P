@@ -20,6 +20,9 @@ set(SOURCE_FILES
     include/resourcemanager/LocalResource.hpp
     include/resourcemanager/Part.hpp
     include/resourcemanager/ResourceIdentifier.hpp
+    include/resourcemanager/RemoteResource.hpp
+    include/resourcemanager/ResourceManager.hpp
+    include/resourcemanager/Source.hpp
     include/utils/Lock.hpp
     include/utils/ScopedLock.hpp
     include/utils/SynchronizedQueue.hpp
@@ -33,6 +36,9 @@ set(SOURCE_FILES
     src/resourcemanager/LocalResource.cpp
     src/resourcemanager/Part.cpp
     src/resourcemanager/ResourceIdentifier.cpp
+    src/resourcemanager/RemoteResource.cpp
+    src/resourcemanager/ResourceManager.cpp
+    src/resourcemanager/Source.cpp
     src/utils/Thread.cpp)
 
 add_executable(P2P ${SOURCE_FILES})

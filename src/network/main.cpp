@@ -6,8 +6,8 @@
 #include "../../include/network/BroadcastReceiver.hpp"
 #include "../../include/network/UnicastReceiver.hpp"
 #include "../../include/network/UnicastSender.hpp"
-#include "../resourcemanager/ResourceManager.cpp"
-#include "../resourcemanager/Source.cpp"
+#include "../../include/resourcemanager/ResourceManager.hpp"
+#include "../../include/resourcemanager/Source.hpp"
 
 
 int main()
@@ -25,7 +25,7 @@ int main()
 
     BroadcastSender *broadcastSender = new BroadcastSender();
     //broadcastSender->requestAllResources();
-    broadcastSender->requestResource((char*)"Siema broadcast");
+    //broadcastSender->requestResource((char*)"Siema broadcast");
     //broadcastSender->requestRevoke();
 
     UnicastSender *unicastSender = new UnicastSender();

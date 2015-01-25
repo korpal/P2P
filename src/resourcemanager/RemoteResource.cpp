@@ -1,4 +1,4 @@
-#include <bits/stl_bvector.h>
+#include <vector>
 #include "../../include/resourcemanager/RemoteResource.hpp"
 
 RemoteResource::RemoteResource(const ResourceIdentifier &resourceIdentifier) :
