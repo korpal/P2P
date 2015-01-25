@@ -14,9 +14,10 @@
 int main()
 {
 
-    //ResourceManager resourceManager;
-    //ResourceIdentifier resourceIdentifier;
-    //resourceManager.addRemote(ResourceIdentifier("nam",2), Source(sockaddr_in()));
+    ResourceManager resourceManager;
+    ResourceIdentifier resourceIdentifier;
+    resourceManager.addRemoteResource(ResourceIdentifier("nam",2), Source(sockaddr_in()));
+
     BroadcastReceiver *broadcastReceiver = new BroadcastReceiver();
     broadcastReceiver->start();
     UnicastReceiver *unicastReceiver = new UnicastReceiver();

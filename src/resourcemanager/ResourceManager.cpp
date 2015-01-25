@@ -38,3 +38,16 @@ void ResourceManager::addRemoteResource(const ResourceIdentifier &identifier, co
 
     resource->addSource(source);
 }
+
+void ResourceManager::addDownloadedResource(const ResourceIdentifier &identifier)
+{
+    ScopedLock lock(mutex);
+
+    boost::shared_ptr<DownloadedResource> resource = downloadedData[identifier.getID()];
+
+    if(!resource)
+    {
+        resource = boost::shared_ptr<DownloadedResource>(new DownloadedResource(identifier));
+        downloadedData[identifier.getID()] = resource;
+    }
+}

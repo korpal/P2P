@@ -27,9 +27,9 @@ public:
     void getPartForSending(const unsigned& id);
 
 private:
-    std::map<unsigned, boost::shared_ptr<LocalResource>> localData;
-    std::map<unsigned, boost::shared_ptr<RemoteResource>> remoteData;
-    std::map<unsigned, boost::shared_ptr<DownloadedResource>> downloadedData;
+    std::map<unsigned int, boost::shared_ptr<LocalResource>> localData;
+    std::map<unsigned int, boost::shared_ptr<RemoteResource>> remoteData;
+    std::map<unsigned int, boost::shared_ptr<DownloadedResource>> downloadedData;
 
     Lock mutex;
 };

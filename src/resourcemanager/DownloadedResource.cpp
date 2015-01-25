@@ -3,7 +3,8 @@
 DownloadedResource::DownloadedResource(const ResourceIdentifier &identifier) :
         identifier(identifier),
         file(identifier.getName().c_str()),
-        partsDownloaded(getPartsCount(), false)
+        partsDownloaded(getPartsCount(), false),
+        partsCount((unsigned int) ceil((double)identifier.getSize() / (double)Configuration::PART_SIZE))
 {
 }
 
@@ -13,7 +14,10 @@ void DownloadedResource::addDownloadedPart(const Part& part)
     file.write((char*)part.getData(), part.getSize());
     partsDownloaded[part.getId()] = true;
 
+
+
     if(isComplete()) {
+        std::cout << "Koniec!!!";
         fflush(stdout);
         file.flush();
         file.close();
@@ -23,7 +27,7 @@ void DownloadedResource::addDownloadedPart(const Part& part)
 
 bool DownloadedResource::isComplete()
 {
-    for(int i = getPartsCount()-1; i >= 0; --i)
+    for(unsigned i = getPartsCount()-1; i >= 0; --i)
         if(!partsDownloaded[i])
             return false;
     return true;
@@ -31,5 +35,5 @@ bool DownloadedResource::isComplete()
 
 unsigned DownloadedResource::getPartsCount()
 {
-    return (unsigned int) ceil((double)identifier.getSize() / (double)Configuration::PART_SIZE);
+    return partsCount;
 }
