@@ -2,20 +2,18 @@
 #define UNICASTPART_HPP
 
 #include "UnicastMessage.hpp"
+#include "../../../resourcemanager/Part.hpp"
 
 class UnicastPart : public UnicastMessage {
     public:
         UnicastPart() : UnicastMessage(UnicastMessage::Type::PART) {}
-        UnicastPart(char *part) : UnicastMessage(UnicastMessage::Type::PART)
-        {
-            this->part = part;
-        }
+        UnicastPart(Part *part) : UnicastMessage(UnicastMessage::Type::PART), part(*part){}
 
-        char* getPart() { return part; }
+        Part getPart() { return part; }
 
     private:
         // TODO - temporary
-        char *part;
+        Part part;
 };
 
 #endif

@@ -20,7 +20,6 @@ void ResourceManager::addLocal(const std::string &path)
         return;
 
     // TODO Invalidated wtf?
-
     localData.insert(std::pair<unsigned, boost::shared_ptr<LocalResource>>(id, resource)); // <unsigned, boost::shared_ptr<LocalResource>>
     // TODO hasNew ??
 }

@@ -12,6 +12,7 @@
 class Part
 {
     public:
+        Part();
         Part(const ResourceIdentifier &ri, unsigned id, unsigned size, std::istream &data_stream);
         ResourceIdentifier& getResourceIdentifier();
         unsigned getId();
