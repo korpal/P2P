@@ -20,15 +20,16 @@ int main()
     broadcastReceiver->start();
     UnicastReceiver *unicastReceiver = new UnicastReceiver();
     unicastReceiver->start();
-    printf("Przed stworzeniem local resource\n");
     getchar();
 
+    //BroadcastSender *broadcastSender = new BroadcastSender;
+    //broadcastSender->requestAllResources();
 
     UnicastSender *unicastSender = new UnicastSender();
 
-    printf("Przed stworzeniem local resource\n");
     LocalResource lr("test.txt");
     Part p = lr.getPart(0);
+    unicastSender->requestConfirmation((char*)"Siema", (char *)"192.168.2.107");
     unicastSender->requestPart(&p, (char *)"192.168.2.107");
     fflush(stdout);
 

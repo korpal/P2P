@@ -27,7 +27,7 @@ void UnicastReceiver::run()
     struct sockaddr_in si_me, si_other;
     socklen_t slen = sizeof(si_other);
     int s, recv_len;
-    const int buffSize = 10000;
+    const int buffSize = 100000;
     char buf[buffSize];
 
     if ((s=socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1)
@@ -55,7 +55,7 @@ void UnicastReceiver::run()
         printf("Unicast Receiver: waiting for data...\n");
         fflush(stdout);
 
-        if ((recv_len = (int) recvfrom(s, buf, buffSize, 0, (struct sockaddr *) &si_other, &slen)) < 0)
+        if ((recv_len = recvfrom(s, buf, buffSize, 0, (struct sockaddr *) &si_other, &slen)) < 0)
         {
             printf("recvfrom() error");
         }
@@ -102,6 +102,8 @@ void UnicastReceiver::handleIncomingPartRequest(UnicastPartRequest &msg)
 
 void UnicastReceiver::handleIncomingPart(UnicastPart &msg)
 {
-    printf("Received UnicastPart that containts: \n");
-    printf("%s", (char*)msg.getPart().getData());
+    printf("Received UnicastPart that containts: ");
+    fflush(stdout);
+    printf("%s\n", (char*)msg.getPart().getData());
+    fflush(stdout);
 }
