@@ -2,6 +2,7 @@
 #define UNICASTSENDER_HPP
 
 #include "../utils/Thread.hpp"
+#include "../resourcemanager/Part.hpp"
 
 
 class UnicastSender : public Thread {
@@ -12,7 +13,7 @@ public:
     void requestRequest(char *msg, char *address);
     void requestConfirmation(char *msg, char *address);
     void requestPartRequest(char *address);
-    void requestPart(char *address);
+    void requestPart(Part *part, char *address);
 
 private:
     int sock;

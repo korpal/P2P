@@ -102,5 +102,6 @@ void UnicastReceiver::handleIncomingPartRequest(UnicastPartRequest &msg)
 
 void UnicastReceiver::handleIncomingPart(UnicastPart &msg)
 {
-    printf("Received UnicastPart\n");
+    printf("Received UnicastPart that containts: \n");
+    printf("%s", (char*)msg.getPart().getData());
 }

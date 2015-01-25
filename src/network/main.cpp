@@ -20,17 +20,21 @@ int main()
     broadcastReceiver->start();
     UnicastReceiver *unicastReceiver = new UnicastReceiver();
     unicastReceiver->start();
-
+    printf("Przed stworzeniem local resource\n");
     getchar();
 
-    BroadcastSender *broadcastSender = new BroadcastSender();
+    //BroadcastSender *broadcastSender = new BroadcastSender();
     //broadcastSender->requestAllResources();
     //broadcastSender->requestResource((char*)"Siema broadcast");
     //broadcastSender->requestRevoke();
-
-    UnicastSender *unicastSender = new UnicastSender();
+    printf("Przed stworzeniem local resource\n");
+    //UnicastSender *unicastSender = new UnicastSender();
     //unicastSender->requestRequest((char*)"Siema Heniu", (char *)"25.9.227.212");
-    //unicastSender->requestPart((char *)"25.9.227.212");
+
+    printf("Przed stworzeniem local resource\n");
+    //LocalResource lr("test.txt");
+    //Part p = lr.getPart(0);
+    //unicastSender->requestPart(&p, (char *)"192.168.2.107");
 
 
     getchar();
@@ -40,7 +44,7 @@ int main()
     unicastReceiver->join();
     delete broadcastReceiver;
     delete unicastReceiver;
-    delete broadcastSender;
-    delete unicastSender;
+    //delete broadcastSender;
+    //delete unicastSender;
     return 0;
 }
