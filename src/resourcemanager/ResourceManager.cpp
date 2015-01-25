@@ -8,7 +8,7 @@ ResourceManager::ResourceManager()
 
 }
 
-void ResourceManager::addLocal(const std::string &path)
+void ResourceManager::addLocalResource(const std::string &path)
 {
     boost::shared_ptr<LocalResource> resource(new LocalResource(path));
 
@@ -24,7 +24,7 @@ void ResourceManager::addLocal(const std::string &path)
     // TODO hasNew ??
 }
 
-void ResourceManager::addRemote(const ResourceIdentifier &identifier, const Source &source)
+void ResourceManager::addRemoteResource(const ResourceIdentifier &identifier, const Source &source)
 {
     ScopedLock lock(mutex);
 
@@ -38,4 +38,3 @@ void ResourceManager::addRemote(const ResourceIdentifier &identifier, const Sour
 
     resource->addSource(source);
 }
-

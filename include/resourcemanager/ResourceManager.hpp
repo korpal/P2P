@@ -5,6 +5,7 @@
 #include "LocalResource.hpp"
 #include "RemoteResource.hpp"
 #include "../utils/Lock.hpp"
+#include "DownloadedResource.hpp"
 #include <map>
 #include <mutex>
 
@@ -14,17 +15,21 @@ public:
     ResourceManager();
 
     // Adds a local source stored at given path
-    void addLocal(const std::string &path);
+    void addLocalResource(const std::string &path);
 
     // Adds a new Source to given RemoteResource, if it does not exist it is created
-    void addRemote(const ResourceIdentifier& identifier, const Source& source);
+    void addRemoteResource(const ResourceIdentifier& identifier, const Source& source);
+
+    // Begins download of a file and adds it to download list
+    void addDownloadedResource(const ResourceIdentifier& identifier);
 
 
     void getPartForSending(const unsigned& id);
 
 private:
-    std::map<unsigned int, boost::shared_ptr<LocalResource>> localData;
-    std::map<unsigned int, boost::shared_ptr<RemoteResource>> remoteData;
+    std::map<unsigned, boost::shared_ptr<LocalResource>> localData;
+    std::map<unsigned, boost::shared_ptr<RemoteResource>> remoteData;
+    std::map<unsigned, boost::shared_ptr<DownloadedResource>> downloadedData;
 
     Lock mutex;
 };

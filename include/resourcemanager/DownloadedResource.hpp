@@ -12,13 +12,14 @@ public:
     DownloadedResource(const ResourceIdentifier& identifier);
 
     void addDownloadedPart(const Part& part);
+
+private:
     bool isComplete() const;
     unsigned getPartsCount();
 
-private:
-    std::string path;
     mutable std::ofstream file;
     ResourceIdentifier identifier;
+
     std::vector<bool> partsDownloaded;
     unsigned partsCount;
 };

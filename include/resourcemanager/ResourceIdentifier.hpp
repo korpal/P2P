@@ -10,7 +10,7 @@ class ResourceIdentifier
         ResourceIdentifier();
         ResourceIdentifier(const std::string &name, unsigned size);
 
-        std::string& getName();
+        std::string& getName() const;
         unsigned getSize() const;
         unsigned getID() const;
 

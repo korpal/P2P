@@ -10,7 +10,7 @@ ResourceIdentifier::ResourceIdentifier(const std::string &name, unsigned size)
     this->hash = std::hash<std::string>()(std::string(name + std::to_string(size)));
 }
 
-std::string& ResourceIdentifier::getName()
+std::string& ResourceIdentifier::getName() const
 {
     return *(new std::string(this->name));
 }
