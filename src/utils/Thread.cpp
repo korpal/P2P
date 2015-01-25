@@ -1,9 +1,3 @@
-/**
- * Projekt z przedmiotu TIN - Program obsługujący prosty protokół P2P
- * Aleksander Bielawski
- * Rafał Witowski
- */
-
 #include <cassert>
 
 #include "../../include/utils/ScopedLock.hpp"
@@ -12,9 +6,7 @@
 
 Thread::Thread()
 : finished_(false)
-{
-    // nic
-}
+{}
 
 Thread::~Thread()
 {

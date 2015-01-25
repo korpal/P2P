@@ -1,9 +1,3 @@
-/**
- * Projekt z przedmiotu TIN - Program obsługujący prosty protokół P2P
- * Aleksander Bielawski
- * Rafał Witowski
- */
-
 #ifndef SCOPED_LOCK_HPP
 #define SCOPED_LOCK_HPP
 

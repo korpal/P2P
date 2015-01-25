@@ -17,15 +17,22 @@ set(SOURCE_FILES
     include/network/BroadcastSender.hpp
     include/network/UnicastReceiver.hpp
     include/network/UnicastSender.hpp
+    include/resourcemanager/LocalResource.hpp
+    include/resourcemanager/Part.hpp
+    include/resourcemanager/ResourceIdentifier.hpp
     include/utils/Lock.hpp
     include/utils/ScopedLock.hpp
     include/utils/SynchronizedQueue.hpp
     include/utils/Thread.hpp
+    include/utils/Configuration.hpp
     src/network/BroadcastReceiver.cpp
     src/network/BroadcastSender.cpp
     src/network/UnicastReceiver.cpp
     src/network/UnicastSender.cpp
     src/network/main.cpp
+    src/resourcemanager/LocalResource.cpp
+    src/resourcemanager/Part.cpp
+    src/resourcemanager/ResourceIdentifier.cpp
     src/utils/Thread.cpp)
 
 add_executable(P2P ${SOURCE_FILES})
@@ -33,7 +40,7 @@ add_executable(P2P ${SOURCE_FILES})
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME ON)
-find_package(Boost 1.45.0 COMPONENTS system thread)
+find_package(Boost 1.45.0 COMPONENTS system thread filesystem)
 
 if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})

@@ -1,14 +1,10 @@
 #include <iostream>
 #include <cstring>
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
-#include <ws2tcpip.h>
-#else
 #include <netinet/in.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <netdb.h>
-#endif
 
 #include "../../include/network/UnicastSender.hpp"
 #include "../../include/network/protocol/unicast/UnicastConfirmation.hpp"
@@ -37,7 +33,6 @@ void UnicastSender::requestRequest(char *name, char *address)
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_port = htons(PORT);
-    // TODO - address
     addr.sin_addr.s_addr = inet_addr(address);
 
     UnicastRequest *msg = new UnicastRequest(name);
@@ -53,7 +48,6 @@ void UnicastSender::requestConfirmation(char *name, char *address)
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_port = htons(PORT);
-    // TODO - address
     addr.sin_addr.s_addr = inet_addr(address);
 
     UnicastConfirmation *msg = new UnicastConfirmation(name);
@@ -69,7 +63,6 @@ void UnicastSender::requestPartRequest(char *address)
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_port = htons(PORT);
-    // TODO - address
     addr.sin_addr.s_addr = inet_addr(address);
 
     UnicastPartRequest *msg = new UnicastPartRequest();
@@ -85,7 +78,6 @@ void UnicastSender::requestPart(char *address)
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_port = htons(PORT);
-    // TODO - address
     addr.sin_addr.s_addr = inet_addr(address);
 
     UnicastPart *msg = new UnicastPart();

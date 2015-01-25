@@ -17,13 +17,13 @@ int main()
     getchar();
 
     BroadcastSender *broadcastSender = new BroadcastSender();
-    broadcastSender->requestAllResources();
-    broadcastSender->requestResource((char*)"some name");
-    broadcastSender->requestRevoke();
+    //broadcastSender->requestAllResources();
+    //broadcastSender->requestResource((char*)"some name");
+    //broadcastSender->requestRevoke();
 
     UnicastSender *unicastSender = new UnicastSender();
-    unicastSender->requestConfirmation((char*)"Siema Heniu", (char *)"192.168.2.107");
-    unicastSender->requestPart((char *)"192.168.2.107");
+    unicastSender->requestRequest((char*)"Siema Heniu", (char *)"192.168.2.107");
+    //unicastSender->requestPart((char *)"25.9.227.212");
 
 
     getchar();
