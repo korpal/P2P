@@ -11,7 +11,8 @@
 
 int main()
 {
-    //Interface anInterface;
+    Interface anInterface;
+    anInterface.start();
     BroadcastReceiver *broadcastReceiver = new BroadcastReceiver();
     broadcastReceiver->start();
     UnicastReceiver *unicastReceiver = new UnicastReceiver();
