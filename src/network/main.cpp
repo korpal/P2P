@@ -10,7 +10,8 @@
 
 int main()
 {
-    //Interface interf();
+    Interface interf;
+    interf.start();
    /* BroadcastReceiver *broadcastReceiver = new BroadcastReceiver();
     broadcastReceiver->start();
     UnicastReceiver *unicastReceiver = new UnicastReceiver();

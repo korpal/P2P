@@ -1,4 +1,5 @@
 #include <iostream>
+#include <istream>
 #include "../../include/interface/Interface.hpp"
 #include "../../include/resourcemanager/ResourceManager.hpp"
 
@@ -21,11 +22,14 @@ void Interface::start()
     while(!isFinished)
     {
         menu();
-        int X = getchar() - '0';
+        char c;
+        cin >> c;
+        int X = c - '0';
         while (X == 0 || X > options.size())
         {
             Q("Błędna decyzja!");
-            X = getchar() - '0';
+            cin >> c;
+            X = c - '0';
         }
         (*this.*options[X])();
     }
