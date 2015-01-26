@@ -1,5 +1,7 @@
 #include "../../include/resourcemanager/ResourceManager.hpp"
 #include "../../include/utils/ScopedLock.hpp"
+#include "../../include/controller/Events.hpp"
+#include "../../include/utils/EventQueue.hpp"
 
 ResourceManager::ResourceManager() {}
 
@@ -146,4 +148,21 @@ void ResourceManager::revertResource(const ResourceIdentifier &identifier)
     localData[id] = resource;
 
     revokedData.erase(id);
+}
+
+void ResourceManager::handleAllResourcesRequest(Source& source)
+{
+    std::vector<ResourceIdentifier> localInfo = getLocalResourcesInfo();
+    for(int i = 0; i < localInfo.size(); i++)
+    {
+        OutgoingResourceInformationEvent event(localInfo[i], source);
+        EventQueue::getInstance().push(&event);
+    }
+}
+
+void ResourceManager::handlePartRequest(ResourceIdentifier const &identifier, unsigned int const &id, Source &source)
+{
+    Part part = getPartForSending(identifier, id);
+    OutgoingPartEvent event(part, source);
+    EventQueue::getInstance().push(&event);
 }

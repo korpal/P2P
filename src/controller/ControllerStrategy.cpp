@@ -15,6 +15,13 @@ void OutgoingAllResourcesStrategy::react(Event *event)
 }
 
 
+void IncomingAllResourcesStrategy::react(Event *event)
+{
+    IncomingAllResourcesRequestEvent* event_ = dynamic_cast<IncomingAllResourcesRequestEvent*>(event);
+    ResourceManager::getInstance().handleAllResourcesRequest(event_->getSource());
+}
+
+
 void OutgoingResourceRequestStrategy::react(Event *event)
 {
     OutgoingResourceRequestEvent* event_ = dynamic_cast<OutgoingResourceRequestEvent*>(event);
@@ -64,10 +71,24 @@ void OutgoingPartStrategy::react(Event *event)
 }
 
 
+void IncomingPartRequestStrategy::react(Event *event)
+{
+    IncomingPartRequestEvent* event_ = dynamic_cast<IncomingPartRequestEvent*>(event);
+    ResourceManager::getInstance().handlePartRequest(event_->getResourceIdentifier(), event_->getPartId(), event_->getSource());
+}
+
+
 void OutgoingPartRequestStrategy::react(Event *event)
 {
     OutgoingPartRequestEvent* event_ = dynamic_cast<OutgoingPartRequestEvent*>(event);
     UnicastSender::getInstance().sendPartRequest(event_->getResourceIdentifier(), event_->getPartId(), event_->getSource());
+}
+
+
+void IncomingResourceInformationStrategy::react(Event *event)
+{
+    IncomingResourceInformationEvent* event_ = dynamic_cast<IncomingResourceInformationEvent*>(event);
+    ResourceManager::getInstance().addRemoteResource(event_->getResourceIdentifier(), event_->getSource());
 }
 
 
@@ -82,4 +103,3 @@ void TransformDownloadedResourceStrategy::react(Event *event)
     TransformEvent* transformEvent = dynamic_cast<TransformEvent*>(event);
     ResourceManager::getInstance().transformDownloadedIntoLocal(transformEvent->getIdentifier());
 }
-

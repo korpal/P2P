@@ -5,6 +5,17 @@
 Event::~Event() {}
 
 
+
+// IncomingAllResourcesRequest //
+IncomingAllResourcesRequestEvent::IncomingAllResourcesRequestEvent(Source &source) : source(source){}
+
+Source &IncomingAllResourcesRequestEvent::getSource()
+{
+    return source;
+}
+
+
+
 // OutgoingResourceRequest //
 OutgoingResourceRequestEvent::OutgoingResourceRequestEvent(ResourceIdentifier &ri) : resourceIdentifier(ri) {}
 
@@ -152,7 +163,7 @@ Source &IncomingResourceInformationEvent::getSource()
 
 
 // OutgoingResourceInformationEvent//
-OutgoingResourceInformationEvent::OutgoingResourceInformationEvent(ResourceIdentifier &ri) :
+OutgoingResourceInformationEvent::OutgoingResourceInformationEvent(ResourceIdentifier &ri, Source& source) :
         resourceIdentifier(ri),
         source(source){}
 
@@ -175,6 +186,4 @@ const ResourceIdentifier& TransformEvent::getIdentifier()
 {
     return resourceIdentifier;
 }
-
-
 

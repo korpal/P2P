@@ -23,7 +23,10 @@ class OutgoingAllResourcesRequestEvent : public Event
 class IncomingAllResourcesRequestEvent : public Event
 {
     public:
-        IncomingAllResourcesRequestEvent() {}
+        IncomingAllResourcesRequestEvent(Source& source);
+        Source& getSource();
+    private:
+        Source source;
 };
 
 
@@ -154,7 +157,7 @@ class IncomingResourceInformationEvent : public Event
 class OutgoingResourceInformationEvent : public Event
 {
     public:
-        OutgoingResourceInformationEvent(ResourceIdentifier &ri);
+        OutgoingResourceInformationEvent(ResourceIdentifier &ri, Source& source);
         ResourceIdentifier& getResourceIdentifier();
         Source& getSource();
     private:
