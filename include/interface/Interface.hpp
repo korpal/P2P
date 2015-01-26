@@ -20,7 +20,7 @@ private:
     void addSingleOption(unsigned id, methodPointer method);
 
     // Options
-    void addLocalResource();
+    void addLocalResource(){};
 };
 
 #endif // INTERFACE_H

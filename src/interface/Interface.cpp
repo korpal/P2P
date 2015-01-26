@@ -27,10 +27,11 @@ void Interface::menu()
 
 void Interface::addOptions()
 {
-    //addSingleOption(1, &Interface::)
+    //addSingleOption(1, &Interface::addLocalResource);
+    options.insert(make_pair(1, &Interface::addLocalResource));
 }
 
 void Interface::addSingleOption(unsigned id, methodPointer method)
 {
-    options.insert(std::pair<unsigned int, void (Interface::*)()>(id, *method));
+    //options.insert(std::pair<unsigned int, void (Interface::*)()>(id, *method));
 }
