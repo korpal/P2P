@@ -100,3 +100,13 @@ bool ResourceManager::existsLocal(const unsigned &id) const
 {
     return localData.find(id) != localData.end();
 }
+
+void ResourceManager::receivePart(const Part &part)
+{
+    unsigned id = part.getResourceIdentifier().getID();
+
+    if(downloadedData.find(id) == downloadedData.end())
+        return;
+
+    downloadedData[id]->addDownloadedPart(part);
+}

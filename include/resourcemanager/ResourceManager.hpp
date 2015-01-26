@@ -39,6 +39,9 @@ public:
     // Does resource of given id exist locally
     bool existsLocal(const unsigned& id) const;
 
+    // React upon received Part
+    void receivePart(const Part& part);
+
 private:
     std::map<unsigned int, boost::shared_ptr<LocalResource>> localData;
     std::map<unsigned int, boost::shared_ptr<RemoteResource>> remoteData;
