@@ -5,11 +5,16 @@
 DownloadedResource::DownloadedResource(const ResourceIdentifier &identifier) :
         identifier(identifier),
         file(identifier.getName().c_str()),
-        partsDownloaded(getPartsCount(), false),
         partsCount((unsigned int) ceil((double)identifier.getSize()
-                / (double)Configuration::PART_SIZE)),
-        partsTimeout(partsCount, 0)
-{}
+                      / (double)Configuration::PART_SIZE))
+
+{
+    for(int i = 0; i < getPartsCount(); i++)
+    {
+        partsDownloaded.push_back(false);
+        partsTimeout.push_back(0);
+    }
+}
 
 void DownloadedResource::addDownloadedPart(const Part& part)
 {
@@ -27,7 +32,7 @@ void DownloadedResource::addDownloadedPart(const Part& part)
 
 bool DownloadedResource::isComplete()
 {
-    for(unsigned i = getPartsCount()-1; i >= 0; --i)
+    for(int i = getPartsCount()-1; i >= 0; --i)
         if(!partsDownloaded[i])
             return false;
     return true;

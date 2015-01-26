@@ -24,8 +24,14 @@ Part& LocalResource::getPart(unsigned id) const
 {
     unsigned size = resourceIdentifier.getSize();
     unsigned partSize = Configuration::PART_SIZE;
+    unsigned partsNum = size/partSize;
+    unsigned realPartSize;
+    if(id < partsNum)
+        realPartSize = partSize;
+    else
+        realPartSize = size % partSize;
     file.seekg(id*partSize, std::ios::beg);
-    return *(new Part(resourceIdentifier, id, partSize, file));
+    return *(new Part(resourceIdentifier, id, realPartSize, file));
 }
 
 ResourceIdentifier& LocalResource::getResourceIdentifier()

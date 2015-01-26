@@ -93,7 +93,7 @@ void UnicastReceiver::handleIncomingPartRequest(UnicastPartRequest &msg, char* a
 
 void UnicastReceiver::handleIncomingPart(UnicastPart &msg, char* address)
 {
-    std::cout << "Otrzymalem part nr " << msg.getPart().getId() << std::endl;
+    std::cout << "Otrzymalem part nr " << msg.getPart().getId() << std::endl;// << "  Rozmiar jego danych to " << msg.getPart().getSize() << std::endl;
     IncomingPartEvent *event = new IncomingPartEvent(msg.getPart(), *(new Source(address)));
     EventQueue::getInstance().push(event);
 }
