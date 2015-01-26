@@ -19,9 +19,9 @@ Interface::Interface() :
 void Interface::start()
 {
     welcomingText();
+    menu();
     while(!isFinished)
     {
-        menu();
         char c;
         cin >> c;
         int X = c - '0';
@@ -48,6 +48,7 @@ void Interface::menu()
     Q("2. Enlist remote reources.");
     Q("3. Enlist revoked reources.");
     Q("4. Xit.");
+    addOptions();
 }
 
 void Interface::addOptions()
@@ -67,7 +68,7 @@ void Interface::enlistLocalResources()
     Q("");
     Q("Local Resources:");
     vector<ResourceIdentifier> resources = ResourceManager::getInstance().getLocalResourcesInfo();
-    char i;
+    int i;
     std::string str;
     for(i = 0; i < resources.size(); i++)
     {
@@ -94,7 +95,7 @@ void Interface::enlistRemoteResources()
     Q("");
     Q("Remote Resources:");
     vector<ResourceIdentifier> resources = ResourceManager::getInstance().getRemoteResourcesInfo();
-    char i;
+    int i;
     std::string str;
     for(i = 0; i < resources.size(); i++)
     {
@@ -116,7 +117,7 @@ void Interface::enlistRevokedResources()
     Q("");
     Q("Revoked Resources:");
     vector<ResourceIdentifier> resources = ResourceManager::getInstance().getRevokedResourcesInfo();
-    char i;
+    int i;
     std::string str;
     for(i = 0; i < resources.size(); i++)
     {
@@ -165,5 +166,5 @@ void Interface::revertResource()
 }
 
 void Interface::back() {
-
+    menu();
 }
