@@ -163,7 +163,7 @@ void Interface::addLocalResource()
 void Interface::revokeResource()
 {
     vector<ResourceIdentifier> resources = ResourceManager::getInstance().getLocalResourcesInfo();
-    EventQueue::getInstance().push(new OutgoingRevokeRequestEvent(resources[chosen]));
+    EventQueue::getInstance().push(new OutgoingRevokeRequestEvent(resources[chosen-1]));
     back();
 }
 
@@ -178,14 +178,15 @@ void Interface::downloadAllResources()
 void Interface::downloadResource()
 {
     vector<ResourceIdentifier> resources = ResourceManager::getInstance().getRemoteResourcesInfo();
-    EventQueue::getInstance().push(new NewDownloadedResourceEvent(resources[chosen]));
+    ResourceIdentifier ri = resources[chosen-1];
+    EventQueue::getInstance().push(new NewDownloadedResourceEvent(*(new ResourceIdentifier(ri.getName(), ri.getSize()))));
     back();
 }
 
 void Interface::revertResource()
 {
     vector<ResourceIdentifier> resources = ResourceManager::getInstance().getRevokedResourcesInfo();
-    EventQueue::getInstance().push(new OutgoingRevertRequestEvent(resources[chosen]));
+    EventQueue::getInstance().push(new OutgoingRevertRequestEvent(resources[chosen-1]));
     back();
 }
 
