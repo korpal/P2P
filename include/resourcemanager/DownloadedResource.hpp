@@ -14,14 +14,13 @@ public:
     void addDownloadedPart(const Part& part);
 
 private:
-    bool isComplete() const;
+    bool isComplete();
     unsigned getPartsCount();
 
     mutable std::ofstream file;
     ResourceIdentifier identifier;
 
     std::vector<bool> partsDownloaded;
-    unsigned partsCount;
 };
 
 #endif // DOWNLOADED_RESOURCE

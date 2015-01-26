@@ -102,11 +102,11 @@ void UnicastReceiver::handleIncomingPartRequest(UnicastPartRequest &msg)
 
 void UnicastReceiver::handleIncomingPart(UnicastPart &msg)
 {
-    printf("Received UnicastPart: Size: ");
+    printf("Received UnicastPart: Part Size: ");
     fflush(stdout);
     std::cout << msg.getPart().getSize();
     fflush(stdout);
-    std::cout << " Msg: " << (char*)msg.getPart().getData() << std::endl;
-    //printf("%s\n", (char*)msg.getPart().getData());
+    std::cout << " Msg: " << (char*)msg.getPart().getData();
+    std::cout << ", File size: " << msg.getPart().getResourceIdentifier().getSize() << std::endl;
     fflush(stdout);
 }

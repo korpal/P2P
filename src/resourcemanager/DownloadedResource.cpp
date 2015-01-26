@@ -5,7 +5,6 @@ DownloadedResource::DownloadedResource(const ResourceIdentifier &identifier) :
         file(identifier.getName().c_str()),
         partsDownloaded(getPartsCount(), false)
 {
-
 }
 
 void DownloadedResource::addDownloadedPart(const Part& part)
@@ -14,19 +13,29 @@ void DownloadedResource::addDownloadedPart(const Part& part)
     file.write((char*)part.getData(), part.getSize());
     partsDownloaded[part.getId()] = true;
 
-    if(isComplete())
+
+
+    if(isComplete()) {
+        std::cout << "Koniec!!!";
+        fflush(stdout);
         file.flush();
+        file.close();
+    }
+    std::cout << std::endl;
 }
 
-bool DownloadedResource::isComplete() const
+bool DownloadedResource::isComplete()
 {
-    return std::find(partsDownloaded.rbegin(), partsDownloaded.rend(), false) == partsDownloaded.rend();
+    std::cout << "Siema " << std::endl << partsDownloaded.size() << " " << partsDownloaded[0] << " " << partsDownloaded[1] << " " << partsDownloaded[2] << std::endl;
+    for(unsigned i = getPartsCount()-1; i >= 0; --i) {
+        if(!partsDownloaded[i])
+            return false;
+    }
+
+    return true;
 }
 
 unsigned DownloadedResource::getPartsCount()
 {
-    if(!partsCount)
-        partsCount = (identifier.getSize() + Configuration::PART_SIZE )
-                        / Configuration::PART_SIZE;
-    return partsCount;
+    return (unsigned int) ceil((double)identifier.getSize() / (double)Configuration::PART_SIZE);
 }
