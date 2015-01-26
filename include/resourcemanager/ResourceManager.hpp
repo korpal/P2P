@@ -33,6 +33,9 @@ public:
     // Returns a set of information about remote resources
     std::vector<ResourceIdentifier> getRemoteResourcesInfo();
 
+    // Returns sources for indentifier
+    std::vector<Source> getSources(const ResourceIdentifier& identifier);
+
     // Transforms a DownloadedReosurce into a LocalResource
     void transformDownloadedIntoLocal(const ResourceIdentifier& identifier);
 

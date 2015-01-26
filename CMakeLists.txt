@@ -34,10 +34,10 @@ set(SOURCE_FILES
     include/utils/ScopedLock.hpp
     include/utils/Thread.hpp
     include/utils/Configuration.hpp
+    include/utils/TimedBlockingQueue.hpp
     src/controller/Controller.cpp
     src/controller/ControllerStrategy.cpp
     src/controller/Events.cpp
-    src/utils/EventQueue.cpp
     src/network/protocol/broadcast/BroadcastResource.cpp
     src/network/protocol/broadcast/BroadcastRevoke.cpp
     src/network/protocol/broadcast/BroadcastRevert.cpp
@@ -57,7 +57,9 @@ set(SOURCE_FILES
     src/resourcemanager/RemoteResource.cpp
     src/resourcemanager/ResourceManager.cpp
     src/resourcemanager/Source.cpp
-    src/utils/Thread.cpp)
+    src/utils/Thread.cpp
+    src/utils/EventQueue.cpp
+    src/utils/TimedBlockingQueue.cpp)
 
 add_executable(P2P ${SOURCE_FILES})
 

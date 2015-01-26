@@ -5,6 +5,7 @@
 #include <fstream>
 #include "ResourceIdentifier.hpp"
 #include "Part.hpp"
+#include "Source.hpp"
 
 class DownloadedResource
 {

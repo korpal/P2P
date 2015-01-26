@@ -100,6 +100,14 @@ std::vector<ResourceIdentifier> ResourceManager::getRemoteResourcesInfo()
     return resultVector;
 }
 
+
+std::vector<Source> ResourceManager::getSources(const ResourceIdentifier &identifier)
+{
+    boost::shared_ptr<RemoteResource> resource = remoteData[identifier.getID()];
+    return resource->getSources();
+}
+
+
 // TODO UNTRUSTED POINTERS
 void ResourceManager::transformDownloadedIntoLocal(const ResourceIdentifier &identifier)
 {
@@ -166,3 +174,4 @@ void ResourceManager::handlePartRequest(ResourceIdentifier const &identifier, un
 {
     EventQueue::getInstance().push(new OutgoingPartEvent(getPartForSending(identifier, id), source));
 }
+
