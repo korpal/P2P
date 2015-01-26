@@ -13,7 +13,7 @@
 class ResourceManager
 {
 public:
-    ResourceManager();
+    static ResourceManager& getInstance();
 
     // Adds a local source stored at given path
     void addLocalResource(const std::string &path);
@@ -43,6 +43,9 @@ public:
     void receivePart(const Part& part);
 
 private:
+    ResourceManager();
+    static ResourceManager resourceManager;
+
     std::map<unsigned int, boost::shared_ptr<LocalResource>> localData;
     std::map<unsigned int, boost::shared_ptr<RemoteResource>> remoteData;
     std::map<unsigned int, boost::shared_ptr<DownloadedResource>> downloadedData;

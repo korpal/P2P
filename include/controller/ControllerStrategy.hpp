@@ -8,7 +8,7 @@ class Controller;
 class ControllerStrategy
 {
     public:
-        virtual void react(Event* event, Controller *controller);
+        virtual void react(Event* event);
         ControllerStrategy();
 };
 
@@ -16,14 +16,14 @@ class ControllerStrategy
 class StringStrategy: public ControllerStrategy
 {
     public:
-        virtual void react(Event* event, Controller *controller);
+        virtual void react(Event* event);
 };
 
 
 class PartStrategy: public ControllerStrategy
 {
     public:
-        virtual void react(Event* event, Controller *controller);
+        virtual void react(Event* event);
 };
 
 

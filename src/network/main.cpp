@@ -15,9 +15,8 @@
 int main()
 {
     EventQueue eventQueue;
-    ResourceManager resourceManager;
 
-    Controller *controller = new Controller(&eventQueue, &resourceManager);
+    Controller *controller = new Controller(&eventQueue);
     controller->start();
     eventQueue.push(new StringEvent("Siema"));
 

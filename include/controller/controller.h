@@ -19,13 +19,11 @@ class Controller : public Thread
     private:
         EventQueue* const event_queue;
         std::unordered_map<std::type_index, ControllerStrategy*> strategyMap;
-        ResourceManager *resourceManager;
 
     public:
-        Controller(EventQueue* const, ResourceManager* rm);
+        Controller(EventQueue* const);
         ~Controller();
         virtual void run();
-        ResourceManager* getResourceManager();
 };
 
 

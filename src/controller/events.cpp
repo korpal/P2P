@@ -3,9 +3,7 @@
 #include "../../include/controller/events.h"
 
 Event::~Event()
-{
-
-}
+{}
 
 
 StringEvent::StringEvent(std::string message)
@@ -14,9 +12,7 @@ StringEvent::StringEvent(std::string message)
 }
 
 StringEvent::~StringEvent()
-{
-
-}
+{}
 
 std::string StringEvent::getMessage()
 {
@@ -26,11 +22,9 @@ std::string StringEvent::getMessage()
 
 
 PartEvent::PartEvent(Part& part) :
-    part(part)
-{}
+    part(part) {}
 
-PartEvent::~PartEvent()
-{}
+PartEvent::~PartEvent() {}
 
 Part &PartEvent::getPart() {
     return part;

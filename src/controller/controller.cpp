@@ -6,9 +6,8 @@
 #include "../../include/controller/ControllerStrategy.hpp"
 
 
-Controller::Controller(EventQueue* const event_queue, ResourceManager* rm) :
-        event_queue(event_queue),
-        resourceManager(rm)
+Controller::Controller(EventQueue* const event_queue) :
+        event_queue(event_queue)
 {
     this->strategyMap.insert(std::make_pair<std::type_index, StringStrategy*>
             (std::type_index(typeid(StringEvent)), new StringStrategy()));
@@ -25,15 +24,9 @@ void Controller::run()
         Event* event = event_queue->pop();
         ControllerStrategy* strategy =
             strategyMap[std::type_index(typeid(*event))];
-        strategy->react(event, this);
+        strategy->react(event);
     }
 }
-
-ResourceManager *Controller::getResourceManager()
-{
-    return resourceManager;
-}
-
 
 
 

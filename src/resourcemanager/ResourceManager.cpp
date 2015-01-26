@@ -1,10 +1,14 @@
 #include "../../include/resourcemanager/ResourceManager.hpp"
 #include "../../include/utils/ScopedLock.hpp"
 
-ResourceManager::ResourceManager()
-{
+ResourceManager::ResourceManager() : resourceManager() {}
 
+
+ResourceManager& ResourceManager::getInstance()
+{
+    return resourceManager;
 }
+
 
 void ResourceManager::addLocalResource(const std::string &path)
 {
@@ -110,3 +114,4 @@ void ResourceManager::receivePart(const Part &part)
 
     downloadedData[id]->addDownloadedPart(part);
 }
+
