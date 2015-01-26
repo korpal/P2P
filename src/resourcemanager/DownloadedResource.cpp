@@ -1,5 +1,6 @@
 #include <sys/time.h>
 #include "../../include/resourcemanager/DownloadedResource.hpp"
+#include "../../include/utils/EventQueue.hpp"
 
 DownloadedResource::DownloadedResource(const ResourceIdentifier &identifier) :
         identifier(identifier),
@@ -20,6 +21,7 @@ void DownloadedResource::addDownloadedPart(const Part& part)
         fflush(stdout);
         file.flush();
         file.close();
+        EventQueue::getInstance().push(new TransformEvent(identifier));
     }
 }
 

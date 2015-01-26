@@ -6,7 +6,6 @@ ControllerStrategy::ControllerStrategy() {}
 
 void ControllerStrategy::react(Event* event) {}
 
-
 void StringStrategy::react(Event* event)
 {
     StringEvent* stringEven = dynamic_cast<StringEvent*>(event);
@@ -14,12 +13,14 @@ void StringStrategy::react(Event* event)
     fflush(stdout);
 }
 
-
 void PartStrategy::react(Event* event)
 {
     PartEvent* partEvent = dynamic_cast<PartEvent*>(event);
     ResourceManager::getInstance().receivePart(partEvent->getPart());
 }
 
-
-
+void TransformDownloadedResourceStrategy::react(Event *event)
+{
+    TransformEvent* transformEvent = dynamic_cast<TransformEvent*>(event);
+    ResourceManager::getInstance().transformDownloadedIntoLocal(transformEvent->getIdentifier());
+}

@@ -10,10 +10,6 @@ StringEvent::StringEvent(std::string message)
 {
     this->message = message;
 }
-
-StringEvent::~StringEvent()
-{}
-
 std::string StringEvent::getMessage()
 {
     return message;
@@ -24,8 +20,16 @@ std::string StringEvent::getMessage()
 PartEvent::PartEvent(Part& part) :
     part(part) {}
 
-PartEvent::~PartEvent() {}
-
-Part &PartEvent::getPart() {
+Part &PartEvent::getPart()
+{
     return part;
+}
+
+
+TransformEvent::TransformEvent(const ResourceIdentifier &identifier) :
+    resourceIdentifier(identifier) {}
+
+const ResourceIdentifier& TransformEvent::getIdentifier()
+{
+    return resourceIdentifier;
 }
