@@ -8,21 +8,20 @@
 #include "../../include/network/BroadcastReceiver.hpp"
 #include "../../include/interface/Interface.hpp"
 
-
 int main()
 {
-    Interface anInterface;
-    anInterface.start();
-    BroadcastReceiver *broadcastReceiver = new BroadcastReceiver();
+    //Interface interf();
+   /* BroadcastReceiver *broadcastReceiver = new BroadcastReceiver();
     broadcastReceiver->start();
     UnicastReceiver *unicastReceiver = new UnicastReceiver();
     unicastReceiver->start();
     Controller *controller = new Controller();
     controller->start();
-//    ResourceIdentifier *ri = new ResourceIdentifier("test.txt", 68);
-//    ResourceManager::getInstance().addRemoteResource(*ri, *(new Source((char*)"25.1.3.6")));
-//    ResourceManager::getInstance().addDownloadedResource(*ri);
-    ResourceManager::getInstance().addLocalResource("Victory.mp3");
+    ResourceIdentifier *ri = new ResourceIdentifier("Victory.mp3", 503200);
+    ResourceManager::getInstance().addRemoteResource(*ri, *(new Source((char*)"25.9.227.212")));
+    ResourceManager::getInstance().addDownloadedResource(*ri);*/
+    //ResourceManager::getInstance().addLocalResource("test.txt");
+    //ResourceManager::getInstance().addLocalResource("test.tx");
     //EventQueue::getInstance().push(new IncomingAllResourcesRequestEvent(*(new Source((char*)"192.168.2.107"))));
 
 
@@ -54,13 +53,14 @@ int main()
     dr.addDownloadedPart(p3);
     fflush(stdout);
 */
-    getchar();
+/*    getchar();
     broadcastReceiver->stop();
     unicastReceiver->stop();
     broadcastReceiver->join();
     unicastReceiver->join();
     delete broadcastReceiver;
     delete unicastReceiver;
-    delete controller;
+    delete controller;*/
+    getchar();
     return 0;
 }

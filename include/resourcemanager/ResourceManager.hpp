@@ -33,6 +33,9 @@ public:
     // Returns a set of information about remote resources
     std::vector<ResourceIdentifier> getRemoteResourcesInfo();
 
+    // Returns a set of information about revoked resources
+    std::vector<ResourceIdentifier> getRevokedResourcesInfo();
+
     // Returns sources for indentifier
     std::vector<Source> getSources(const ResourceIdentifier& identifier);
 

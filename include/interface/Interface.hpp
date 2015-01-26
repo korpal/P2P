@@ -30,7 +30,8 @@ private:
         void revokeResource();
 
     void enlistRemoteResources();
-        void downloadResorce();
+        void downloadResource();
+
 
     void enlistRevokedResources();
         void revertResource();

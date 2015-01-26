@@ -101,6 +101,18 @@ std::vector<ResourceIdentifier> ResourceManager::getRemoteResourcesInfo()
     return resultVector;
 }
 
+std::vector<ResourceIdentifier> ResourceManager::getRevokedResourcesInfo()
+{
+    typedef boost::shared_ptr<RemoteResource> PTR_RR;
+    typedef std::pair<unsigned int, PTR_RR> PAIR;
+    std::vector<ResourceIdentifier> resultVector;
+
+    for(PAIR tmpPair : revokedData)
+        resultVector.push_back(tmpPair.second->getResourceIdentifier());
+
+    return resultVector;
+}
+
 
 std::vector<Source> ResourceManager::getSources(const ResourceIdentifier &identifier)
 {

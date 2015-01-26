@@ -59,17 +59,71 @@ void Interface::addOptions()
 
 void Interface::enlistLocalResources()
 {
-
+    options.clear();
+    Q("");
+    Q("Local Resources:");
+    vector<ResourceIdentifier> resources = ResourceManager::getInstance().getLocalResourcesInfo();
+    int i;
+    std::string str;
+    for(i = 0; i < resources.size(); i++)
+    {
+        str.append((char const *)i-48);
+        str.append(". " + resources[i].getName());
+        Q(str);
+        str.clear();
+        options.insert(make_pair(i, &Interface::addLocalResource));
+    }
+    str.append((char const *)i-48);
+    str.append(". Exit.");
+    options.insert(make_pair(i, &Interface::back));
+    Q(str);
+    delete str;
 }
 
 void Interface::enlistRemoteResources()
 {
-
+    options.clear();
+    Q("");
+    Q("Remote Resources:");
+    vector<ResourceIdentifier> resources = ResourceManager::getInstance().getRemoteResourcesInfo();
+    int i;
+    std::string str;
+    for(i = 0; i < resources.size(); i++)
+    {
+        str.append((char const *)i-48);
+        str.append(". " + resources[i].getName());
+        Q(str);
+        str.clear();
+        options.insert(make_pair(i, &Interface::downloadResource));
+    }
+    str.append((char const *)i-48);
+    str.append(". Exit.");
+    options.insert(make_pair(i, &Interface::back));
+    Q(str);
+    delete str;
 }
 
 void Interface::enlistRevokedResources()
 {
-
+    options.clear();
+    Q("");
+    Q("Revoked Resources:");
+    vector<ResourceIdentifier> resources = ResourceManager::getInstance().getRevokedResourcesInfo();
+    int i;
+    std::string str;
+    for(i = 0; i < resources.size(); i++)
+    {
+        str.append((char const *)i-48);
+        str.append(". " + resources[i].getName());
+        Q(str);
+        str.clear();
+        options.insert(make_pair(i, &Interface::revertResource));
+    }
+    str.append((char const *)i-48);
+    str.append(". Exit.");
+    options.insert(make_pair(i, &Interface::back));
+    Q(str);
+    delete str;
 }
 
 void Interface::stop()
@@ -79,15 +133,27 @@ void Interface::stop()
 
 
 
-
-
-
-
-
-
-
-
 void Interface::addSingleOption(unsigned id, methodPointer method)
 {
     //options.insert(std::pair<unsigned int, void (Interface::*)()>(id, *method));
+}
+
+void Interface::addLocalResource()
+{
+
+}
+
+void Interface::revokeResource()
+{
+
+}
+
+void Interface::downloadResource()
+{
+
+}
+
+void Interface::revertResource()
+{
+
 }
