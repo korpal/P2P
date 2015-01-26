@@ -11,7 +11,6 @@
 #include "../../include/network/protocol/unicast/UnicastPartRequest.hpp"
 #include "../../include/network/protocol/unicast/UnicastResource.hpp"
 
-#define PORT 8887
 
 
 UnicastSender::UnicastSender()
@@ -19,8 +18,17 @@ UnicastSender::UnicastSender()
     sock = createSocket();
 }
 
+UnicastSender::UnicastSender(UnicastSender const &unicastSender) {}
 
 UnicastSender::~UnicastSender(){}
+
+
+UnicastSender &UnicastSender::getInstance()
+{
+    static UnicastSender unicastSender;
+    return unicastSender;
+}
+
 
 
 void UnicastSender::run() {}
@@ -32,7 +40,7 @@ void UnicastSender::sendResource(ResourceIdentifier &ri, char *address)
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
-    addr.sin_port = htons(PORT);
+    addr.sin_port = htons(Configuration::UNICAST_PORT);
     addr.sin_addr.s_addr = inet_addr(address);
 
     UnicastResource *msg = new UnicastResource(ri);
@@ -47,7 +55,7 @@ void UnicastSender::sendPartRequest(char *address)
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
-    addr.sin_port = htons(PORT);
+    addr.sin_port = htons(Configuration::UNICAST_PORT);
     addr.sin_addr.s_addr = inet_addr(address);
 
     UnicastPartRequest *msg = new UnicastPartRequest();
@@ -62,7 +70,7 @@ void UnicastSender::sendPart(Part *part, char *address)
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
-    addr.sin_port = htons(PORT);
+    addr.sin_port = htons(Configuration::UNICAST_PORT);
     addr.sin_addr.s_addr = inet_addr(address);
 
     UnicastPart *msg = new UnicastPart(part);
@@ -97,4 +105,5 @@ int UnicastSender::createSocket()
 
     return sock_uc;
 }
+
 

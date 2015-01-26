@@ -10,8 +10,8 @@
 #include "../../include/network/protocol/broadcast/BroadcastAllResources.hpp"
 #include "../../include/network/protocol/broadcast/BroadcastResource.hpp"
 #include "../../include/network/protocol/broadcast/BroadcastRevoke.hpp"
+#include "../../include/network/UnicastSender.hpp"
 
-#define PORT 8888
 
 
 BroadcastSender::BroadcastSender()
@@ -19,8 +19,16 @@ BroadcastSender::BroadcastSender()
     sock = createSocket();
 }
 
+BroadcastSender::BroadcastSender(BroadcastSender const &broadcastSender) {}
 
 BroadcastSender::~BroadcastSender(){}
+
+
+BroadcastSender& BroadcastSender::getInstance()
+{
+    static BroadcastSender broadcastSender;
+    return broadcastSender;
+}
 
 
 void BroadcastSender::run() {}
@@ -31,7 +39,7 @@ void BroadcastSender::requestAllResources()
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
-    addr.sin_port = htons(PORT);
+    addr.sin_port = htons(Configuration::BROADCAST_PORT);
     addr.sin_addr.s_addr = htonl(INADDR_BROADCAST);
 
     BroadcastAllResources *msg = new BroadcastAllResources();
@@ -46,7 +54,7 @@ void BroadcastSender::requestResource(ResourceIdentifier &ri)
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
-    addr.sin_port = htons(PORT);
+    addr.sin_port = htons(Configuration::BROADCAST_PORT);
     addr.sin_addr.s_addr = htonl(INADDR_BROADCAST);
 
     BroadcastResource *msg = new BroadcastResource(ri);
@@ -61,7 +69,7 @@ void BroadcastSender::requestRevoke(ResourceIdentifier &ri)
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
-    addr.sin_port = htons(PORT);
+    addr.sin_port = htons(Configuration::BROADCAST_PORT);
     addr.sin_addr.s_addr = htonl(INADDR_BROADCAST);
 
     BroadcastRevoke *msg = new BroadcastRevoke(ri);
@@ -101,4 +109,5 @@ int BroadcastSender::createSocket()
 
     return sock_bc;
 }
+
 

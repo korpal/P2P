@@ -5,7 +5,7 @@
 #include <mutex>
 #include <condition_variable>
 
-#include "Events.hpp"
+#include "../controller/Events.hpp"
 
 
 template<typename T>

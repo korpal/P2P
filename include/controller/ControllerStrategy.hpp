@@ -2,6 +2,7 @@
 #define CONTROLLERSTRATEGY_H
 
 #include "Controller.hpp"
+#include "Events.hpp"
 
 class Controller;
 

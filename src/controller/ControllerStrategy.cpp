@@ -1,7 +1,6 @@
 #include "../../include/controller/ControllerStrategy.hpp"
-#include "Events.hpp"
-#include "Controller.hpp"
 #include "../../include/resourcemanager/ResourceManager.hpp"
+#include "../../include/controller/Events.hpp"
 
 ControllerStrategy::ControllerStrategy() {}
 

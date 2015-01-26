@@ -7,11 +7,11 @@
 
 class ControllerStrategy;
 
-#include "Event_queue.hpp"
-#include "Event_queue.hpp"
+
 #include "../utils/Thread.hpp"
 #include "../resourcemanager/ResourceManager.hpp"
 #include "ControllerStrategy.hpp"
+#include "../utils/EventQueue.hpp"
 
 
 class Controller : public Thread

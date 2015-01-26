@@ -8,7 +8,7 @@
 
 class BroadcastSender : public Thread {
     public:
-        BroadcastSender();
+        static BroadcastSender& getInstance();
         virtual ~BroadcastSender();
 
         void requestAllResources();
@@ -16,10 +16,11 @@ class BroadcastSender : public Thread {
         void requestRevoke(ResourceIdentifier &ri);
 
     private:
-        int sock;
-
+        BroadcastSender();
+        BroadcastSender(const BroadcastSender&);
         virtual void run();
 
+        int sock;
         int createSocket();
 };
 

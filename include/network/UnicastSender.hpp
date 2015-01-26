@@ -6,20 +6,21 @@
 
 
 class UnicastSender : public Thread {
-public:
-    UnicastSender();
-    virtual ~UnicastSender();
+    public:
+        static UnicastSender& getInstance();
+        virtual ~UnicastSender();
 
-    void sendResource(ResourceIdentifier &ri, char *address);
-    void sendPartRequest(char *address);
-    void sendPart(Part *part, char *address);
+        void sendResource(ResourceIdentifier &ri, char *address);
+        void sendPartRequest(char *address);
+        void sendPart(Part *part, char *address);
 
-private:
-    int sock;
+    private:
+        UnicastSender();
+        UnicastSender(const UnicastSender&);
+        virtual void run();
 
-    virtual void run();
-
-    int createSocket();
+        int sock;
+        int createSocket();
 };
 
 #endif
