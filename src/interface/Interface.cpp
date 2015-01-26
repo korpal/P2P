@@ -70,7 +70,7 @@ void Interface::enlistLocalResources()
     for(i = 1; i <= resources.size(); i++)
     {
         str += i+48;
-        str.append(". " + resources[i].getName());
+        str.append(". " + resources[i-1].getName());
         Q(str);
         str.clear();
         options.insert(make_pair(i, &Interface::revokeResource));
@@ -98,7 +98,7 @@ void Interface::enlistRemoteResources()
     for(i = 1; i <= resources.size(); i++)
     {
         str += i+48;
-        str.append(". " + resources[i].getName());
+        str.append(". " + resources[i-1].getName());
         Q(str);
         str.clear();
         options.insert(make_pair(i, &Interface::downloadResource));
@@ -120,7 +120,7 @@ void Interface::enlistRevokedResources()
     for(i = 1; i <= resources.size(); i++)
     {
         str += i+48;
-        str.append(". " + resources[i].getName());
+        str.append(". " + resources[i-1].getName());
         Q(str);
         str.clear();
         options.insert(make_pair(i, &Interface::revertResource));
@@ -145,10 +145,11 @@ void Interface::addSingleOption(unsigned id, methodPointer method)
 
 void Interface::addLocalResource()
 {
-    Q("siema");
-    options.clear();
-    menu();
-    addOptions();
+    string path;
+    Q("Type file path:");
+    cin >> path;
+    ResourceManager::getInstance().addLocalResource(path);
+    enlistLocalResources();
 }
 
 void Interface::revokeResource()
