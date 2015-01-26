@@ -30,12 +30,14 @@ void ResourceManager::addLocalResource(const std::string &path)
 
     // TODO Invalidated wtf?
     localData.insert(std::pair<unsigned, boost::shared_ptr<LocalResource>>(id, resource));
-    // TODO hasNew ??
 }
 
 void ResourceManager::addRemoteResource(const ResourceIdentifier &identifier, const Source &source)
 {
     ScopedLock lock(mutex);
+
+    if(existsLocal(identifier.getID()))
+        return;
 
     boost::shared_ptr<RemoteResource> resource = remoteData[identifier.getID()];
 
