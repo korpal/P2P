@@ -11,9 +11,6 @@ Part::Part(const ResourceIdentifier &ri, unsigned id, unsigned size, std::istrea
 {
     memset(data, 0, Configuration::PART_SIZE);
     data_stream.read((char*)data, size);
-    printf("Nowy part: %s\n", (char *)data);
-    printf("Nazwa: %s\n", resourceIdentifier.getName().c_str());
-    printf("Rozmiar: %d\n", size);
 }
 
 
