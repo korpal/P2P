@@ -15,7 +15,7 @@ class BroadcastReceiver : public Thread {
 
     private:
         virtual void run();
-        void handleIncomingAllResources(BroadcastAllResources &msg);
+        void handleIncomingAllResources(BroadcastAllResources &msg, char* address);
         void handleIncomingResource(BroadcastResource &msg);
         void handleIncomingRevoke(BroadcastRevoke &msg);
         void handleIncomingRevert(BroadcastRevert &msg);
