@@ -4,13 +4,15 @@ project(P2P)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
+    include/controller/controller.h
+    include/controller/event_queue.hpp
+    include/controller/events.h
     include/network/protocol/broadcast/BroadcastAllResources.hpp
     include/network/protocol/broadcast/BroadcastMessage.hpp
     include/network/protocol/broadcast/BroadcastResource.hpp
     include/network/protocol/broadcast/BroadcastRevoke.hpp
     include/network/protocol/unicast/UnicastMessage.hpp
-    include/network/protocol/unicast/UnicastRequest.hpp
-    include/network/protocol/unicast/UnicastConfirmation.hpp
+    include/network/protocol/unicast/UnicastResource.hpp
     include/network/protocol/unicast/UnicastPartRequest.hpp
     include/network/protocol/unicast/UnicastPart.hpp
     include/network/BroadcastReceiver.hpp
@@ -29,6 +31,13 @@ set(SOURCE_FILES
     include/utils/SynchronizedQueue.hpp
     include/utils/Thread.hpp
     include/utils/Configuration.hpp
+    src/controller/controller.cpp
+    src/controller/events.cpp
+    src/network/protocol/broadcast/BroadcastResource.cpp
+    src/network/protocol/broadcast/BroadcastRevoke.cpp
+    src/network/protocol/unicast/UnicastPart.cpp
+    src/network/protocol/unicast/UnicastPartRequest.cpp
+    src/network/protocol/unicast/UnicastResource.cpp
     src/network/BroadcastReceiver.cpp
     src/network/BroadcastSender.cpp
     src/network/UnicastReceiver.cpp

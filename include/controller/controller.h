@@ -7,7 +7,8 @@
 
 class ControllerStrategy;
 
-#include "controller/event_queue.hpp"
+#include "../../include/controller/event_queue.hpp"
+#include "event_queue.hpp"
 
 
 class Controller

@@ -2,10 +2,9 @@
 #define UNICASTRECEIVER_HPP
 
 #include "../utils/Thread.hpp"
-#include "protocol/unicast/UnicastRequest.hpp"
-#include "protocol/unicast/UnicastConfirmation.hpp"
 #include "protocol/unicast/UnicastPartRequest.hpp"
 #include "protocol/unicast/UnicastPart.hpp"
+#include "protocol/unicast/UnicastResource.hpp"
 
 
 class UnicastReceiver : public Thread {
@@ -15,8 +14,7 @@ class UnicastReceiver : public Thread {
 
     private:
         virtual void run();
-        void handleIncomingRequest(UnicastRequest &msg);
-        void handleIncomingConfirmation(UnicastConfirmation &msg);
+        void handleIncomingResource(UnicastResource &msg);
         void handleIncomingPartRequest(UnicastPartRequest &msg);
         void handleIncomingPart(UnicastPart &msg);
 };

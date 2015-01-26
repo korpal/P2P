@@ -2,7 +2,7 @@
 #include <iostream>
 #include <utility>
 
-#include "controller/controller.h"
+#include "../../include/controller/controller.h"
 
 
 Controller::Controller(EventQueue* const event_queue) : event_queue(event_queue)

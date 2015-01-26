@@ -9,10 +9,8 @@
 
 #include "../../include/network/UnicastReceiver.hpp"
 #include "../../include/network/protocol/unicast/UnicastMessage.hpp"
-#include "../../include/network/protocol/unicast/UnicastConfirmation.hpp"
 #include "../../include/network/protocol/unicast/UnicastPart.hpp"
 #include "../../include/network/protocol/unicast/UnicastPartRequest.hpp"
-#include "../../include/network/protocol/unicast/UnicastRequest.hpp"
 
 #define PORT 8887
 
@@ -66,11 +64,8 @@ void UnicastReceiver::run()
 
         switch(bm.getType())
         {
-            case UnicastMessage::Type::REQUEST:
-                handleIncomingRequest((UnicastRequest &)buf);
-                break;
-            case UnicastMessage::Type::CONFIRMATION:
-                handleIncomingConfirmation((UnicastConfirmation &)buf);
+            case UnicastMessage::Type::RESOURCE:
+                handleIncomingResource((UnicastResource &) buf);
                 break;
             case UnicastMessage::Type::PARTREQUEST:
                 handleIncomingPartRequest((UnicastPartRequest &)buf);
@@ -83,16 +78,10 @@ void UnicastReceiver::run()
 }
 
 
-void UnicastReceiver::handleIncomingRequest(UnicastRequest &msg)
+void UnicastReceiver::handleIncomingResource(UnicastResource &msg)
 {
-    printf("Received UnicastRequest with message: ");
-    printf("%s\n", msg.getResourceName());
-}
-
-void UnicastReceiver::handleIncomingConfirmation(UnicastConfirmation &msg)
-{
-    printf("Received UnicastConfirmation with message: ");
-    printf("%s\n", msg.getResourceName());
+    printf("Received UnicastResource with message: ");
+    printf("%s\n", msg.getResourceIdentifier().getName().c_str());
 }
 
 void UnicastReceiver::handleIncomingPartRequest(UnicastPartRequest &msg)

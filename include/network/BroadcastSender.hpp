@@ -3,6 +3,7 @@
 
 #include "../utils/Thread.hpp"
 #include "protocol/broadcast/BroadcastMessage.hpp"
+#include "../resourcemanager/ResourceIdentifier.hpp"
 
 
 class BroadcastSender : public Thread {
@@ -11,8 +12,8 @@ class BroadcastSender : public Thread {
         virtual ~BroadcastSender();
 
         void requestAllResources();
-        void requestResource(char *msg);
-        void requestRevoke();
+        void requestResource(ResourceIdentifier &ri);
+        void requestRevoke(ResourceIdentifier &ri);
 
     private:
         int sock;

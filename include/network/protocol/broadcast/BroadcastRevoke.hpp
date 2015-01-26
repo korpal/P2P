@@ -2,20 +2,17 @@
 #define BROADCASTREVOKE_HPP
 
 #include "BroadcastMessage.hpp"
+#include "../../../resourcemanager/ResourceIdentifier.hpp"
 
 class BroadcastRevoke : public BroadcastMessage {
     public:
-        BroadcastRevoke() : BroadcastMessage(BroadcastMessage::Type::REVOKE) {}
-        BroadcastRevoke(char *resourceName) : BroadcastMessage(BroadcastMessage::Type::REVOKE)
-        {
-            this->resourceName = resourceName;
-        }
+        BroadcastRevoke();
+        BroadcastRevoke(ResourceIdentifier &ri);
 
-        char* getResourceName() { return resourceName; }
+        ResourceIdentifier& getResourceIdentifier();
 
     private:
-        // TODO - temporary
-        char *resourceName;
+        ResourceIdentifier resourceIdentifier;
 };
 
 #endif

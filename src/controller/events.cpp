@@ -1,6 +1,6 @@
 #include <string>
 
-#include "controller/events.h"
+#include "../../include/controller/events.h"
 
 
 StringEvent::StringEvent(string message)

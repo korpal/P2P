@@ -41,7 +41,7 @@ void BroadcastSender::requestAllResources()
 }
 
 
-void BroadcastSender::requestResource(char *name)
+void BroadcastSender::requestResource(ResourceIdentifier &ri)
 {
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
@@ -49,14 +49,14 @@ void BroadcastSender::requestResource(char *name)
     addr.sin_port = htons(PORT);
     addr.sin_addr.s_addr = htonl(INADDR_BROADCAST);
 
-    BroadcastResource *msg = new BroadcastResource(name);
+    BroadcastResource *msg = new BroadcastResource(ri);
 
     if(sendto(sock, msg, sizeof(*msg), 0, (struct sockaddr *)&addr, sizeof(addr)) < 0)
         std::cout<<"Sending BroadcastResource failed";
 }
 
 
-void BroadcastSender::requestRevoke()
+void BroadcastSender::requestRevoke(ResourceIdentifier &ri)
 {
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
@@ -64,7 +64,7 @@ void BroadcastSender::requestRevoke()
     addr.sin_port = htons(PORT);
     addr.sin_addr.s_addr = htonl(INADDR_BROADCAST);
 
-    BroadcastRevoke *msg = new BroadcastRevoke();
+    BroadcastRevoke *msg = new BroadcastRevoke(ri);
 
     if(sendto(sock, msg, sizeof(*msg), 0, (struct sockaddr *)&addr, sizeof(addr)) < 0)
         std::cout<<"Sending BroadcastRevoke failed";

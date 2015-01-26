@@ -5,8 +5,7 @@ class UnicastMessage {
     public:
         enum Type
         {
-            REQUEST,
-            CONFIRMATION,
+            RESOURCE,
             PARTREQUEST,
             PART
         };

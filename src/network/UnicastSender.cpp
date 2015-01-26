@@ -7,10 +7,9 @@
 #include <netdb.h>
 
 #include "../../include/network/UnicastSender.hpp"
-#include "../../include/network/protocol/unicast/UnicastConfirmation.hpp"
 #include "../../include/network/protocol/unicast/UnicastPart.hpp"
 #include "../../include/network/protocol/unicast/UnicastPartRequest.hpp"
-#include "../../include/network/protocol/unicast/UnicastRequest.hpp"
+#include "../../include/network/protocol/unicast/UnicastResource.hpp"
 
 #define PORT 8887
 
@@ -27,7 +26,8 @@ UnicastSender::~UnicastSender(){}
 void UnicastSender::run() {}
 
 
-void UnicastSender::requestRequest(char *name, char *address)
+
+void UnicastSender::sendResource(ResourceIdentifier &ri, char *address)
 {
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
@@ -35,29 +35,14 @@ void UnicastSender::requestRequest(char *name, char *address)
     addr.sin_port = htons(PORT);
     addr.sin_addr.s_addr = inet_addr(address);
 
-    UnicastRequest *msg = new UnicastRequest(name);
+    UnicastResource *msg = new UnicastResource(ri);
 
     if(sendto(sock, msg, sizeof(*msg), 0, (struct sockaddr *)&addr, sizeof(addr)) < 0)
-        std::cout<<"Sending UnicastRequest failed";
+        std::cout<<"Sending UnicastResource failed";
 }
 
 
-void UnicastSender::requestConfirmation(char *name, char *address)
-{
-    struct sockaddr_in addr;
-    memset(&addr, 0, sizeof(addr));
-    addr.sin_family = AF_INET;
-    addr.sin_port = htons(PORT);
-    addr.sin_addr.s_addr = inet_addr(address);
-
-    UnicastConfirmation *msg = new UnicastConfirmation(name);
-
-    if(sendto(sock, msg, sizeof(*msg), 0, (struct sockaddr *)&addr, sizeof(addr)) < 0)
-        std::cout<<"Sending UnicastConfirmation failed";
-}
-
-
-void UnicastSender::requestPartRequest(char *address)
+void UnicastSender::sendPartRequest(char *address)
 {
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
@@ -72,7 +57,7 @@ void UnicastSender::requestPartRequest(char *address)
 }
 
 
-void UnicastSender::requestPart(Part *part, char *address)
+void UnicastSender::sendPart(Part *part, char *address)
 {
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));

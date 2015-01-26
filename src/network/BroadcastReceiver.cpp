@@ -87,7 +87,7 @@ void BroadcastReceiver::handleIncomingAllResources(BroadcastAllResources &msg)
 void BroadcastReceiver::handleIncomingResource(BroadcastResource &msg)
 {
     printf("Received BroadcastResource with message: ");
-    printf("%s\n", msg.getResourceName());
+    printf("%s\n", msg.getResourceIdentifier().getName().c_str());
 }
 
 void BroadcastReceiver::handleIncomingRevoke(BroadcastRevoke &msg)

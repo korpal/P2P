@@ -3,20 +3,17 @@
 
 #include <string.h>
 #include "BroadcastMessage.hpp"
+#include "../../../resourcemanager/ResourceIdentifier.hpp"
 
 class BroadcastResource : public BroadcastMessage {
     public:
-        BroadcastResource() : BroadcastMessage(BroadcastMessage::Type::RESOURCE) {}
-        BroadcastResource(char rn[25]) : BroadcastMessage(BroadcastMessage::Type::RESOURCE)
-        {
-            memcpy(resourceName, rn, 25);
-        }
+        BroadcastResource();
+        BroadcastResource(ResourceIdentifier &ri);
 
-        char* getResourceName() { return resourceName; }
+        ResourceIdentifier& getResourceIdentifier();
 
     private:
-        // TODO - temporary
-        char resourceName[25];
+        ResourceIdentifier resourceIdentifier;
 };
 
 #endif

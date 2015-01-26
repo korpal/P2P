@@ -6,13 +6,12 @@
 
 class UnicastPart : public UnicastMessage {
     public:
-        UnicastPart() : UnicastMessage(UnicastMessage::Type::PART) {}
-        UnicastPart(Part *part) : UnicastMessage(UnicastMessage::Type::PART), part(*part){}
+        UnicastPart();
+        UnicastPart(Part *part);
 
-        Part getPart() { return part; }
+        Part getPart();
 
     private:
-        // TODO - temporary
         Part part;
 };
 
