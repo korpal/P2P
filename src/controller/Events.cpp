@@ -188,12 +188,12 @@ const ResourceIdentifier& TransformEvent::getIdentifier()
 }
 
 
-// NewDownloadResourceEvent //
-NewDownloadResourceEvent::NewDownloadResourceEvent(
+// NewDownloaderEvent //
+NewDownloaderEvent::NewDownloaderEvent(
         boost::shared_ptr<DownloadedResource> downloadedResource) :
     downloadedResource(downloadedResource) {}
 
-boost::shared_ptr<DownloadedResource> NewDownloadResourceEvent::getResourcePtr()
+boost::shared_ptr<DownloadedResource> NewDownloaderEvent::getResourcePtr()
 {
     return downloadedResource;
 }

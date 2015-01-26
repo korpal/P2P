@@ -106,11 +106,11 @@ void TransformDownloadedResourceStrategy::react(Event *event)
 }
 
 
-void NewDownloadResourceStrategy::react(Event *event)
+void NewDownloaderStrategy::react(Event *event)
 {
-    NewDownloadResourceEvent* newDownloadResourceEvent =
-            dynamic_cast<NewDownloadResourceEvent*>(event);
-    (new Downloader(newDownloadResourceEvent->getResourcePtr()))->start(); // TODO Stop
+    NewDownloaderEvent* newDownloaderEvent =
+            dynamic_cast<NewDownloaderEvent*>(event);
+    (new Downloader(newDownloaderEvent->getResourcePtr()))->start(); // TODO Stop
 }
 
 

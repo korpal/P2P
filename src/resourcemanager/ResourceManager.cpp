@@ -60,7 +60,7 @@ void ResourceManager::addDownloadedResource(const ResourceIdentifier &identifier
     {
         resource = boost::shared_ptr<DownloadedResource>(new DownloadedResource(identifier));
         downloadedData[identifier.getID()] = resource;
-        EventQueue::getInstance().push(new NewDownloadResourceEvent(resource));
+        EventQueue::getInstance().push(new NewDownloaderEvent(resource));
     }
 }
 

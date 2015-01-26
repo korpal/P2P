@@ -178,11 +178,11 @@ class TransformEvent : public Event
 };
 
 
-class NewDownloadResourceEvent : public Event
+class NewDownloaderEvent : public Event
 {
 public:
     boost::shared_ptr<DownloadedResource> getResourcePtr();
-    NewDownloadResourceEvent(boost::shared_ptr<DownloadedResource> downloadedResource);
+    NewDownloaderEvent(boost::shared_ptr<DownloadedResource> downloadedResource);
 private:
     boost::shared_ptr<DownloadedResource> downloadedResource;
 };

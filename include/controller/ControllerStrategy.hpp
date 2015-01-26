@@ -118,7 +118,7 @@ class TransformDownloadedResourceStrategy: public ControllerStrategy
 };
 
 
-class NewDownloadResourceStrategy: public ControllerStrategy
+class NewDownloaderStrategy: public ControllerStrategy
 {
     public:
         virtual void react(Event* event);
