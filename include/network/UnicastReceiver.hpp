@@ -14,9 +14,9 @@ class UnicastReceiver : public Thread {
 
     private:
         virtual void run();
-        void handleIncomingResource(UnicastResource &msg);
-        void handleIncomingPartRequest(UnicastPartRequest &msg);
-        void handleIncomingPart(UnicastPart &msg);
+        void handleIncomingResource(UnicastResource &msg, char* address);
+        void handleIncomingPartRequest(UnicastPartRequest &msg, char* address);
+        void handleIncomingPart(UnicastPart &msg, char* address);
 };
 
 #endif

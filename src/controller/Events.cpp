@@ -103,7 +103,7 @@ Source &OutgoingPartEvent::getSource()
 
 
 // IncomingPartRequestEvent //
-IncomingPartRequestEvent::IncomingPartRequestEvent(ResourceIdentifier &ri, unsigned partId) :
+IncomingPartRequestEvent::IncomingPartRequestEvent(ResourceIdentifier &ri, unsigned partId, Source &source) :
         resourceIdentifier(ri),
         partId(partId),
         source(source) {}
@@ -125,7 +125,7 @@ Source &IncomingPartRequestEvent::getSource()
 
 
 // OutgoingPartRequestEvent //
-OutgoingPartRequestEvent::OutgoingPartRequestEvent(ResourceIdentifier &ri, unsigned partId) :
+OutgoingPartRequestEvent::OutgoingPartRequestEvent(ResourceIdentifier &ri, unsigned partId, Source &source) :
         resourceIdentifier(ri),
         partId(partId),
         source(source) {}
@@ -147,7 +147,7 @@ Source &OutgoingPartRequestEvent::getSource()
 
 
 // IncomingResourceInformationEvent //
-IncomingResourceInformationEvent::IncomingResourceInformationEvent(ResourceIdentifier &ri) :
+IncomingResourceInformationEvent::IncomingResourceInformationEvent(ResourceIdentifier &ri, Source &source) :
         resourceIdentifier(ri),
         source(source){}
 

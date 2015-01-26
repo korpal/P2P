@@ -119,7 +119,7 @@ class OutgoingPartEvent : public Event
 class IncomingPartRequestEvent : public Event
 {
     public:
-        IncomingPartRequestEvent(ResourceIdentifier &ri, unsigned partId);
+        IncomingPartRequestEvent(ResourceIdentifier &ri, unsigned partId, Source &source);
         ResourceIdentifier& getResourceIdentifier();
         unsigned getPartId();
         Source& getSource();
@@ -133,7 +133,7 @@ class IncomingPartRequestEvent : public Event
 class OutgoingPartRequestEvent : public Event
 {
     public:
-        OutgoingPartRequestEvent(ResourceIdentifier &ri, unsigned partId);
+        OutgoingPartRequestEvent(ResourceIdentifier &ri, unsigned partId, Source &source);
         ResourceIdentifier& getResourceIdentifier();
         unsigned getPartId();
         Source& getSource();
@@ -147,7 +147,7 @@ class OutgoingPartRequestEvent : public Event
 class IncomingResourceInformationEvent : public Event
 {
     public:
-        IncomingResourceInformationEvent(ResourceIdentifier &ri);
+        IncomingResourceInformationEvent(ResourceIdentifier &ri, Source &source);
         ResourceIdentifier& getResourceIdentifier();
         Source& getSource();
     private:

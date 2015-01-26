@@ -11,7 +11,8 @@
 #include "../../include/network/protocol/unicast/UnicastMessage.hpp"
 #include "../../include/network/protocol/unicast/UnicastPart.hpp"
 #include "../../include/network/protocol/unicast/UnicastPartRequest.hpp"
-
+#include "../../include/controller/Events.hpp"
+#include "../../include/utils/EventQueue.hpp"
 
 
 UnicastReceiver::UnicastReceiver() {}
@@ -64,37 +65,35 @@ void UnicastReceiver::run()
         switch(bm.getType())
         {
             case UnicastMessage::Type::RESOURCE:
-                handleIncomingResource((UnicastResource &) buf);
+                handleIncomingResource((UnicastResource &) buf, inet_ntoa(si_other.sin_addr));
                 break;
             case UnicastMessage::Type::PARTREQUEST:
-                handleIncomingPartRequest((UnicastPartRequest &)buf);
+                handleIncomingPartRequest((UnicastPartRequest &)buf, inet_ntoa(si_other.sin_addr));
                 break;
             case UnicastMessage::Type::PART:
-                handleIncomingPart((UnicastPart &)buf);
+                handleIncomingPart((UnicastPart &)buf, inet_ntoa(si_other.sin_addr));
                 break;
         }
     }
 }
 
 
-void UnicastReceiver::handleIncomingResource(UnicastResource &msg)
+void UnicastReceiver::handleIncomingResource(UnicastResource &msg, char* address)
 {
-    printf("Received UnicastResource with message: ");
-    printf("%s\n", msg.getResourceIdentifier().getName().c_str());
+    IncomingResourceInformationEvent *event = new IncomingResourceInformationEvent(msg.getResourceIdentifier(), *(new Source(address)));
+    EventQueue::getInstance().push(event);
 }
 
-void UnicastReceiver::handleIncomingPartRequest(UnicastPartRequest &msg)
+void UnicastReceiver::handleIncomingPartRequest(UnicastPartRequest &msg, char* address)
 {
-    printf("Received UnicastPartRequest\n");
+    std::cout << "Poproszono mnie part nr " << msg.getPartId() << std::endl;
+    IncomingPartRequestEvent *event = new IncomingPartRequestEvent(msg.getResourceIdentifier(), msg.getPartId(), *(new Source(address)));
+    EventQueue::getInstance().push(event);
 }
 
-void UnicastReceiver::handleIncomingPart(UnicastPart &msg)
+void UnicastReceiver::handleIncomingPart(UnicastPart &msg, char* address)
 {
-    printf("Received UnicastPart: Part Size: ");
-    fflush(stdout);
-    std::cout << msg.getPart().getSize();
-    fflush(stdout);
-    std::cout << " Msg: " << (char*)msg.getPart().getData();
-    std::cout << ", File size: " << msg.getPart().getResourceIdentifier().getSize() << std::endl;
-    fflush(stdout);
+    std::cout << "Otrzymalem part nr " << msg.getPart().getId() << std::endl;
+    IncomingPartEvent *event = new IncomingPartEvent(msg.getPart(), *(new Source(address)));
+    EventQueue::getInstance().push(event);
 }

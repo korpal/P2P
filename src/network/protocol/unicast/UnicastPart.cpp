@@ -9,7 +9,7 @@ UnicastPart::UnicastPart(Part *part) :
 {}
 
 
-Part UnicastPart::getPart()
+Part& UnicastPart::getPart()
 {
     return part;
 }

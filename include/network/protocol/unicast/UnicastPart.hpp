@@ -9,7 +9,7 @@ class UnicastPart : public UnicastMessage {
         UnicastPart();
         UnicastPart(Part *part);
 
-        Part getPart();
+        Part& getPart();
 
     private:
         Part part;
