@@ -11,7 +11,7 @@
 #include "../../include/network/protocol/broadcast/BroadcastResource.hpp"
 #include "../../include/network/protocol/broadcast/BroadcastRevoke.hpp"
 #include "../../include/network/UnicastSender.hpp"
-
+#include "../../include/network/protocol/broadcast/BroadcastRevert.hpp"
 
 
 BroadcastSender::BroadcastSender()
@@ -79,6 +79,21 @@ void BroadcastSender::requestRevoke(ResourceIdentifier &ri)
 }
 
 
+void BroadcastSender::requestRevert(ResourceIdentifier &ri)
+{
+    struct sockaddr_in addr;
+    memset(&addr, 0, sizeof(addr));
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(Configuration::BROADCAST_PORT);
+    addr.sin_addr.s_addr = htonl(INADDR_BROADCAST);
+
+    BroadcastRevert *msg = new BroadcastRevert(ri);
+
+    if(sendto(sock, msg, sizeof(*msg), 0, (struct sockaddr *)&addr, sizeof(addr)) < 0)
+        std::cout<<"Sending BroadcastRevert failed";
+}
+
+
 int BroadcastSender::createSocket()
 {
     int sock_bc;
@@ -109,5 +124,3 @@ int BroadcastSender::createSocket()
 
     return sock_bc;
 }
-
-

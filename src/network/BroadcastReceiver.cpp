@@ -74,6 +74,9 @@ void BroadcastReceiver::run()
             case BroadcastMessage::Type::REVOKE:
                 handleIncomingRevoke((BroadcastRevoke &)buf);
                 break;
+            case BroadcastMessage::Type::REVERT:
+                handleIncomingRevert((BroadcastRevert &)buf);
+                break;
         }
     }
 }
@@ -93,4 +96,8 @@ void BroadcastReceiver::handleIncomingResource(BroadcastResource &msg)
 void BroadcastReceiver::handleIncomingRevoke(BroadcastRevoke &msg)
 {
     printf("Received BroadcastRevoke\n");
+}
+
+void BroadcastReceiver::handleIncomingRevert(BroadcastRevert &msg) {
+
 }

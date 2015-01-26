@@ -35,13 +35,13 @@ void UnicastSender::run() {}
 
 
 
-void UnicastSender::sendResource(ResourceIdentifier &ri, char *address)
+void UnicastSender::sendResource(ResourceIdentifier &ri, Source& source)
 {
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_port = htons(Configuration::UNICAST_PORT);
-    addr.sin_addr.s_addr = inet_addr(address);
+    addr.sin_addr.s_addr = inet_addr(source.getAddress().c_str());
 
     UnicastResource *msg = new UnicastResource(ri);
 
@@ -50,28 +50,28 @@ void UnicastSender::sendResource(ResourceIdentifier &ri, char *address)
 }
 
 
-void UnicastSender::sendPartRequest(char *address)
+void UnicastSender::sendPartRequest(ResourceIdentifier &ri, unsigned partId, Source& source)
 {
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_port = htons(Configuration::UNICAST_PORT);
-    addr.sin_addr.s_addr = inet_addr(address);
+    addr.sin_addr.s_addr = inet_addr(source.getAddress().c_str());
 
-    UnicastPartRequest *msg = new UnicastPartRequest();
+    UnicastPartRequest *msg = new UnicastPartRequest(ri, partId);
 
     if(sendto(sock, msg, sizeof(*msg), 0, (struct sockaddr *)&addr, sizeof(addr)) < 0)
         std::cout<<"Sending UnicastPartRequest failed";
 }
 
 
-void UnicastSender::sendPart(Part *part, char *address)
+void UnicastSender::sendPart(Part *part, Source& source)
 {
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_port = htons(Configuration::UNICAST_PORT);
-    addr.sin_addr.s_addr = inet_addr(address);
+    addr.sin_addr.s_addr = inet_addr(source.getAddress().c_str());
 
     UnicastPart *msg = new UnicastPart(part);
     printf("Unicast Sender: Sending part that contains: %s\n", (char*)part->getData());

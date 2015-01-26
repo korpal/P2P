@@ -14,6 +14,7 @@ class BroadcastSender : public Thread {
         void requestAllResources();
         void requestResource(ResourceIdentifier &ri);
         void requestRevoke(ResourceIdentifier &ri);
+        void requestRevert(ResourceIdentifier &ri);
 
     private:
         BroadcastSender();

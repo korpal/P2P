@@ -60,66 +60,110 @@ ResourceIdentifier &IncomingRevertRequestEvent::getResourceIdentifier()
 
 
 // IncomingPartEvent //
-IncomingPartEvent::IncomingPartEvent(Part& part) :
-        part(part) {}
+IncomingPartEvent::IncomingPartEvent(Part& part, Source& source) :
+        part(part),
+        source(source)
+{}
 
 Part &IncomingPartEvent::getPart() {
     return part;
 }
 
+Source &IncomingPartEvent::getSource()
+{
+    return source;
+}
 
 // OutgoingPartEvent //
-OutgoingPartEvent::OutgoingPartEvent(Part &part) {}
+OutgoingPartEvent::OutgoingPartEvent(Part &part, Source& source) :
+        part(part),
+        source(source)
+{}
 
 Part &OutgoingPartEvent::getPart()
 {
     return part;
 }
 
+Source &OutgoingPartEvent::getSource()
+{
+    return source;
+}
+
 
 // IncomingPartRequestEvent //
-IncomingPartRequestEvent::IncomingPartRequestEvent(ResourceIdentifier &ri, Part &part) : resourceIdentifier(ri), part(part) {}
+IncomingPartRequestEvent::IncomingPartRequestEvent(ResourceIdentifier &ri, unsigned partId) :
+        resourceIdentifier(ri),
+        partId(partId),
+        source(source) {}
 
 ResourceIdentifier &IncomingPartRequestEvent::getResourceIdentifier()
 {
     return resourceIdentifier;
 }
 
-Part &IncomingPartRequestEvent::getPart()
+unsigned IncomingPartRequestEvent::getPartId()
 {
-    return part;
+    return partId;
+}
+
+Source &IncomingPartRequestEvent::getSource()
+{
+    return source;
 }
 
 
 // OutgoingPartRequestEvent //
-OutgoingPartRequestEvent::OutgoingPartRequestEvent(ResourceIdentifier &ri, Part &part) : resourceIdentifier(ri), part(part) {}
+OutgoingPartRequestEvent::OutgoingPartRequestEvent(ResourceIdentifier &ri, unsigned partId) :
+        resourceIdentifier(ri),
+        partId(partId),
+        source(source) {}
 
 ResourceIdentifier &OutgoingPartRequestEvent::getResourceIdentifier()
 {
     return resourceIdentifier;
 }
 
-Part &OutgoingPartRequestEvent::getPart()
+unsigned OutgoingPartRequestEvent::getPartId()
 {
-    return part;
+    return partId;
+}
+
+Source &OutgoingPartRequestEvent::getSource()
+{
+    return source;
 }
 
 
 // IncomingResourceInformationEvent //
-IncomingResourceInformationEvent::IncomingResourceInformationEvent(ResourceIdentifier &ri) {}
+IncomingResourceInformationEvent::IncomingResourceInformationEvent(ResourceIdentifier &ri) :
+        resourceIdentifier(ri),
+        source(source){}
 
 ResourceIdentifier &IncomingResourceInformationEvent::getResourceIdentifier()
 {
     return resourceIdentifier;
 }
 
+Source &IncomingResourceInformationEvent::getSource()
+{
+    return source;
+}
+
 
 // OutgoingResourceInformationEvent//
-OutgoingResourceInformationEvent::OutgoingResourceInformationEvent(ResourceIdentifier &ri) {}
+OutgoingResourceInformationEvent::OutgoingResourceInformationEvent(ResourceIdentifier &ri) :
+        resourceIdentifier(ri),
+        source(source){}
 
 ResourceIdentifier &OutgoingResourceInformationEvent::getResourceIdentifier()
 {
     return resourceIdentifier;
+}
+
+Source &OutgoingResourceInformationEvent::getSource()
+{
+    return source;
 }
 
 

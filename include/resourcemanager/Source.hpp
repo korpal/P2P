@@ -2,14 +2,15 @@
 #define SOURCE
 
 #include <netinet/in.h>
+#include <iostream>
 
 class Source
 {
-public:
-    Source(const struct sockaddr_in& address);
-
-private:
-    struct sockaddr_in address;
+    public:
+        Source(char* address);
+        std::string getAddress();
+    private:
+        char address[14];
 };
 
 #endif // SOURCE

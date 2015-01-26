@@ -1,6 +1,12 @@
+#include <string.h>
 #include "../../include/resourcemanager/Source.hpp"
 
-Source::Source(const struct sockaddr_in &address) :
-    address(address)
+Source::Source(char* address)
 {
+    memcpy(this->address, address, 14);
+}
+
+std::string Source::getAddress()
+{
+    return address;
 }

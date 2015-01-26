@@ -3,6 +3,7 @@
 
 #include "../utils/Thread.hpp"
 #include "../resourcemanager/Part.hpp"
+#include "../resourcemanager/Source.hpp"
 
 
 class UnicastSender : public Thread {
@@ -10,9 +11,9 @@ class UnicastSender : public Thread {
         static UnicastSender& getInstance();
         virtual ~UnicastSender();
 
-        void sendResource(ResourceIdentifier &ri, char *address);
-        void sendPartRequest(char *address);
-        void sendPart(Part *part, char *address);
+        void sendResource(ResourceIdentifier &ri, Source& source);
+        void sendPartRequest(ResourceIdentifier &ri, unsigned partId, Source& source);
+        void sendPart(Part *part, Source& source);
 
     private:
         UnicastSender();

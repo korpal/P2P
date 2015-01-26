@@ -3,6 +3,7 @@
 
 #include <string>
 #include "../resourcemanager/Part.hpp"
+#include "../resourcemanager/Source.hpp"
 
 
 class Event
@@ -24,7 +25,6 @@ class IncomingAllResourcesRequestEvent : public Event
     public:
         IncomingAllResourcesRequestEvent() {}
 };
-
 
 
 class OutgoingResourceRequestEvent : public Event
@@ -90,44 +90,52 @@ class IncomingRevertRequestEvent : public Event
 class IncomingPartEvent : public Event
 {
     public:
+        IncomingPartEvent(Part& part, Source& source);
         Part& getPart();
-        IncomingPartEvent(Part& part);
+        Source& getSource();
     private:
         Part part;
+        Source source;
 };
 
 
 class OutgoingPartEvent : public Event
 {
     public:
+        OutgoingPartEvent(Part& part, Source& source);
         Part& getPart();
-        OutgoingPartEvent(Part& part);
+        Source& getSource();
     private:
         Part part;
+        Source source;
 };
 
 
 class IncomingPartRequestEvent : public Event
 {
     public:
-        IncomingPartRequestEvent(ResourceIdentifier &ri, Part &part);
+        IncomingPartRequestEvent(ResourceIdentifier &ri, unsigned partId);
         ResourceIdentifier& getResourceIdentifier();
-        Part& getPart();
+        unsigned getPartId();
+        Source& getSource();
     private:
-        Part part;
+        unsigned partId;
         ResourceIdentifier resourceIdentifier;
+        Source source;
 };
 
 
 class OutgoingPartRequestEvent : public Event
 {
     public:
-        OutgoingPartRequestEvent(ResourceIdentifier &ri, Part &part);
+        OutgoingPartRequestEvent(ResourceIdentifier &ri, unsigned partId);
         ResourceIdentifier& getResourceIdentifier();
-        Part& getPart();
+        unsigned getPartId();
+        Source& getSource();
     private:
-        Part part;
+        unsigned partId;
         ResourceIdentifier resourceIdentifier;
+        Source source;
 };
 
 
@@ -136,8 +144,10 @@ class IncomingResourceInformationEvent : public Event
     public:
         IncomingResourceInformationEvent(ResourceIdentifier &ri);
         ResourceIdentifier& getResourceIdentifier();
+        Source& getSource();
     private:
         ResourceIdentifier resourceIdentifier;
+        Source source;
 };
 
 
@@ -146,8 +156,10 @@ class OutgoingResourceInformationEvent : public Event
     public:
         OutgoingResourceInformationEvent(ResourceIdentifier &ri);
         ResourceIdentifier& getResourceIdentifier();
+        Source& getSource();
     private:
         ResourceIdentifier resourceIdentifier;
+        Source source;
 };
 
 
