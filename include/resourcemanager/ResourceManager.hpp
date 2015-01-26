@@ -33,6 +33,11 @@ public:
     // Returns a set of information about remote resources
     std::vector<ResourceIdentifier> getRemoteResourcesInfo();
 
+    // Transforms a DownloadedReosurce into a LocalResource
+    void transformDownloadedIntoLocal(const ResourceIdentifier& identifier);
+
+    // Does resource of given id exist locally
+    bool existsLocal(const unsigned& id) const;
 
 private:
     std::map<unsigned int, boost::shared_ptr<LocalResource>> localData;

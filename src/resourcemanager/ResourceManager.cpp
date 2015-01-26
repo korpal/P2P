@@ -14,7 +14,7 @@ void ResourceManager::addLocalResource(const std::string &path)
 
     unsigned id = resource->getResourceIdentifier().getID();
 
-    if(localData.find(id) == localData.end())
+    if(!existsLocal(id))
         return;
 
     // TODO Invalidated wtf?
@@ -40,6 +40,8 @@ void ResourceManager::addRemoteResource(const ResourceIdentifier &identifier, co
 void ResourceManager::addDownloadedResource(const ResourceIdentifier &identifier)
 {
     ScopedLock lock(mutex);
+    if(existsLocal(identifier.getID()))
+        return;
 
     boost::shared_ptr<DownloadedResource> resource = downloadedData[identifier.getID()];
 
@@ -85,4 +87,16 @@ std::vector<ResourceIdentifier> ResourceManager::getRemoteResourcesInfo()
         resultVector.push_back(tmpPair.second->getResourceIdentifier());
 
     return resultVector;
+}
+
+// TODO UNTRUSTED POINTERS
+void ResourceManager::transformDownloadedIntoLocal(const ResourceIdentifier &identifier)
+{
+    addLocalResource(identifier.getName());
+    downloadedData.erase(identifier.getID());
+}
+
+bool ResourceManager::existsLocal(const unsigned &id) const
+{
+    return localData.find(id) != localData.end();
 }

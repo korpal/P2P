@@ -13,10 +13,10 @@ public:
 
     void addDownloadedPart(const Part& part);
     int getIdOfPartForDownloading();
+    unsigned getPartsCount();
 
 private:
     bool isComplete();
-    unsigned getPartsCount();
 
     mutable std::ofstream file;
     ResourceIdentifier identifier;
