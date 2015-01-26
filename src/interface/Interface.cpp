@@ -22,6 +22,7 @@ void Interface::start()
     menu();
     while(!isFinished)
     {
+        cout << " Options size: " << options.size() << endl;
         char c;
         cin >> c;
         int X = c - '0';
@@ -57,8 +58,6 @@ void Interface::addOptions()
     options.insert(make_pair(1, &Interface::enlistLocalResources));
     options.insert(make_pair(2, &Interface::enlistRemoteResources));
     options.insert(make_pair(3, &Interface::enlistRevokedResources));
-
-
     options.insert(make_pair(4, &Interface::stop));
 }
 
@@ -70,7 +69,7 @@ void Interface::enlistLocalResources()
     vector<ResourceIdentifier> resources = ResourceManager::getInstance().getLocalResourcesInfo();
     int i;
     std::string str;
-    for(i = 0; i < resources.size(); i++)
+    for(i = 1; i <= resources.size(); i++)
     {
         str += i+48;
         str.append(". " + resources[i].getName());
@@ -83,7 +82,8 @@ void Interface::enlistLocalResources()
     options.insert(make_pair(i, &Interface::addLocalResource));
     Q(str);
     str.clear();
-    str += i+49;
+    i++;
+    str += i+48;
     str.append(". Back.");
     options.insert(make_pair(i, &Interface::back));
     Q(str);
@@ -97,7 +97,7 @@ void Interface::enlistRemoteResources()
     vector<ResourceIdentifier> resources = ResourceManager::getInstance().getRemoteResourcesInfo();
     int i;
     std::string str;
-    for(i = 0; i < resources.size(); i++)
+    for(i = 1; i <= resources.size(); i++)
     {
         str += i+48;
         str.append(". " + resources[i].getName());
@@ -119,7 +119,7 @@ void Interface::enlistRevokedResources()
     vector<ResourceIdentifier> resources = ResourceManager::getInstance().getRevokedResourcesInfo();
     int i;
     std::string str;
-    for(i = 0; i < resources.size(); i++)
+    for(i = 1; i <= resources.size(); i++)
     {
         str += i+48;
         str.append(". " + resources[i].getName());
@@ -147,7 +147,7 @@ void Interface::addSingleOption(unsigned id, methodPointer method)
 
 void Interface::addLocalResource()
 {
-
+    cout << "siema";
 }
 
 void Interface::revokeResource()
@@ -166,5 +166,6 @@ void Interface::revertResource()
 }
 
 void Interface::back() {
+    options.clear();
     menu();
 }
