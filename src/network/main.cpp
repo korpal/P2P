@@ -17,11 +17,12 @@ int main()
     Controller *controller = new Controller();
     controller->start();
     ResourceIdentifier *ri = new ResourceIdentifier("test.txt", 4405);
-    ResourceManager::getInstance().addRemoteResource(*ri, *(new Source((char*)"25.9.227.212")));
+    ResourceManager::getInstance().addRemoteResource(*ri, *(new Source((char*)"25.1.3.6")));
     ResourceManager::getInstance().addDownloadedResource(*ri);
     //ResourceManager::getInstance().addLocalResource("test.txt");
     //ResourceManager::getInstance().addLocalResource("test.tx");
     //EventQueue::getInstance().push(new IncomingAllResourcesRequestEvent(*(new Source((char*)"192.168.2.107"))));
+
 
 
 
