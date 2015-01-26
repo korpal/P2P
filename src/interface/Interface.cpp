@@ -157,7 +157,7 @@ void Interface::addLocalResource()
     Q("Type file path:");
     cin >> path;
     EventQueue::getInstance().push(new NewLocalResourceEvent(*(new string(path))));
-    enlistLocalResources();
+    back();
 }
 
 void Interface::revokeResource()
@@ -165,7 +165,7 @@ void Interface::revokeResource()
     vector<ResourceIdentifier> resources = ResourceManager::getInstance().getLocalResourcesInfo();
     OutgoingRevokeRequestEvent *event = new OutgoingRevokeRequestEvent(resources[chosen]);
     EventQueue::getInstance().push(event);
-    enlistLocalResources();
+    back();
 }
 
 
@@ -173,7 +173,7 @@ void Interface::downloadAllResources()
 {
     OutgoingAllResourcesRequestEvent *event = new OutgoingAllResourcesRequestEvent();
     EventQueue::getInstance().push(event);
-    enlistRemoteResources();
+    back();
 }
 
 
@@ -182,7 +182,7 @@ void Interface::downloadResource()
     vector<ResourceIdentifier> resources = ResourceManager::getInstance().getRemoteResourcesInfo();
     NewDownloadedResourceEvent *event = new NewDownloadedResourceEvent(resources[chosen]);
     EventQueue::getInstance().push(event);
-    enlistRemoteResources();
+    back();
 }
 
 void Interface::revertResource()
@@ -190,7 +190,7 @@ void Interface::revertResource()
     vector<ResourceIdentifier> resources = ResourceManager::getInstance().getRevokedResourcesInfo();
     OutgoingRevertRequestEvent *event = new OutgoingRevertRequestEvent(resources[chosen]);
     EventQueue::getInstance().push(event);
-    enlistRevokedResources();
+    back();
 }
 
 void Interface::back() {
