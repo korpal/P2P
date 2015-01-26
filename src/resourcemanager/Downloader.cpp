@@ -1,5 +1,7 @@
 #include "../../include/resourcemanager/Downloader.hpp"
 #include "../../include/resourcemanager/ResourceManager.hpp"
+#include "../../include/utils/TimedBlockingQueue.hpp"
+#include "../../include/utils/EventQueue.hpp"
 
 std::map<boost::shared_ptr<DownloadedResource>, boost::shared_ptr<Downloader>> Downloader::downloaders;
 
@@ -10,21 +12,24 @@ Downloader::Downloader(boost::shared_ptr<DownloadedResource> downloadedResource)
             std::pair<boost::shared_ptr<DownloadedResource>, boost::shared_ptr<Downloader>>
                      (downloadedResource, boost::shared_ptr<Downloader>(this)));
     sources = ResourceManager::getInstance().getSources(downloadedResource->getResourceIdentifier());
+    for(int i = 0; i < sources.size(); i++)
+        sourcesQueue.push(sources[i]);
 }
 
 void Downloader::run()
 {
     while(!isFinished())
     {
+        // Take source from queue
+        Source source = sourcesQueue.pop(Configuration::PARTS_TIMEOUT_IN_SECONDS);
         int partId = downloadedResource->getIdOfPartForDownloading();
 
         // If all parts are downloaded
         if(partId < 0)
             break;
 
-
-        // Get Sources
-        //
+        Part part = ResourceManager::getInstance().getPartForSending(downloadedResource->getResourceIdentifier(), (unsigned)partId);
+        EventQueue::getInstance().push(new OutgoingPartEvent(part, source));
     }
 }
 

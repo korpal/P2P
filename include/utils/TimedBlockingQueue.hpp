@@ -1,3 +1,6 @@
+#ifndef TIMED_BLOCKING_QUEUE
+#define TIMED_BLOCKING_QUEUE
+
 #include <sys/wait.h>
 #include <list>
 
@@ -14,3 +17,5 @@ private:
     pthread_mutex_t _lock;
     pthread_cond_t _cond;
 };
+
+#endif

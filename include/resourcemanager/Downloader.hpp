@@ -13,7 +13,7 @@ class Downloader : public Thread
 private:
     boost::shared_ptr<DownloadedResource> downloadedResource;
     TimedBlockingQueue<Source> sourcesQueue;
-    std::map<Source&, unsigned long long> sourcesTimeouts;
+    //std::map<Source&, unsigned long long> sourcesTimeouts;
     std::vector<Source> sources;
 
 public:
