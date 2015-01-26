@@ -74,7 +74,7 @@ void UnicastSender::sendPart(Part *part, Source& source)
     addr.sin_addr.s_addr = inet_addr(source.getAddress().c_str());
 
     UnicastPart *msg = new UnicastPart(part);
-    printf("Unicast Sender: Sending part that contains: %s\n", (char*)part->getData());
+    //printf("Unicast Sender: Sending part that contains: %s\n", (char*)part->getData());
 
     if(sendto(sock, msg, sizeof(*msg), 0, (struct sockaddr *)&addr, sizeof(addr)) < 0)
         std::cout<<"Sending UnicastPart failed";
