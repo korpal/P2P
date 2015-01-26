@@ -5,6 +5,7 @@
 DownloadedResource::DownloadedResource(const ResourceIdentifier &identifier) :
         identifier(identifier),
         file(identifier.getName().c_str()),
+        partsDownloaded(getPartsCount(), false),
         partsCount((unsigned int) ceil((double)identifier.getSize()
                       / (double)Configuration::PART_SIZE))
 

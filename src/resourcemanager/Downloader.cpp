@@ -1,6 +1,5 @@
 #include "../../include/resourcemanager/Downloader.hpp"
 #include "../../include/resourcemanager/ResourceManager.hpp"
-#include "../../include/utils/TimedBlockingQueue.hpp"
 #include "../../include/utils/EventQueue.hpp"
 
 std::map<boost::shared_ptr<DownloadedResource>, boost::shared_ptr<Downloader>> Downloader::downloaders;

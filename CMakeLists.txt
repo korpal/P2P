@@ -35,6 +35,7 @@ set(SOURCE_FILES
     include/utils/Thread.hpp
     include/utils/Configuration.hpp
     include/utils/TimedBlockingQueue.hpp
+    include/interface/Interface.hpp
     src/controller/Controller.cpp
     src/controller/ControllerStrategy.cpp
     src/controller/Events.cpp
@@ -58,7 +59,8 @@ set(SOURCE_FILES
     src/resourcemanager/ResourceManager.cpp
     src/resourcemanager/Source.cpp
     src/utils/Thread.cpp
-    src/utils/EventQueue.cpp)
+    src/utils/EventQueue.cpp
+    src/interface/Interface.cpp)
 
 add_executable(P2P ${SOURCE_FILES})
 

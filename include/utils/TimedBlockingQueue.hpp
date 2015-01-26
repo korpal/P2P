@@ -10,6 +10,7 @@ class TimedBlockingQueue
 public:
     TimedBlockingQueue () {}
     ~TimedBlockingQueue () {}
+
     void push(const T& data)
     {
         bool was_empty;
@@ -20,6 +21,7 @@ public:
         if (was_empty)
             pthread_cond_broadcast(&_cond);
     }
+
     T pop(const int seconds)
     {
         struct timespec ts1, ts2;

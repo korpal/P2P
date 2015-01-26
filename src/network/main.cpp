@@ -6,21 +6,22 @@
 #include "../../include/resourcemanager/ResourceManager.hpp"
 #include "../../include/network/UnicastReceiver.hpp"
 #include "../../include/network/BroadcastReceiver.hpp"
+#include "../../include/interface/Interface.hpp"
 
 
 int main()
 {
+    //Interface anInterface;
     BroadcastReceiver *broadcastReceiver = new BroadcastReceiver();
     broadcastReceiver->start();
     UnicastReceiver *unicastReceiver = new UnicastReceiver();
     unicastReceiver->start();
     Controller *controller = new Controller();
     controller->start();
-    ResourceIdentifier *ri = new ResourceIdentifier("test.txt", 4405);
-    ResourceManager::getInstance().addRemoteResource(*ri, *(new Source((char*)"25.1.3.6")));
-    ResourceManager::getInstance().addDownloadedResource(*ri);
-    //ResourceManager::getInstance().addLocalResource("test.txt");
-    //ResourceManager::getInstance().addLocalResource("test.tx");
+//    ResourceIdentifier *ri = new ResourceIdentifier("test.txt", 68);
+//    ResourceManager::getInstance().addRemoteResource(*ri, *(new Source((char*)"25.1.3.6")));
+//    ResourceManager::getInstance().addDownloadedResource(*ri);
+    ResourceManager::getInstance().addLocalResource("Victory.mp3");
     //EventQueue::getInstance().push(new IncomingAllResourcesRequestEvent(*(new Source((char*)"192.168.2.107"))));
 
 
