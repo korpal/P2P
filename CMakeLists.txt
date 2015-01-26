@@ -4,10 +4,10 @@ project(P2P)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
-    include/controller/controller.h
+    include/controller/Controller.hpp
     include/controller/ControllerStrategy.hpp
-    include/controller/event_queue.hpp
-    include/controller/events.h
+    include/controller/Event_queue.hpp
+    include/controller/Events.hpp
     include/network/protocol/broadcast/BroadcastAllResources.hpp
     include/network/protocol/broadcast/BroadcastMessage.hpp
     include/network/protocol/broadcast/BroadcastResource.hpp
@@ -32,9 +32,9 @@ set(SOURCE_FILES
     include/utils/SynchronizedQueue.hpp
     include/utils/Thread.hpp
     include/utils/Configuration.hpp
-    src/controller/controller.cpp
+    src/controller/Controller.cpp
     src/controller/ControllerStrategy.cpp
-    src/controller/events.cpp
+    src/controller/Events.cpp
     src/network/protocol/broadcast/BroadcastResource.cpp
     src/network/protocol/broadcast/BroadcastRevoke.cpp
     src/network/protocol/unicast/UnicastPart.cpp

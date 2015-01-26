@@ -1,6 +1,6 @@
 #include <string>
 
-#include "../../include/controller/events.h"
+#include "Events.hpp"
 
 Event::~Event()
 {}

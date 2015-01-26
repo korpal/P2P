@@ -1,7 +1,7 @@
 #ifndef CONTROLLERSTRATEGY_H
 #define CONTROLLERSTRATEGY_H
 
-#include "controller.h"
+#include "Controller.hpp"
 
 class Controller;
 

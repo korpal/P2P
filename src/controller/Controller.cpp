@@ -2,7 +2,7 @@
 #include <iostream>
 #include <utility>
 
-#include "../../include/controller/controller.h"
+#include "Controller.hpp"
 #include "../../include/controller/ControllerStrategy.hpp"
 
 

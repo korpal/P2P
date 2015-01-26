@@ -9,7 +9,7 @@
 #include "../../include/resourcemanager/ResourceManager.hpp"
 #include "../../include/resourcemanager/Source.hpp"
 #include "../../include/resourcemanager/DownloadedResource.hpp"
-#include "../../include/controller/controller.h"
+#include "Controller.hpp"
 
 
 int main()
