@@ -42,6 +42,8 @@ Controller::Controller()
             (std::type_index(typeid(NewDownloaderEvent)), new NewDownloaderStrategy()));
     this->strategyMap.insert(std::make_pair<std::type_index, NewLocalResourceStrategy*>
             (std::type_index(typeid(NewLocalResourceEvent)), new NewLocalResourceStrategy()));
+    this->strategyMap.insert(std::make_pair<std::type_index, NewDownloadedResourceStrategy*>
+            (std::type_index(typeid(NewDownloadedResourceEvent)), new NewDownloadedResourceStrategy()));
 
 }
 
