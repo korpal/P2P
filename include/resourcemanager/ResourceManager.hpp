@@ -8,6 +8,7 @@
 #include "DownloadedResource.hpp"
 #include <map>
 #include <mutex>
+#include <vector>
 
 class ResourceManager
 {
@@ -23,8 +24,15 @@ public:
     // Begins download of a file and adds it to download list
     void addDownloadedResource(const ResourceIdentifier& identifier);
 
-    // Returns
+    // Returns a requested Part for Sending
     Part& getPartForSending(const ResourceIdentifier& identifier, const unsigned& id);
+
+    // Returns a set of infromation about local resources
+    std::vector<ResourceIdentifier> getLocalResourcesInfo();
+
+    // Returns a set of information about remote resources
+    std::vector<ResourceIdentifier> getRemoteResourcesInfo();
+
 
 private:
     std::map<unsigned int, boost::shared_ptr<LocalResource>> localData;

@@ -62,3 +62,27 @@ Part& ResourceManager::getPartForSending(const ResourceIdentifier &identifier,
 
     return iter->second->getPart(id);
 }
+
+std::vector<ResourceIdentifier> ResourceManager::getLocalResourcesInfo()
+{
+    typedef boost::shared_ptr<LocalResource> PTR_LR;
+    typedef std::pair<unsigned int, PTR_LR> PAIR;
+    std::vector<ResourceIdentifier> resultVector;
+
+    for(PAIR tmpPair : localData)
+        resultVector.push_back(tmpPair.second->getResourceIdentifier());
+
+    return resultVector;
+}
+
+std::vector<ResourceIdentifier> ResourceManager::getRemoteResourcesInfo()
+{
+    typedef boost::shared_ptr<RemoteResource> PTR_RR;
+    typedef std::pair<unsigned int, PTR_RR> PAIR;
+    std::vector<ResourceIdentifier> resultVector;
+
+    for(PAIR tmpPair : remoteData)
+        resultVector.push_back(tmpPair.second->getResourceIdentifier());
+
+    return resultVector;
+}

@@ -3,7 +3,6 @@
 #include "../../include/resourcemanager/LocalResource.hpp"
 #include "../../include/resourcemanager/ResourceIdentifier.hpp"
 
-
 LocalResource::LocalResource(const std::string &path) : file(path.c_str())
 {
     boost::filesystem::path fpath(path);
@@ -15,12 +14,10 @@ LocalResource::LocalResource(const std::string &path) : file(path.c_str())
     this->resourceIdentifier = ri;
 }
 
-
 LocalResource::~LocalResource()
 {
     file.close();
 }
-
 
 Part& LocalResource::getPart(unsigned id) const
 {
@@ -29,7 +26,6 @@ Part& LocalResource::getPart(unsigned id) const
     file.seekg(id*partSize, std::ios::beg);
     return *(new Part(resourceIdentifier, id, partSize, file));
 }
-
 
 ResourceIdentifier& LocalResource::getResourceIdentifier()
 {

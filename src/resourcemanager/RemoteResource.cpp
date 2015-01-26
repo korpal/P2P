@@ -16,3 +16,8 @@ const std::vector<Source> RemoteResource::getSources() const
 {
     return sources;
 }
+
+ResourceIdentifier& RemoteResource::getResourceIdentifier()
+{
+    return resourceIdentifier;
+}

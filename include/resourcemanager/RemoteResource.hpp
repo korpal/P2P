@@ -11,6 +11,7 @@ public:
 
     void addSource(const Source& source);
     const std::vector<Source> getSources() const;
+    ResourceIdentifier& getResourceIdentifier();
 
 private:
     std::vector<Source> sources;
