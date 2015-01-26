@@ -118,3 +118,32 @@ void ResourceManager::receivePart(const Part &part)
     downloadedData[id]->addDownloadedPart(part);
 }
 
+void ResourceManager::revokeResource(const ResourceIdentifier &identifier)
+{
+    ScopedLock lock(mutex);
+
+    unsigned id = identifier.getID();
+
+    if(!existsLocal(id))
+        return;
+
+    boost::shared_ptr<LocalResource> resource = localData[id];
+    revokedData[id] = resource;
+
+    localData.erase(id);
+}
+
+void ResourceManager::revertResource(const ResourceIdentifier &identifier)
+{
+    ScopedLock lock(mutex);
+
+    unsigned id = identifier.getID();
+
+    if(existsLocal(id))
+        return;
+
+    boost::shared_ptr<LocalResource> resource = revokedData[id];
+    localData[id] = resource;
+
+    revokedData.erase(id);
+}

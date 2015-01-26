@@ -42,12 +42,19 @@ public:
     // React upon received Part
     void receivePart(const Part& part);
 
+    // Revokes the resource so it can not be downloaded
+    void revokeResource(const ResourceIdentifier& identifier);
+
+    // Reverts the revocation so it can be downloaded again
+    void revertResource(const ResourceIdentifier& identifier);
+
 private:
     ResourceManager();
     ResourceManager(const ResourceManager&);
     static ResourceManager resourceManager;
 
     std::map<unsigned int, boost::shared_ptr<LocalResource>> localData;
+    std::map<unsigned int, boost::shared_ptr<LocalResource>> revokedData;
     std::map<unsigned int, boost::shared_ptr<RemoteResource>> remoteData;
     std::map<unsigned int, boost::shared_ptr<DownloadedResource>> downloadedData;
 
