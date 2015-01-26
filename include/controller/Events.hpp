@@ -197,4 +197,15 @@ private:
     std::string& path;
 };
 
+
+class NewDownloadedResourceEvent : public Event
+{
+public:
+    const ResourceIdentifier& getIdentifier();
+    NewDownloadedResourceEvent(const ResourceIdentifier& identifier);
+private:
+    const ResourceIdentifier& resourceIdentifier;
+};
+
+
 #endif

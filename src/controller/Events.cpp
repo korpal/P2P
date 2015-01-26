@@ -207,3 +207,14 @@ std::string& NewLocalResourceEvent::getPath()
 {
     return path;
 }
+
+
+
+// NewDownloadedResourceEvent //
+NewDownloadedResourceEvent::NewDownloadedResourceEvent(const ResourceIdentifier &identifier) :
+        resourceIdentifier(identifier) {}
+
+const ResourceIdentifier& NewDownloadedResourceEvent::getIdentifier()
+{
+    return resourceIdentifier;
+}

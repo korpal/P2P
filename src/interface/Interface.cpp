@@ -162,9 +162,19 @@ void Interface::revokeResource()
     enlistLocalResources();
 }
 
-void Interface::downloadResource()
+
+void Interface::downloadAllResources()
 {
     OutgoingAllResourcesRequestEvent *event = new OutgoingAllResourcesRequestEvent();
+    EventQueue::getInstance().push(event);
+    enlistRemoteResources();
+}
+
+
+void Interface::downloadResource()
+{
+    vector<ResourceIdentifier> resources = ResourceManager::getInstance().getRemoteResourcesInfo();
+    NewDownloadedResourceEvent *event = new NewDownloadedResourceEvent(resources[chosen]);
     EventQueue::getInstance().push(event);
     enlistRemoteResources();
 }

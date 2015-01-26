@@ -31,6 +31,7 @@ private:
         void revokeResource();
 
     void enlistRemoteResources();
+        void downloadAllResources();
         void downloadResource();
 
 

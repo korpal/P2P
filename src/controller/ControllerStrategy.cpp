@@ -119,3 +119,10 @@ void NewLocalResourceStrategy::react(Event *event)
     NewLocalResourceEvent* newLocalResourceEvent = dynamic_cast<NewLocalResourceEvent*>(event);
     ResourceManager::getInstance().addLocalResource(newLocalResourceEvent->getPath());
 }
+
+
+void NewDownloadedResourceStrategy::react(Event *event)
+{
+    NewDownloadedResourceEvent *event_ = dynamic_cast<NewDownloadedResourceEvent*>(event);
+    ResourceManager::getInstance().addDownloadedResource(event_->getIdentifier());
+}
