@@ -61,7 +61,7 @@ void IncomingRevertStrategy::react(Event *event)
 void IncomingPartStrategy::react(Event *event)
 {
     IncomingPartEvent* event_ = dynamic_cast<IncomingPartEvent*>(event);
-    ResourceManager::getInstance().receivePart(event_->getPart());
+    ResourceManager::getInstance().receivePart(event_->getPart(), event_->getSource());
 }
 
 

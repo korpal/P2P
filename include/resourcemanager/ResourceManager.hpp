@@ -43,7 +43,7 @@ public:
     bool existsLocal(const unsigned& id) const;
 
     // React upon received Part
-    void receivePart(const Part& part);
+    void receivePart(const Part& part, Source &source);
 
     // Revokes the resource so it can not be downloaded
     void revokeResource(const ResourceIdentifier& identifier);

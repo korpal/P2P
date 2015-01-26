@@ -3,6 +3,7 @@
 #include "../../include/controller/Events.hpp"
 #include "../../include/utils/EventQueue.hpp"
 #include "../../include/utils/EventQueue.hpp"
+#include "../../include/resourcemanager/Downloader.hpp"
 
 ResourceManager::ResourceManager() {}
 
@@ -120,7 +121,7 @@ bool ResourceManager::existsLocal(const unsigned &id) const
     return localData.find(id) != localData.end();
 }
 
-void ResourceManager::receivePart(const Part &part)
+void ResourceManager::receivePart(const Part &part, Source &source)
 {
     unsigned id = part.getResourceIdentifier().getID();
 
@@ -128,7 +129,7 @@ void ResourceManager::receivePart(const Part &part)
         return;
 
     downloadedData[id]->addDownloadedPart(part);
-    EventQueue::getInstance().push(new DownloadedPartEvent(part.getResourceIdentifier(), id));
+    Downloader::downloaders[downloadedData[id]]->notifyAboutSource(source);
 }
 
 void ResourceManager::revokeResource(const ResourceIdentifier &identifier)
