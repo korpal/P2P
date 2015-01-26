@@ -20,10 +20,9 @@ void Interface::start()
 {
     welcomingText();
     menu();
+    char c;
     while(!isFinished)
     {
-        cout << " Options size: " << options.size() << endl;
-        char c;
         cin >> c;
         int X = c - '0';
         while (X == 0 || X > options.size())
@@ -49,7 +48,6 @@ void Interface::menu()
     Q("2. Enlist remote reources.");
     Q("3. Enlist revoked reources.");
     Q("4. Xit.");
-    addOptions();
 }
 
 void Interface::addOptions()
@@ -147,25 +145,38 @@ void Interface::addSingleOption(unsigned id, methodPointer method)
 
 void Interface::addLocalResource()
 {
-    cout << "siema";
+    Q("siema");
+    options.clear();
+    menu();
+    addOptions();
 }
 
 void Interface::revokeResource()
 {
 
+    options.clear();
+    menu();
+    addOptions();
 }
 
 void Interface::downloadResource()
 {
 
+    options.clear();
+    menu();
+    addOptions();
 }
 
 void Interface::revertResource()
 {
 
+    options.clear();
+    menu();
+    addOptions();
 }
 
 void Interface::back() {
     options.clear();
     menu();
+    addOptions();
 }
