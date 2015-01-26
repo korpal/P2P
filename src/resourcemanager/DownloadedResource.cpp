@@ -1,3 +1,4 @@
+#include <sys/time.h>
 #include "../../include/resourcemanager/DownloadedResource.hpp"
 
 DownloadedResource::DownloadedResource(const ResourceIdentifier &identifier) :
@@ -33,4 +34,29 @@ bool DownloadedResource::isComplete()
 unsigned DownloadedResource::getPartsCount()
 {
     return partsCount;
+}
+
+int DownloadedResource::getIdOfPartForDownloading()
+{
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    unsigned long long actualTime = (unsigned long long)(tv.tv_sec) * 1000 + (unsigned long long)(tv.tv_usec) / 1000;
+    for(int i = 0; i < getPartsCount(); i++)
+    {
+        if(partsTimeout[i] < actualTime)
+        {
+            partsTimeout[i] = actualTime + Configuration::PARTS_TIMEOUT_IN_SECONDS*1000;
+            return i;
+        }
+    }
+    for(int i = 0; i < getPartsCount(); i++)
+    {
+        if(!partsDownloaded[i])
+        {
+            partsTimeout[i] = actualTime + Configuration::PARTS_TIMEOUT_IN_SECONDS*1000;
+            return i;
+        }
+    }
+// If we are here - we have all parts.
+    return -1;
 }

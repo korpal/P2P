@@ -24,7 +24,7 @@ public:
     void addDownloadedResource(const ResourceIdentifier& identifier);
 
     // Returns
-    void getPartForSending(const ResourceIdentifier& identifier, const unsigned& id);
+    Part& getPartForSending(const ResourceIdentifier& identifier, const unsigned& id);
 
 private:
     std::map<unsigned int, boost::shared_ptr<LocalResource>> localData;

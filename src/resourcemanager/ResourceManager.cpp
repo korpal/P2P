@@ -49,3 +49,16 @@ void ResourceManager::addDownloadedResource(const ResourceIdentifier &identifier
         downloadedData[identifier.getID()] = resource;
     }
 }
+
+Part& ResourceManager::getPartForSending(const ResourceIdentifier &identifier,
+        const unsigned &id)
+{
+    ScopedLock lock(mutex);
+
+    std::map<unsigned int, boost::shared_ptr<LocalResource>>::iterator iter =
+            localData.find(identifier.getID());
+
+    assert(iter != localData.end());
+
+    return iter->second->getPart(id);
+}

@@ -12,6 +12,7 @@ public:
     DownloadedResource(const ResourceIdentifier& identifier);
 
     void addDownloadedPart(const Part& part);
+    int getIdOfPartForDownloading();
 
 private:
     bool isComplete();
@@ -22,6 +23,7 @@ private:
 
     std::vector<bool> partsDownloaded;
     unsigned partsCount;
+    std::vector<unsigned long long> partsTimeout;
 };
 
 #endif // DOWNLOADED_RESOURCE
