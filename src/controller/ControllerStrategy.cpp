@@ -29,10 +29,31 @@ void OutgoingRevokeStrategy::react(Event *event)
 }
 
 
+void IncomingRevokeStrategy::react(Event *event)
+{
+    IncomingRevokeRequestEvent* event_ = dynamic_cast<IncomingRevokeRequestEvent*>(event);
+    ResourceManager::getInstance().revokeResource(event_->getResourceIdentifier());
+}
+
+
 void OutgoingRevertStrategy::react(Event *event)
 {
     OutgoingRevertRequestEvent* event_ = dynamic_cast<OutgoingRevertRequestEvent*>(event);
     BroadcastSender::getInstance().requestRevert(event_->getResourceIdentifier());
+}
+
+
+void IncomingRevertStrategy::react(Event *event)
+{
+    IncomingRevertRequestEvent* event_ = dynamic_cast<IncomingRevertRequestEvent*>(event);
+    ResourceManager::getInstance().revertResource(event_->getResourceIdentifier());
+}
+
+
+void IncomingPartStrategy::react(Event *event)
+{
+    IncomingPartEvent* event_ = dynamic_cast<IncomingPartEvent*>(event);
+    ResourceManager::getInstance().receivePart(event_->getPart());
 }
 
 
@@ -61,5 +82,4 @@ void TransformDownloadedResourceStrategy::react(Event *event)
     TransformEvent* transformEvent = dynamic_cast<TransformEvent*>(event);
     ResourceManager::getInstance().transformDownloadedIntoLocal(transformEvent->getIdentifier());
 }
-
 

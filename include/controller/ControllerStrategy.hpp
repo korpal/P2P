@@ -41,6 +41,13 @@ class IncomingResourceRequestStrategy: public ControllerStrategy
 };
 
 
+class IncomingRevokeStrategy: public ControllerStrategy
+{
+    public:
+        virtual void react(Event* event);
+};
+
+
 class OutgoingRevokeStrategy: public ControllerStrategy
 {
     public:
