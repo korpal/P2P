@@ -40,7 +40,10 @@ void BroadcastSender::requestAllResources()
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_port = htons(Configuration::BROADCAST_PORT);
-    addr.sin_addr.s_addr = htonl(INADDR_BROADCAST);
+
+    //TODO - change!!
+    std::string address = "25.255.255.255";
+    addr.sin_addr.s_addr = inet_addr(address.c_str());//htonl(INADDR_BROADCAST);
 
     BroadcastAllResources *msg = new BroadcastAllResources();
 
@@ -55,7 +58,10 @@ void BroadcastSender::requestResource(ResourceIdentifier &ri)
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_port = htons(Configuration::BROADCAST_PORT);
-    addr.sin_addr.s_addr = htonl(INADDR_BROADCAST);
+
+    //TODO - change!!
+    std::string address = "25.255.255.255";
+    addr.sin_addr.s_addr = inet_addr(address.c_str());//htonl(INADDR_BROADCAST);
 
     BroadcastResource *msg = new BroadcastResource(ri);
 
@@ -70,7 +76,10 @@ void BroadcastSender::requestRevoke(ResourceIdentifier &ri)
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_port = htons(Configuration::BROADCAST_PORT);
-    addr.sin_addr.s_addr = htonl(INADDR_BROADCAST);
+
+    //TODO - change!!
+    std::string address = "25.255.255.255";
+    addr.sin_addr.s_addr = inet_addr(address.c_str());//htonl(INADDR_BROADCAST);
 
     BroadcastRevoke *msg = new BroadcastRevoke(ri);
 
@@ -85,7 +94,10 @@ void BroadcastSender::requestRevert(ResourceIdentifier &ri)
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_port = htons(Configuration::BROADCAST_PORT);
-    addr.sin_addr.s_addr = htonl(INADDR_BROADCAST);
+
+    //TODO - change!!
+    std::string address = "25.255.255.255";
+    addr.sin_addr.s_addr = inet_addr(address.c_str());//htonl(INADDR_BROADCAST);
 
     BroadcastRevert *msg = new BroadcastRevert(ri);
 
