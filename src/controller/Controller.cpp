@@ -12,8 +12,8 @@ Controller::Controller()
             (std::type_index(typeid(OutgoingAllResourcesRequestEvent)), new OutgoingAllResourcesStrategy()));
     this->strategyMap.insert(std::make_pair<std::type_index, IncomingAllResourcesStrategy*>
             (std::type_index(typeid(IncomingAllResourcesRequestEvent)), new IncomingAllResourcesStrategy()));
-    this->strategyMap.insert(std::make_pair<std::type_index, OutgoingResourceRequestStrategy*>
-            (std::type_index(typeid(OutgoingResourceRequestEvent)), new OutgoingResourceRequestStrategy()));
+    //this->strategyMap.insert(std::make_pair<std::type_index, OutgoingResourceRequestStrategy*>
+    //        (std::type_index(typeid(OutgoingResourceRequestEvent)), new OutgoingResourceRequestStrategy()));
     //this->strategyMap.insert(std::make_pair<std::type_index, IncomingResourceRequestStrategy*>
     //        (std::type_index(typeid(IncomingResourceRequestEvent)), new IncomingResourceRequestStrategy()));
     this->strategyMap.insert(std::make_pair<std::type_index, IncomingRevokeStrategy*>
