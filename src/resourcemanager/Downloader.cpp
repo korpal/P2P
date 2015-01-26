@@ -30,8 +30,7 @@ void Downloader::run()
             if(partId < 0)
                 break;
 
-            Part part = ResourceManager::getInstance().getPartForSending(downloadedResource->getResourceIdentifier(), (unsigned)partId);
-            EventQueue::getInstance().push(new OutgoingPartEvent(part, source));
+            EventQueue::getInstance().push(new OutgoingPartRequestEvent(downloadedResource->getResourceIdentifier(), partId, source));
         }
         catch(...)
         {

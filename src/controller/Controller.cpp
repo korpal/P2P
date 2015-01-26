@@ -38,6 +38,9 @@ Controller::Controller()
             (std::type_index(typeid(OutgoingResourceInformationEvent)), new OutgoingResourceInformationStrategy()));
     this->strategyMap.insert(std::make_pair<std::type_index, TransformDownloadedResourceStrategy*>
             (std::type_index(typeid(TransformEvent)), new TransformDownloadedResourceStrategy()));
+    this->strategyMap.insert(std::make_pair<std::type_index, NewDownloadResourceStrategy*>
+            (std::type_index(typeid(NewDownloadResourceEvent)), new NewDownloadResourceStrategy()));
+
 }
 
 Controller::~Controller() {}

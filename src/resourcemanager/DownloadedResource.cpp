@@ -7,7 +7,8 @@ DownloadedResource::DownloadedResource(const ResourceIdentifier &identifier) :
         file(identifier.getName().c_str()),
         partsDownloaded(getPartsCount(), false),
         partsCount((unsigned int) ceil((double)identifier.getSize()
-                / (double)Configuration::PART_SIZE))
+                / (double)Configuration::PART_SIZE)),
+        partsTimeout(partsCount, 0)
 {}
 
 void DownloadedResource::addDownloadedPart(const Part& part)
