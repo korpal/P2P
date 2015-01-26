@@ -9,7 +9,7 @@ int main()
 {
     Controller *controller = new Controller();
     controller->start();
-    EventQueue::getInstance().push(new StringEvent("Siema"));
+//    EventQueue::getInstance().push(new StringEvent("Siema"));
 
 
 /*    ResourceManager resourceManager;

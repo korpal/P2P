@@ -1,14 +1,14 @@
-#ifndef BROADCASTREVOKE_HPP
-#define BROADCASTREVOKE_HPP
+#ifndef BROADCASTREVERT_HPP
+#define BROADCASTREVERT_HPP
 
 #include "BroadcastMessage.hpp"
 #include "../../../resourcemanager/ResourceIdentifier.hpp"
 
-class BroadcastRevoke : public BroadcastMessage
+class BroadcastRevert : public BroadcastMessage
 {
     public:
-        BroadcastRevoke();
-        BroadcastRevoke(ResourceIdentifier &ri);
+        BroadcastRevert();
+        BroadcastRevert(ResourceIdentifier &ri);
 
         ResourceIdentifier& getResourceIdentifier();
 
@@ -17,4 +17,3 @@ class BroadcastRevoke : public BroadcastMessage
 };
 
 #endif
-

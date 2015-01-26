@@ -13,24 +13,16 @@ public:
     ControllerStrategy();
 };
 
-
-class StringStrategy: public ControllerStrategy
-{
-public:
-    virtual void react(Event* event);
-};
-
-
 class PartStrategy: public ControllerStrategy
 {
-public:
-    virtual void react(Event* event);
+    public:
+        virtual void react(Event* event);
 };
 
 class TransformDownloadedResourceStrategy: public ControllerStrategy
 {
-public:
-    virtual void react(Event* event);
+    public:
+        virtual void react(Event* event);
 };
 
 

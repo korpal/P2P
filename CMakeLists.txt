@@ -12,6 +12,7 @@ set(SOURCE_FILES
     include/network/protocol/broadcast/BroadcastMessage.hpp
     include/network/protocol/broadcast/BroadcastResource.hpp
     include/network/protocol/broadcast/BroadcastRevoke.hpp
+    include/network/protocol/broadcast/BroadcastRevert.hpp
     include/network/protocol/unicast/UnicastMessage.hpp
     include/network/protocol/unicast/UnicastResource.hpp
     include/network/protocol/unicast/UnicastPartRequest.hpp
@@ -38,6 +39,7 @@ set(SOURCE_FILES
     src/controller/EventQueue.cpp
     src/network/protocol/broadcast/BroadcastResource.cpp
     src/network/protocol/broadcast/BroadcastRevoke.cpp
+    src/network/protocol/broadcast/BroadcastRevert.cpp
     src/network/protocol/unicast/UnicastPart.cpp
     src/network/protocol/unicast/UnicastPartRequest.cpp
     src/network/protocol/unicast/UnicastResource.cpp

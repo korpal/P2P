@@ -7,7 +7,8 @@ class BroadcastMessage {
         {
             ALLRESOURCES,
             RESOURCE,
-            REVOKE
+            REVOKE,
+            REVERT
         };
 
         BroadcastMessage() {}
