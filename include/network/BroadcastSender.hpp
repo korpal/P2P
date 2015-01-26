@@ -12,7 +12,6 @@ class BroadcastSender : public Thread {
         virtual ~BroadcastSender();
 
         void requestAllResources();
-        void requestResource(ResourceIdentifier &ri);
         void requestRevoke(ResourceIdentifier &ri);
         void requestRevert(ResourceIdentifier &ri);
 

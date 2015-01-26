@@ -8,7 +8,6 @@
 
 #include "../../include/network/BroadcastSender.hpp"
 #include "../../include/network/protocol/broadcast/BroadcastAllResources.hpp"
-#include "../../include/network/protocol/broadcast/BroadcastResource.hpp"
 #include "../../include/network/protocol/broadcast/BroadcastRevoke.hpp"
 #include "../../include/network/UnicastSender.hpp"
 #include "../../include/network/protocol/broadcast/BroadcastRevert.hpp"
@@ -49,24 +48,6 @@ void BroadcastSender::requestAllResources()
 
     if(sendto(sock, msg, sizeof(*msg), 0, (struct sockaddr *)&addr, sizeof(addr)) < 0)
         std::cout<<"Sending BroadcastAllResources failed";
-}
-
-
-void BroadcastSender::requestResource(ResourceIdentifier &ri)
-{
-    struct sockaddr_in addr;
-    memset(&addr, 0, sizeof(addr));
-    addr.sin_family = AF_INET;
-    addr.sin_port = htons(Configuration::BROADCAST_PORT);
-
-    //TODO - change!!
-    std::string address = "25.255.255.255";
-    addr.sin_addr.s_addr = inet_addr(address.c_str());//htonl(INADDR_BROADCAST);
-
-    BroadcastResource *msg = new BroadcastResource(ri);
-
-    if(sendto(sock, msg, sizeof(*msg), 0, (struct sockaddr *)&addr, sizeof(addr)) < 0)
-        std::cout<<"Sending BroadcastResource failed";
 }
 
 

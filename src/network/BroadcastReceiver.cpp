@@ -10,7 +10,6 @@
 #include "../../include/network/BroadcastReceiver.hpp"
 #include "../../include/network/protocol/broadcast/BroadcastMessage.hpp"
 #include "../../include/network/protocol/broadcast/BroadcastAllResources.hpp"
-#include "../../include/network/protocol/broadcast/BroadcastResource.hpp"
 #include "../../include/network/protocol/broadcast/BroadcastRevoke.hpp"
 #include "../../include/controller/Events.hpp"
 #include "../../include/utils/EventQueue.hpp"
@@ -68,9 +67,6 @@ void BroadcastReceiver::run()
             case BroadcastMessage::Type::ALLRESOURCES:
                 handleIncomingAllResources((BroadcastAllResources &)buf, inet_ntoa(si_other.sin_addr));
                 break;
-            case BroadcastMessage::Type::RESOURCE:
-                handleIncomingResource((BroadcastResource &)buf);
-                break;
             case BroadcastMessage::Type::REVOKE:
                 handleIncomingRevoke((BroadcastRevoke &)buf);
                 break;
@@ -87,12 +83,6 @@ void BroadcastReceiver::handleIncomingAllResources(BroadcastAllResources &msg, c
     printf("Received BroadcastAllResources\n");
     IncomingAllResourcesRequestEvent *event = new IncomingAllResourcesRequestEvent(*(new Source(address)));
     EventQueue::getInstance().push(event);
-}
-
-void BroadcastReceiver::handleIncomingResource(BroadcastResource &msg)
-{
-    printf("Received BroadcastResource with message: ");
-    printf("%s\n", msg.getResourceIdentifier().getName().c_str());
 }
 
 void BroadcastReceiver::handleIncomingRevoke(BroadcastRevoke &msg)

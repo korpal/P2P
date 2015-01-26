@@ -23,13 +23,6 @@ void IncomingAllResourcesStrategy::react(Event *event)
 }
 
 
-void OutgoingResourceRequestStrategy::react(Event *event)
-{
-    OutgoingResourceRequestEvent* event_ = dynamic_cast<OutgoingResourceRequestEvent*>(event);
-    BroadcastSender::getInstance().requestResource(event_->getResourceIdentifier());
-}
-
-
 void OutgoingRevokeStrategy::react(Event *event)
 {
     OutgoingRevokeRequestEvent* event_ = dynamic_cast<OutgoingRevokeRequestEvent*>(event);

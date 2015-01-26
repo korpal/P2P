@@ -24,7 +24,6 @@ void Downloader::run()
             // Take source from queue
             Source source = sourcesQueue.pop(Configuration::PARTS_TIMEOUT_IN_SECONDS);
             int partId = downloadedResource->getIdOfPartForDownloading();
-
             // If all parts are downloaded
             if(partId < 0)
                 break;
@@ -33,8 +32,8 @@ void Downloader::run()
         }
         catch(...)
         {
-            //TODO
-            continue;
+            for(int i = 0; i < sources.size(); i++)
+                sourcesQueue.push(sources[i]);
         }
     }
 }
