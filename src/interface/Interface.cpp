@@ -63,21 +63,24 @@ void Interface::enlistLocalResources()
     Q("");
     Q("Local Resources:");
     vector<ResourceIdentifier> resources = ResourceManager::getInstance().getLocalResourcesInfo();
-    int i;
+    char i;
     std::string str;
     for(i = 0; i < resources.size(); i++)
     {
-        str.append((char const *)i-48);
+        str += i;
         str.append(". " + resources[i].getName());
         Q(str);
         str.clear();
-        options.insert(make_pair(i, &Interface::addLocalResource));
+        options.insert(make_pair(i, &Interface::revokeResource));
     }
-    str.append((char const *)i-48);
-    str.append(". Exit.");
+    str += i;
+    str.append(". Add new local resource.");
+    options.insert(make_pair(i, &Interface::addLocalResource));
+    Q(str);
+    str += i;
+    str.append(". Back.");
     options.insert(make_pair(i, &Interface::back));
     Q(str);
-    delete str;
 }
 
 void Interface::enlistRemoteResources()
@@ -86,21 +89,20 @@ void Interface::enlistRemoteResources()
     Q("");
     Q("Remote Resources:");
     vector<ResourceIdentifier> resources = ResourceManager::getInstance().getRemoteResourcesInfo();
-    int i;
+    char i;
     std::string str;
     for(i = 0; i < resources.size(); i++)
     {
-        str.append((char const *)i-48);
+        str += i;
         str.append(". " + resources[i].getName());
         Q(str);
         str.clear();
         options.insert(make_pair(i, &Interface::downloadResource));
     }
-    str.append((char const *)i-48);
-    str.append(". Exit.");
+    str += i;
+    str.append(". Back.");
     options.insert(make_pair(i, &Interface::back));
     Q(str);
-    delete str;
 }
 
 void Interface::enlistRevokedResources()
@@ -109,21 +111,20 @@ void Interface::enlistRevokedResources()
     Q("");
     Q("Revoked Resources:");
     vector<ResourceIdentifier> resources = ResourceManager::getInstance().getRevokedResourcesInfo();
-    int i;
+    char i;
     std::string str;
     for(i = 0; i < resources.size(); i++)
     {
-        str.append((char const *)i-48);
+        str += i;
         str.append(". " + resources[i].getName());
         Q(str);
         str.clear();
         options.insert(make_pair(i, &Interface::revertResource));
     }
-    str.append((char const *)i-48);
-    str.append(". Exit.");
+    str += i;
+    str.append(". Back.");
     options.insert(make_pair(i, &Interface::back));
     Q(str);
-    delete str;
 }
 
 void Interface::stop()
@@ -155,5 +156,9 @@ void Interface::downloadResource()
 
 void Interface::revertResource()
 {
+
+}
+
+void Interface::back() {
 
 }

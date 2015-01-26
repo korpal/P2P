@@ -103,7 +103,7 @@ std::vector<ResourceIdentifier> ResourceManager::getRemoteResourcesInfo()
 
 std::vector<ResourceIdentifier> ResourceManager::getRevokedResourcesInfo()
 {
-    typedef boost::shared_ptr<RemoteResource> PTR_RR;
+    typedef boost::shared_ptr<LocalResource> PTR_RR;
     typedef std::pair<unsigned int, PTR_RR> PAIR;
     std::vector<ResourceIdentifier> resultVector;
 
