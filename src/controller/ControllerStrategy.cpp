@@ -112,10 +112,3 @@ void NewDownloadResourceStrategy::react(Event *event)
             dynamic_cast<NewDownloadResourceEvent*>(event);
     (new Downloader(newDownloadResourceEvent->getResourcePtr()))->start(); // TODO Stop
 }
-
-
-void DownloadedPartStrategy::react(Event *event)
-{
-    DownloadedPartEvent* downloadedPartEvent = dynamic_cast<DownloadedPartEvent*>(event);
-    // TODO DOKOŃCZYĆ
-}

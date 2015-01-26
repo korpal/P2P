@@ -187,15 +187,4 @@ private:
     boost::shared_ptr<DownloadedResource> downloadedResource;
 };
 
-
-class DownloadedPartEvent : public Event
-{
-    public:
-        const ResourceIdentifier& getIdentifier();
-        DownloadedPartEvent(const ResourceIdentifier& identifier, unsigned partId);
-    private:
-        const ResourceIdentifier& resourceIdentifier;
-        unsigned partId;
-};
-
 #endif

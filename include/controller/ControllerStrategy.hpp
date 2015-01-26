@@ -124,12 +124,4 @@ class NewDownloadResourceStrategy: public ControllerStrategy
         virtual void react(Event* event);
 };
 
-
-class DownloadedPartStrategy: public ControllerStrategy
-{
-    public:
-        virtual void react(Event* event);
-};
-
-
 #endif
