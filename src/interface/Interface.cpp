@@ -27,7 +27,7 @@ void Interface::start()
             Q("Błędna decyzja!");
             X = getchar() - '0';
         }
-        (*this.*options[X-1])();
+        (*this.*options[X])();
     }
 }
 
