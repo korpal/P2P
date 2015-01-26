@@ -20,16 +20,24 @@ void Downloader::run()
 {
     while(!isFinished())
     {
-        // Take source from queue
-        Source source = sourcesQueue.pop(Configuration::PARTS_TIMEOUT_IN_SECONDS);
-        int partId = downloadedResource->getIdOfPartForDownloading();
+        try
+        {
+            // Take source from queue
+            Source source = sourcesQueue.pop(Configuration::PARTS_TIMEOUT_IN_SECONDS);
+            int partId = downloadedResource->getIdOfPartForDownloading();
 
-        // If all parts are downloaded
-        if(partId < 0)
-            break;
+            // If all parts are downloaded
+            if(partId < 0)
+                break;
 
-        Part part = ResourceManager::getInstance().getPartForSending(downloadedResource->getResourceIdentifier(), (unsigned)partId);
-        EventQueue::getInstance().push(new OutgoingPartEvent(part, source));
+            Part part = ResourceManager::getInstance().getPartForSending(downloadedResource->getResourceIdentifier(), (unsigned)partId);
+            EventQueue::getInstance().push(new OutgoingPartEvent(part, source));
+        }
+        catch(...)
+        {
+            //TODO
+            continue;
+        }
     }
 }
 
