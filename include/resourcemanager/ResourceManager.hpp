@@ -44,6 +44,8 @@ public:
 
 private:
     ResourceManager();
+    ResourceManager(const ResourceManager&);
+    static ResourceManager resourceManager;
 
     std::map<unsigned int, boost::shared_ptr<LocalResource>> localData;
     std::map<unsigned int, boost::shared_ptr<RemoteResource>> remoteData;

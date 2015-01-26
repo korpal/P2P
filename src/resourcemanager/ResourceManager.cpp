@@ -3,6 +3,8 @@
 
 ResourceManager::ResourceManager() {}
 
+ResourceManager::ResourceManager(const ResourceManager&) {}
+
 
 ResourceManager& ResourceManager::getInstance()
 {
