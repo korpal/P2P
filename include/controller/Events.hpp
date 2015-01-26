@@ -187,4 +187,14 @@ private:
     boost::shared_ptr<DownloadedResource> downloadedResource;
 };
 
+
+class NewLocalResourceEvent : public Event
+{
+public:
+    std::string& getPath();
+    NewLocalResourceEvent(std::string& path);
+private:
+    std::string& path;
+};
+
 #endif

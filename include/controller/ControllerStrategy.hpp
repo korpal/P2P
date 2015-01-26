@@ -124,4 +124,10 @@ class NewDownloadResourceStrategy: public ControllerStrategy
         virtual void react(Event* event);
 };
 
+
+class NewLocalResourceStrategy: public ControllerStrategy
+{
+    public:
+        virtual void react(Event* event);
+};
 #endif

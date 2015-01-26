@@ -2,6 +2,7 @@
 #include <istream>
 #include "../../include/interface/Interface.hpp"
 #include "../../include/resourcemanager/ResourceManager.hpp"
+#include "../../include/utils/EventQueue.hpp"
 
 using namespace std;
 
@@ -148,13 +149,12 @@ void Interface::addLocalResource()
     string path;
     Q("Type file path:");
     cin >> path;
-    ResourceManager::getInstance().addLocalResource(path);
+    EventQueue::getInstance().push(new NewLocalResourceEvent(path));
     enlistLocalResources();
 }
 
 void Interface::revokeResource()
 {
-
     options.clear();
     menu();
     addOptions();

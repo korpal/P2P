@@ -199,3 +199,11 @@ boost::shared_ptr<DownloadedResource> NewDownloadResourceEvent::getResourcePtr()
 }
 
 
+// NewLocalResourceEvent //
+NewLocalResourceEvent::NewLocalResourceEvent(std::string &path) :
+    path(path) {}
+
+std::string& NewLocalResourceEvent::getPath()
+{
+    return path;
+}

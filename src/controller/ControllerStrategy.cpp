@@ -112,3 +112,10 @@ void NewDownloadResourceStrategy::react(Event *event)
             dynamic_cast<NewDownloadResourceEvent*>(event);
     (new Downloader(newDownloadResourceEvent->getResourcePtr()))->start(); // TODO Stop
 }
+
+
+void NewLocalResourceStrategy::react(Event *event)
+{
+    NewLocalResourceEvent* newLocalResourceEvent = dynamic_cast<NewLocalResourceEvent*>(event);
+    ResourceManager::getInstance().addLocalResource(newLocalResourceEvent->getPath());
+}
