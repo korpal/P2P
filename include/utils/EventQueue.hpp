@@ -4,41 +4,27 @@
 #include <queue>
 #include <mutex>
 #include <condition_variable>
-
 #include "../controller/Events.hpp"
 
 
-template<typename T>
-class BlockingQueue
+class EventQueue
 {
 private:
-    std::queue<T> queue;
+    EventQueue();
+    EventQueue(const EventQueue&);
+    static EventQueue eventQueue;
+
+    std::queue<Event*> queue;
     std::mutex mutex;
     std::condition_variable condition;
 
 public:
 
-    void push(T const &item)
-    {
-        std::unique_lock<std::mutex> mlock(mutex);
-        queue.push(item);
-        mlock.unlock();
-        condition.notify_one();
-    }
+    void push(Event* const &item);
 
-    T pop()
-    {
-        std::unique_lock<std::mutex> mlock(mutex);
-        while (queue.empty())
-        {
-            condition.wait(mlock);
-        }
-        auto item = queue.front();
-        queue.pop();
-        return item;
-    }
+    Event* pop();
+
+    static EventQueue& getInstance();
 };
-
-typedef BlockingQueue<Event*> EventQueue;
 
 #endif

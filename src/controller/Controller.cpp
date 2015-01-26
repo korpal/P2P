@@ -2,11 +2,11 @@
 #include <iostream>
 #include <utility>
 
-#include "../../include/controller/ControllerStrategy.hpp"
+#include "../../include/controller/Controller.hpp"
+#include "../../include/utils/EventQueue.hpp"
 
 
-Controller::Controller(EventQueue* const event_queue) :
-        event_queue(event_queue)
+Controller::Controller()
 {
     this->strategyMap.insert(std::make_pair<std::type_index, StringStrategy*>
             (std::type_index(typeid(StringEvent)), new StringStrategy()));
@@ -20,7 +20,7 @@ void Controller::run()
 {
     while(!isFinished())
     {
-        Event* event = event_queue->pop();
+        Event* event = EventQueue::getInstance().pop();
         ControllerStrategy* strategy =
             strategyMap[std::type_index(typeid(*event))];
         strategy->react(event);

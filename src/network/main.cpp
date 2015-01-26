@@ -1,25 +1,15 @@
 #include <iostream>
-#include <stdio.h>
-#include <netinet/in.h>
 
 #include "../../include/network/BroadcastSender.hpp"
-#include "../../include/network/BroadcastReceiver.hpp"
-#include "../../include/network/UnicastReceiver.hpp"
-#include "../../include/network/UnicastSender.hpp"
-#include "../../include/resourcemanager/ResourceManager.hpp"
-#include "../../include/resourcemanager/Source.hpp"
-#include "../../include/resourcemanager/DownloadedResource.hpp"
 #include "../../include/controller/Controller.hpp"
 #include "../../include/utils/EventQueue.hpp"
 
 
 int main()
 {
-    EventQueue eventQueue;
-
-    Controller *controller = new Controller(&eventQueue);
+    Controller *controller = new Controller();
     controller->start();
-    eventQueue.push(new StringEvent("Siema"));
+    EventQueue::getInstance().push(new StringEvent("Siema"));
 
 
 /*    ResourceManager resourceManager;

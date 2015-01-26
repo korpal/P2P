@@ -7,6 +7,7 @@ set(SOURCE_FILES
     include/controller/Controller.hpp
     include/controller/ControllerStrategy.hpp
     include/controller/Events.hpp
+    include/utils/EventQueue.hpp
     include/network/protocol/broadcast/BroadcastAllResources.hpp
     include/network/protocol/broadcast/BroadcastMessage.hpp
     include/network/protocol/broadcast/BroadcastResource.hpp
@@ -34,6 +35,7 @@ set(SOURCE_FILES
     src/controller/Controller.cpp
     src/controller/ControllerStrategy.cpp
     src/controller/Events.cpp
+    src/controller/EventQueue.cpp
     src/network/protocol/broadcast/BroadcastResource.cpp
     src/network/protocol/broadcast/BroadcastRevoke.cpp
     src/network/protocol/unicast/UnicastPart.cpp
