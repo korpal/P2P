@@ -2,6 +2,7 @@
 #include "../../include/utils/ScopedLock.hpp"
 #include "../../include/controller/Events.hpp"
 #include "../../include/utils/EventQueue.hpp"
+#include "../../include/utils/EventQueue.hpp"
 
 ResourceManager::ResourceManager() {}
 
@@ -58,6 +59,7 @@ void ResourceManager::addDownloadedResource(const ResourceIdentifier &identifier
     {
         resource = boost::shared_ptr<DownloadedResource>(new DownloadedResource(identifier));
         downloadedData[identifier.getID()] = resource;
+        EventQueue::getInstance().push(new NewDownloadResourceEvent(resource));
     }
 }
 
@@ -118,6 +120,7 @@ void ResourceManager::receivePart(const Part &part)
         return;
 
     downloadedData[id]->addDownloadedPart(part);
+    EventQueue::getInstance().push(new DownloadedPartEvent(part.getResourceIdentifier(), id));
 }
 
 void ResourceManager::revokeResource(const ResourceIdentifier &identifier)

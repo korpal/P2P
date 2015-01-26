@@ -2,8 +2,10 @@
 #define EVENTS_H
 
 #include <string>
+#include <boost/smart_ptr/shared_ptr.hpp>
 #include "../resourcemanager/Part.hpp"
 #include "../resourcemanager/Source.hpp"
+#include "../resourcemanager/DownloadedResource.hpp"
 
 
 class Event
@@ -173,6 +175,27 @@ class TransformEvent : public Event
         TransformEvent(const ResourceIdentifier& identifier);
     private:
         const ResourceIdentifier& resourceIdentifier;
+};
+
+
+class NewDownloadResourceEvent : public Event
+{
+public:
+    boost::shared_ptr<DownloadedResource> getResourcePtr();
+    NewDownloadResourceEvent(boost::shared_ptr<DownloadedResource> downloadedResource);
+private:
+    boost::shared_ptr<DownloadedResource> downloadedResource;
+};
+
+
+class DownloadedPartEvent : public Event
+{
+    public:
+        const ResourceIdentifier& getIdentifier();
+        DownloadedPartEvent(const ResourceIdentifier& identifier, unsigned partId);
+    private:
+        const ResourceIdentifier& resourceIdentifier;
+        unsigned partId;
 };
 
 #endif

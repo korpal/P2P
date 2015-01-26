@@ -118,4 +118,18 @@ class TransformDownloadedResourceStrategy: public ControllerStrategy
 };
 
 
+class NewDownloadResourceStrategy: public ControllerStrategy
+{
+    public:
+        virtual void react(Event* event);
+};
+
+
+class DownloadedPartStrategy: public ControllerStrategy
+{
+    public:
+        virtual void react(Event* event);
+};
+
+
 #endif

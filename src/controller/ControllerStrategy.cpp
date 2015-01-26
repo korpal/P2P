@@ -3,6 +3,7 @@
 #include "../../include/resourcemanager/ResourceManager.hpp"
 #include "../../include/network/BroadcastSender.hpp"
 #include "../../include/network/UnicastSender.hpp"
+#include "../../include/resourcemanager/Downloader.hpp"
 
 ControllerStrategy::ControllerStrategy() {}
 
@@ -102,4 +103,19 @@ void TransformDownloadedResourceStrategy::react(Event *event)
 {
     TransformEvent* transformEvent = dynamic_cast<TransformEvent*>(event);
     ResourceManager::getInstance().transformDownloadedIntoLocal(transformEvent->getIdentifier());
+}
+
+
+void NewDownloadResourceStrategy::react(Event *event)
+{
+    NewDownloadResourceEvent* newDownloadResourceEvent =
+            dynamic_cast<NewDownloadResourceEvent*>(event);
+    (new Downloader(newDownloadResourceEvent->getResourcePtr()))->start(); // TODO Stop
+}
+
+
+void DownloadedPartStrategy::react(Event *event)
+{
+    DownloadedPartEvent* downloadedPartEvent = dynamic_cast<DownloadedPartEvent*>(event);
+    // TODO DOKOŃCZYĆ
 }

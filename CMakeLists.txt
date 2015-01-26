@@ -21,6 +21,7 @@ set(SOURCE_FILES
     include/network/BroadcastSender.hpp
     include/network/UnicastReceiver.hpp
     include/network/UnicastSender.hpp
+    include/resourcemanager/Downloader.hpp
     include/resourcemanager/LocalResource.hpp
     include/resourcemanager/Part.hpp
     include/resourcemanager/DownloadedResource.hpp
@@ -48,6 +49,7 @@ set(SOURCE_FILES
     src/network/UnicastReceiver.cpp
     src/network/UnicastSender.cpp
     src/network/main.cpp
+    src/resourcemanager/Downloader.cpp
     src/resourcemanager/LocalResource.cpp
     src/resourcemanager/Part.cpp
     src/resourcemanager/DownloadedResource.cpp

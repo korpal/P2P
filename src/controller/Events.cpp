@@ -187,3 +187,27 @@ const ResourceIdentifier& TransformEvent::getIdentifier()
     return resourceIdentifier;
 }
 
+
+// NewDownloadResourceEvent //
+NewDownloadResourceEvent::NewDownloadResourceEvent(
+        boost::shared_ptr<DownloadedResource> downloadedResource) :
+    downloadedResource(downloadedResource) {}
+
+boost::shared_ptr<DownloadedResource> NewDownloadResourceEvent::getResourcePtr()
+{
+    return downloadedResource;
+}
+
+
+// DownloadedPartEvent //
+DownloadedPartEvent::DownloadedPartEvent(
+        const ResourceIdentifier &identifier, unsigned partId) :
+    resourceIdentifier(identifier),
+    partId(partId) {}
+
+const ResourceIdentifier& DownloadedPartEvent::getIdentifier()
+{
+    return resourceIdentifier;
+}
+
+
