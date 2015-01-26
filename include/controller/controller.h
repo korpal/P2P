@@ -9,31 +9,43 @@ class ControllerStrategy;
 
 #include "../../include/controller/event_queue.hpp"
 #include "event_queue.hpp"
+#include "../utils/Thread.hpp"
 
 
-class Controller
+class Controller : public Thread
 {
-private:
-    EventQueue* const event_queue;
-    std::unordered_map<std::type_index, ControllerStrategy*> strategyMap;
+    private:
+        EventQueue* const event_queue;
+        std::unordered_map<std::type_index, ControllerStrategy*> strategyMap;
 
-public:
-    Controller(EventQueue* const);
-    void handle_events();
+    public:
+        Controller(EventQueue* const);
+        ~Controller();
+        virtual void run();
 };
 
 
 class ControllerStrategy
 {
-public:
-    virtual void react(Event* event);
-    ControllerStrategy();
+    public:
+        virtual void react(Event* event);
+        ControllerStrategy();
 };
 
 
 class StringStrategy: public ControllerStrategy
 {
-public:
-    virtual void react(Event* event);
+    public:
+        virtual void react(Event* event);
 };
+
+
+class PartStrategy: public ControllerStrategy
+{
+    public:
+        virtual void react(Event* event);
+};
+
+
+
 #endif

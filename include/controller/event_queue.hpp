@@ -17,6 +17,7 @@ private:
     std::condition_variable condition;
 
 public:
+
     void push(T const &item)
     {
         std::unique_lock<std::mutex> mlock(mutex);

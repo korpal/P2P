@@ -2,23 +2,40 @@
 
 #include "../../include/controller/events.h"
 
-
-StringEvent::StringEvent(string message)
-{
-    this->message = message;
-}
-
-string StringEvent::getMessage()
-{
-    return message;
-}
-
 Event::~Event()
 {
 
 }
 
+
+StringEvent::StringEvent(std::string message)
+{
+    this->message = message;
+}
+
 StringEvent::~StringEvent()
 {
 
+}
+
+std::string StringEvent::getMessage()
+{
+    return message;
+}
+
+
+
+PartEvent::PartEvent(std::string message)
+{
+    this->message = message;
+}
+
+PartEvent::~PartEvent()
+{
+
+}
+
+std::string PartEvent::getMessage()
+{
+    return message;
 }

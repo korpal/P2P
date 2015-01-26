@@ -9,12 +9,19 @@
 #include "../../include/resourcemanager/ResourceManager.hpp"
 #include "../../include/resourcemanager/Source.hpp"
 #include "../../include/resourcemanager/DownloadedResource.hpp"
+#include "../../include/controller/controller.h"
 
 
 int main()
 {
+    EventQueue eventQueue;
 
-    ResourceManager resourceManager;
+    Controller *controller = new Controller(&eventQueue);
+    controller->start();
+    eventQueue.push(new PartEvent("Siema"));
+
+
+/*    ResourceManager resourceManager;
     ResourceIdentifier resourceIdentifier;
     resourceManager.addRemoteResource(ResourceIdentifier("nam",2), Source(sockaddr_in()));
 
@@ -51,6 +58,7 @@ int main()
     delete broadcastReceiver;
     delete unicastReceiver;
     //delete broadcastSender;
-    //delete unicastSender;
+    //delete unicastSender;*/
+    delete controller;
     return 0;
 }
