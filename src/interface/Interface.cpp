@@ -156,7 +156,7 @@ void Interface::addLocalResource()
     string path;
     Q("Type file path:");
     cin >> path;
-    EventQueue::getInstance().push(new NewLocalResourceEvent(path));
+    EventQueue::getInstance().push(new NewLocalResourceEvent(*(new string(path))));
     enlistLocalResources();
 }
 
