@@ -19,7 +19,7 @@ void StringStrategy::react(Event* event)
 void PartStrategy::react(Event* event)
 {
     PartEvent* partEvent = dynamic_cast<PartEvent*>(event);
-    ResourceManager.getInstance()->receivePart(partEvent->getPart());
+    ResourceManager::getInstance().receivePart(partEvent->getPart());
 }
 
 

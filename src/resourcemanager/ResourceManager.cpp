@@ -1,11 +1,12 @@
 #include "../../include/resourcemanager/ResourceManager.hpp"
 #include "../../include/utils/ScopedLock.hpp"
 
-ResourceManager::ResourceManager() : resourceManager() {}
+ResourceManager::ResourceManager() {}
 
 
 ResourceManager& ResourceManager::getInstance()
 {
+    static ResourceManager resourceManager;
     return resourceManager;
 }
 
