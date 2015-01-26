@@ -61,3 +61,8 @@ int DownloadedResource::getIdOfPartForDownloading()
 // If we are here - we have all parts.
     return -1;
 }
+
+ResourceIdentifier &DownloadedResource::getResourceIdentifier()
+{
+    return identifier;
+}

@@ -9,8 +9,7 @@ Downloader::Downloader(boost::shared_ptr<DownloadedResource> downloadedResource)
     downloaders.insert(
             std::pair<boost::shared_ptr<DownloadedResource>, boost::shared_ptr<Downloader>>
                      (downloadedResource, boost::shared_ptr<Downloader>(this)));
-    std::vector sources = ResourceManager::getInstance().getSources(downloadedResource->)
-    //for()
+    sources = ResourceManager::getInstance().getSources(downloadedResource->getResourceIdentifier());
 }
 
 void Downloader::run()

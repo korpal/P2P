@@ -15,6 +15,7 @@ public:
     void addDownloadedPart(const Part& part);
     int getIdOfPartForDownloading();
     unsigned getPartsCount();
+    ResourceIdentifier& getResourceIdentifier();
 
 private:
     bool isComplete();
