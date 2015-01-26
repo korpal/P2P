@@ -32,15 +32,13 @@ int main()
     Part p1 = lr.getPart(0);
     Part p2 = lr.getPart(1);
     Part p3 = lr.getPart(2);
-    //unicastSender->requestConfirmation((char*)"Siema", (char *)"25.9.227.212");
-    //unicastSender->requestPart(&p1, (char *)"192.168.2.107");
-    //unicastSender->requestPart(&p2, (char *)"192.168.2.107");
-    //unicastSender->requestPart(&p3, (char *)"192.168.2.107");
-    DownloadedResource dr(p1.getResourceIdentifier());
-    dr.addDownloadedPart(p1);
-    dr.addDownloadedPart(p2);
-    dr.addDownloadedPart(p3);
-    //dr.complete();
+    unicastSender->requestPart(&p1, (char *)"25.1.3.6");
+    unicastSender->requestPart(&p2, (char *)"25.1.3.6");
+    unicastSender->requestPart(&p3, (char *)"25.1.3.6");
+    //DownloadedResource dr(p1.getResourceIdentifier());
+    //dr.addDownloadedPart(p1);
+    //dr.addDownloadedPart(p2);
+    //dr.addDownloadedPart(p3);
     fflush(stdout);
 
     getchar();

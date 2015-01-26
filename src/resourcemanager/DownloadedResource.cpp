@@ -13,10 +13,7 @@ void DownloadedResource::addDownloadedPart(const Part& part)
     file.write((char*)part.getData(), part.getSize());
     partsDownloaded[part.getId()] = true;
 
-
-
     if(isComplete()) {
-        std::cout << "Koniec!!!";
         fflush(stdout);
         file.flush();
         file.close();
@@ -26,12 +23,9 @@ void DownloadedResource::addDownloadedPart(const Part& part)
 
 bool DownloadedResource::isComplete()
 {
-    std::cout << "Siema " << std::endl << partsDownloaded.size() << " " << partsDownloaded[0] << " " << partsDownloaded[1] << " " << partsDownloaded[2] << std::endl;
-    for(unsigned i = getPartsCount()-1; i >= 0; --i) {
+    for(int i = getPartsCount()-1; i >= 0; --i)
         if(!partsDownloaded[i])
             return false;
-    }
-
     return true;
 }
 

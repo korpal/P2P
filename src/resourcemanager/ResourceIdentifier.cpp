@@ -5,7 +5,7 @@ ResourceIdentifier::ResourceIdentifier() {}
 
 ResourceIdentifier::ResourceIdentifier(const std::string &name, unsigned size)
 {
-    strncpy(this->name, name.c_str(), sizeof(name)-1);
+    strncpy(this->name, name.c_str(), sizeof(name));
     this->size = size;
     this->hash = std::hash<std::string>()(std::string(name + std::to_string(size)));
 }
