@@ -106,6 +106,12 @@ void Interface::enlistRemoteResources()
         options.insert(make_pair(i, &Interface::downloadResource));
     }
     str += i+48;
+    str.append(". Download all resources.");
+    options.insert(make_pair(i, &Interface::downloadAllResources));
+    Q(str);
+    str.clear();
+    i++;
+    str += i+48;
     str.append(". Back.");
     options.insert(make_pair(i, &Interface::back));
     Q(str);
