@@ -18,6 +18,20 @@ int main()
     controller->start();
     Interface interf;
     interf.start();
+//
+//    ResourceIdentifier s("Victory2.mp3",461824);
+//    ResourceManager::getInstance().addDownloadedResource(s);
+//
+//    ResourceManager::getInstance().addLocalResource("Victory.mp3");
+
+
+//    ResourceIdentifier *ri = new ResourceIdentifier("Victory2.mp3", 461824);
+//    char *address = "25.1.3.6";
+//    ResourceManager::getInstance().addRemoteResource(*ri, *(new Source(address)));
+//    ResourceManager::getInstance().addDownloadedResource(*ri);
+
+    //ResourceManager::getInstance().addLocalResource("Victory.mp3");
+
     getchar();
     return 0;
 }
