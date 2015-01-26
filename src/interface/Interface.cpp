@@ -2,6 +2,7 @@
 #include <istream>
 #include "../../include/interface/Interface.hpp"
 #include "../../include/resourcemanager/ResourceManager.hpp"
+#include "../../include/controller/Events.hpp"
 #include "../../include/utils/EventQueue.hpp"
 
 using namespace std;
@@ -25,14 +26,14 @@ void Interface::start()
     while(!isFinished)
     {
         cin >> c;
-        int X = c - '0';
-        while (X == 0 || X > options.size())
+        chosen = c - '0';
+        while (chosen == 0 || chosen > options.size())
         {
             Q("Błędna decyzja!");
             cin >> c;
-            X = c - '0';
+            chosen = c - '0';
         }
-        (*this.*options[X])();
+        (*this.*options[chosen])();
     }
 }
 
@@ -155,25 +156,25 @@ void Interface::addLocalResource()
 
 void Interface::revokeResource()
 {
-    options.clear();
-    menu();
-    addOptions();
+    vector<ResourceIdentifier> resources = ResourceManager::getInstance().getLocalResourcesInfo();
+    OutgoingRevokeRequestEvent *event = new OutgoingRevokeRequestEvent(resources[chosen]);
+    EventQueue::getInstance().push(event);
+    enlistLocalResources();
 }
 
 void Interface::downloadResource()
 {
-
-    options.clear();
-    menu();
-    addOptions();
+    OutgoingAllResourcesRequestEvent *event = new OutgoingAllResourcesRequestEvent();
+    EventQueue::getInstance().push(event);
+    enlistRemoteResources();
 }
 
 void Interface::revertResource()
 {
-
-    options.clear();
-    menu();
-    addOptions();
+    vector<ResourceIdentifier> resources = ResourceManager::getInstance().getRevokedResourcesInfo();
+    OutgoingRevertRequestEvent *event = new OutgoingRevertRequestEvent(resources[chosen]);
+    EventQueue::getInstance().push(event);
+    enlistRevokedResources();
 }
 
 void Interface::back() {

@@ -20,6 +20,7 @@ private:
 
     bool isFinished;
     void welcomingText();
+    int chosen;
 
     void addOptions();
     void addSingleOption(unsigned id, methodPointer method);
