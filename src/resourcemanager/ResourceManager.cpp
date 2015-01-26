@@ -1,7 +1,5 @@
 #include "../../include/resourcemanager/ResourceManager.hpp"
 #include "../../include/utils/ScopedLock.hpp"
-#include <stdio.h>
-#include <iostream>
 
 ResourceManager::ResourceManager()
 {
@@ -20,7 +18,7 @@ void ResourceManager::addLocalResource(const std::string &path)
         return;
 
     // TODO Invalidated wtf?
-    localData.insert(std::pair<unsigned, boost::shared_ptr<LocalResource>>(id, resource)); // <unsigned, boost::shared_ptr<LocalResource>>
+    localData.insert(std::pair<unsigned, boost::shared_ptr<LocalResource>>(id, resource));
     // TODO hasNew ??
 }
 

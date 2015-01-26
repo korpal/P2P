@@ -21,7 +21,7 @@ private:
     ResourceIdentifier identifier;
 
     std::vector<bool> partsDownloaded;
-    unsigned partsCount = 0;
+    unsigned partsCount;
 };
 
 #endif // DOWNLOADED_RESOURCE

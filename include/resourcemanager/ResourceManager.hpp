@@ -23,8 +23,8 @@ public:
     // Begins download of a file and adds it to download list
     void addDownloadedResource(const ResourceIdentifier& identifier);
 
-
-    void getPartForSending(const unsigned& id);
+    // Returns
+    void getPartForSending(const ResourceIdentifier& identifier, const unsigned& id);
 
 private:
     std::map<unsigned int, boost::shared_ptr<LocalResource>> localData;
