@@ -15,10 +15,11 @@
 int main()
 {
     EventQueue eventQueue;
+    ResourceManager resourceManager;
 
-    Controller *controller = new Controller(&eventQueue);
+    Controller *controller = new Controller(&eventQueue, &resourceManager);
     controller->start();
-    eventQueue.push(new PartEvent("Siema"));
+    eventQueue.push(new StringEvent("Siema"));
 
 
 /*    ResourceManager resourceManager;
@@ -59,6 +60,7 @@ int main()
     delete unicastReceiver;
     //delete broadcastSender;
     //delete unicastSender;*/
+    getchar();
     delete controller;
     return 0;
 }

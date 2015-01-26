@@ -25,17 +25,13 @@ std::string StringEvent::getMessage()
 
 
 
-PartEvent::PartEvent(std::string message)
-{
-    this->message = message;
-}
+PartEvent::PartEvent(Part& part) :
+    part(part)
+{}
 
 PartEvent::~PartEvent()
-{
+{}
 
-}
-
-std::string PartEvent::getMessage()
-{
-    return message;
+Part &PartEvent::getPart() {
+    return part;
 }

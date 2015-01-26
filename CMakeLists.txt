@@ -5,6 +5,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
     include/controller/controller.h
+    include/controller/ControllerStrategy.hpp
     include/controller/event_queue.hpp
     include/controller/events.h
     include/network/protocol/broadcast/BroadcastAllResources.hpp
@@ -32,6 +33,7 @@ set(SOURCE_FILES
     include/utils/Thread.hpp
     include/utils/Configuration.hpp
     src/controller/controller.cpp
+    src/controller/ControllerStrategy.cpp
     src/controller/events.cpp
     src/network/protocol/broadcast/BroadcastResource.cpp
     src/network/protocol/broadcast/BroadcastRevoke.cpp

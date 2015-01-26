@@ -3,9 +3,12 @@
 #include <utility>
 
 #include "../../include/controller/controller.h"
+#include "../../include/controller/ControllerStrategy.hpp"
 
 
-Controller::Controller(EventQueue* const event_queue) : event_queue(event_queue)
+Controller::Controller(EventQueue* const event_queue, ResourceManager* rm) :
+        event_queue(event_queue),
+        resourceManager(rm)
 {
     this->strategyMap.insert(std::make_pair<std::type_index, StringStrategy*>
             (std::type_index(typeid(StringEvent)), new StringStrategy()));
@@ -22,30 +25,15 @@ void Controller::run()
         Event* event = event_queue->pop();
         ControllerStrategy* strategy =
             strategyMap[std::type_index(typeid(*event))];
-        strategy->react(event);
+        strategy->react(event, this);
     }
 }
 
-void StringStrategy::react(Event* event)
+ResourceManager *Controller::getResourceManager()
 {
-    StringEvent* stringEven = dynamic_cast<StringEvent*>(event);
-    printf("Siema, dostalem stringEvent\n");
-}
-
-void PartStrategy::react(Event* event)
-{
-    PartEvent* partEvent = dynamic_cast<PartEvent*>(event);
-    printf("Siema, dostalem partEvent\n");
+    return resourceManager;
 }
 
 
 
-ControllerStrategy::ControllerStrategy()
-{
 
-}
-
-void ControllerStrategy::react(Event* event)
-{
-
-}

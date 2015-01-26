@@ -10,6 +10,8 @@ class ControllerStrategy;
 #include "../../include/controller/event_queue.hpp"
 #include "event_queue.hpp"
 #include "../utils/Thread.hpp"
+#include "../resourcemanager/ResourceManager.hpp"
+#include "ControllerStrategy.hpp"
 
 
 class Controller : public Thread
@@ -17,33 +19,13 @@ class Controller : public Thread
     private:
         EventQueue* const event_queue;
         std::unordered_map<std::type_index, ControllerStrategy*> strategyMap;
+        ResourceManager *resourceManager;
 
     public:
-        Controller(EventQueue* const);
+        Controller(EventQueue* const, ResourceManager* rm);
         ~Controller();
         virtual void run();
-};
-
-
-class ControllerStrategy
-{
-    public:
-        virtual void react(Event* event);
-        ControllerStrategy();
-};
-
-
-class StringStrategy: public ControllerStrategy
-{
-    public:
-        virtual void react(Event* event);
-};
-
-
-class PartStrategy: public ControllerStrategy
-{
-    public:
-        virtual void react(Event* event);
+        ResourceManager* getResourceManager();
 };
 
 

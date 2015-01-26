@@ -2,6 +2,7 @@
 #define EVENTS_H
 
 #include <string>
+#include "../resourcemanager/Part.hpp"
 
 
 class Event
@@ -24,11 +25,11 @@ class StringEvent: public Event
 class PartEvent: public Event
 {
     private:
-        std::string message;
+        Part part;
     public:
         virtual ~PartEvent();
-        virtual std::string getMessage();
-        PartEvent(std::string message);
+        Part& getPart();
+        PartEvent(Part& part);
 };
 
 
