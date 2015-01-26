@@ -36,7 +36,7 @@ set(SOURCE_FILES
     src/controller/Controller.cpp
     src/controller/ControllerStrategy.cpp
     src/controller/Events.cpp
-    src/controller/EventQueue.cpp
+    src/utils/EventQueue.cpp
     src/network/protocol/broadcast/BroadcastResource.cpp
     src/network/protocol/broadcast/BroadcastRevoke.cpp
     src/network/protocol/broadcast/BroadcastRevert.cpp
