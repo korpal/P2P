@@ -71,17 +71,18 @@ void Interface::enlistLocalResources()
     std::string str;
     for(i = 0; i < resources.size(); i++)
     {
-        str += i;
+        str += i+48;
         str.append(". " + resources[i].getName());
         Q(str);
         str.clear();
         options.insert(make_pair(i, &Interface::revokeResource));
     }
-    str += i;
+    str += i+48;
     str.append(". Add new local resource.");
     options.insert(make_pair(i, &Interface::addLocalResource));
     Q(str);
-    str += i;
+    str.clear();
+    str += i+49;
     str.append(". Back.");
     options.insert(make_pair(i, &Interface::back));
     Q(str);
@@ -97,13 +98,13 @@ void Interface::enlistRemoteResources()
     std::string str;
     for(i = 0; i < resources.size(); i++)
     {
-        str += i;
+        str += i+48;
         str.append(". " + resources[i].getName());
         Q(str);
         str.clear();
         options.insert(make_pair(i, &Interface::downloadResource));
     }
-    str += i;
+    str += i+48;
     str.append(". Back.");
     options.insert(make_pair(i, &Interface::back));
     Q(str);
@@ -119,13 +120,13 @@ void Interface::enlistRevokedResources()
     std::string str;
     for(i = 0; i < resources.size(); i++)
     {
-        str += i;
+        str += i+48;
         str.append(". " + resources[i].getName());
         Q(str);
         str.clear();
         options.insert(make_pair(i, &Interface::revertResource));
     }
-    str += i;
+    str += i+48;
     str.append(". Back.");
     options.insert(make_pair(i, &Interface::back));
     Q(str);
