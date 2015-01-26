@@ -14,7 +14,7 @@ Part::Part(const ResourceIdentifier &ri, unsigned id, unsigned size, std::istrea
 }
 
 
-ResourceIdentifier& Part::getResourceIdentifier() const
+const ResourceIdentifier& Part::getResourceIdentifier() const
 {
     return resourceIdentifier;
 }
