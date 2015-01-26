@@ -17,11 +17,11 @@ int main()
     getchar();
     Controller *controller = new Controller();
     controller->start();
-    ResourceManager::getInstance().addLocalResource("test.txt");
-    ResourceManager::getInstance().addLocalResource("test.tx");
+    //ResourceManager::getInstance().addLocalResource("test.txt");
+    //ResourceManager::getInstance().addLocalResource("test.tx");
+    //EventQueue::getInstance().push(new IncomingAllResourcesRequestEvent(*(new Source((char*)"192.168.2.107"))));
 
 
-    EventQueue::getInstance().push(new IncomingAllResourcesRequestEvent(*(new Source((char*)"192.168.2.107"))));
 
 /*    ResourceManager resourceManager;
     ResourceIdentifier resourceIdentifier;
