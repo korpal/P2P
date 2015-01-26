@@ -12,7 +12,6 @@
 #include "../../include/network/protocol/unicast/UnicastPart.hpp"
 #include "../../include/network/protocol/unicast/UnicastPartRequest.hpp"
 
-#define PORT 8887
 
 
 UnicastReceiver::UnicastReceiver() {}
@@ -35,7 +34,7 @@ void UnicastReceiver::run()
 
     memset((char *) &si_me, 0, sizeof(si_me));
     si_me.sin_family = AF_INET;
-    si_me.sin_port = htons(PORT);
+    si_me.sin_port = htons(Configuration::UNICAST_PORT);
     si_me.sin_addr.s_addr = htonl(INADDR_ANY);
     if( bind(s , (struct sockaddr*)&si_me, sizeof(si_me) ) == -1)
     {

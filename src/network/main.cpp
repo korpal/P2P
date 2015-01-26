@@ -3,23 +3,31 @@
 #include "../../include/network/BroadcastSender.hpp"
 #include "../../include/controller/Controller.hpp"
 #include "../../include/utils/EventQueue.hpp"
+#include "../../include/resourcemanager/ResourceManager.hpp"
+#include "../../include/network/UnicastReceiver.hpp"
+#include "../../include/network/BroadcastReceiver.hpp"
 
 
 int main()
 {
+    BroadcastReceiver *broadcastReceiver = new BroadcastReceiver();
+    broadcastReceiver->start();
+    UnicastReceiver *unicastReceiver = new UnicastReceiver();
+    unicastReceiver->start();
+    getchar();
     Controller *controller = new Controller();
     controller->start();
-//    EventQueue::getInstance().push(new StringEvent("Siema"));
+    ResourceManager::getInstance().addLocalResource("test.txt");
+    ResourceManager::getInstance().addLocalResource("test.tx");
 
+
+    EventQueue::getInstance().push(new IncomingAllResourcesRequestEvent(*(new Source((char*)"192.168.2.107"))));
 
 /*    ResourceManager resourceManager;
     ResourceIdentifier resourceIdentifier;
     resourceManager.addRemoteResource(ResourceIdentifier("nam",2), Source(sockaddr_in()));
 
-    BroadcastReceiver *broadcastReceiver = new BroadcastReceiver();
-    broadcastReceiver->start();
-    UnicastReceiver *unicastReceiver = new UnicastReceiver();
-    unicastReceiver->start();
+
     getchar();
 
     //BroadcastSender *broadcastSender = new BroadcastSender;
@@ -40,17 +48,14 @@ int main()
     dr.addDownloadedPart(p2);
     dr.addDownloadedPart(p3);
     fflush(stdout);
-
+*/
     getchar();
     broadcastReceiver->stop();
-    broadcastReceiver->join();
     unicastReceiver->stop();
+    broadcastReceiver->join();
     unicastReceiver->join();
     delete broadcastReceiver;
     delete unicastReceiver;
-    //delete broadcastSender;
-    //delete unicastSender;*/
-    getchar();
     delete controller;
     return 0;
 }

@@ -13,8 +13,6 @@
 #include "../../include/network/protocol/broadcast/BroadcastResource.hpp"
 #include "../../include/network/protocol/broadcast/BroadcastRevoke.hpp"
 
-#define PORT 8888
-
 
 BroadcastReceiver::BroadcastReceiver() {}
 
@@ -26,7 +24,7 @@ void BroadcastReceiver::run()
     struct sockaddr_in si_me, si_other;
     socklen_t slen = sizeof(si_other);
     int s, recv_len;
-    const int buffSize = 10000;
+    const int buffSize = 100000;
     char buf[buffSize];
 
     if ((s=socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1)
@@ -36,7 +34,7 @@ void BroadcastReceiver::run()
 
     memset((char *) &si_me, 0, sizeof(si_me));
     si_me.sin_family = AF_INET;
-    si_me.sin_port = htons(PORT);
+    si_me.sin_port = htons(Configuration::BROADCAST_PORT);
     si_me.sin_addr.s_addr = htonl(INADDR_ANY);
     if( bind(s , (struct sockaddr*)&si_me, sizeof(si_me) ) == -1)
     {

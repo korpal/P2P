@@ -24,7 +24,7 @@ void ResourceManager::addLocalResource(const std::string &path)
 
     unsigned id = resource->getResourceIdentifier().getID();
 
-    if(!existsLocal(id))
+    if(existsLocal(id))
         return;
 
     // TODO Invalidated wtf?
@@ -158,14 +158,11 @@ void ResourceManager::handleAllResourcesRequest(Source& source)
     std::vector<ResourceIdentifier> localInfo = getLocalResourcesInfo();
     for(int i = 0; i < localInfo.size(); i++)
     {
-        OutgoingResourceInformationEvent event(localInfo[i], source);
-        EventQueue::getInstance().push(&event);
+        EventQueue::getInstance().push(new OutgoingResourceInformationEvent(localInfo[i], source));
     }
 }
 
 void ResourceManager::handlePartRequest(ResourceIdentifier const &identifier, unsigned int const &id, Source &source)
 {
-    Part part = getPartForSending(identifier, id);
-    OutgoingPartEvent event(part, source);
-    EventQueue::getInstance().push(&event);
+    EventQueue::getInstance().push(new OutgoingPartEvent(getPartForSending(identifier, id), source));
 }
