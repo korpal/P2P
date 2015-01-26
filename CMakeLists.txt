@@ -58,8 +58,7 @@ set(SOURCE_FILES
     src/resourcemanager/ResourceManager.cpp
     src/resourcemanager/Source.cpp
     src/utils/Thread.cpp
-    src/utils/EventQueue.cpp
-    src/utils/TimedBlockingQueue.cpp)
+    src/utils/EventQueue.cpp)
 
 add_executable(P2P ${SOURCE_FILES})
 
