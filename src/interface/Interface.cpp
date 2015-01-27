@@ -191,7 +191,7 @@ void Interface::revokeResource()
 {
     vector<ResourceIdentifier> resources = ResourceManager::getInstance().getLocalResourcesInfo();
     ResourceIdentifier ri = resources[chosen-1];
-    //EventQueue::getInstance().push(new OutgoingRevokeRequestEvent(*(new ResourceIdentifier(ri.getName(), ri.getSize()))));
+    EventQueue::getInstance().push(new OutgoingRevokeRequestEvent(*(new ResourceIdentifier(ri.getName(), ri.getSize()))));
     ResourceManager::getInstance().revokeResource(
             *(new ResourceIdentifier(ri.getName(), ri.getSize())));
     back();
@@ -219,7 +219,7 @@ void Interface::revertResource()
 {
     vector<ResourceIdentifier> resources = ResourceManager::getInstance().getRevokedResourcesInfo();
     ResourceIdentifier ri = resources[chosen-1];
-    //EventQueue::getInstance().push(new OutgoingRevertRequestEvent(*(new ResourceIdentifier(ri.getName(), ri.getSize()))));
+    EventQueue::getInstance().push(new OutgoingRevertRequestEvent(*(new ResourceIdentifier(ri.getName(), ri.getSize()))));
     ResourceManager::getInstance().revertResource(
             *(new ResourceIdentifier(ri.getName(), ri.getSize())));
     back();

@@ -166,6 +166,8 @@ void ResourceManager::revokeResource(const ResourceIdentifier &identifier)
 
     unsigned id = identifier.getID();
 
+    remoteData.erase(id);
+
     if(!existsLocal(id))
         return;
 
@@ -181,7 +183,7 @@ void ResourceManager::revertResource(const ResourceIdentifier &identifier)
 
     unsigned id = identifier.getID();
 
-    if(existsLocal(id))
+    if(existsLocal(id) || revokedData.find(id) == revokedData.end())
         return;
 
     boost::shared_ptr<LocalResource> resource = revokedData[id];
