@@ -47,9 +47,10 @@ void Interface::menu()
     Q("");
     Q("Menu:");
     Q("1. Enlist local resources.");
-    Q("2. Enlist remote reources.");
-    Q("3. Enlist revoked reources.");
-    Q("4. Xit.");
+    Q("2. Enlist remote resources.");
+    Q("3. Enlist revoked resources.");
+    Q("4. Enlist downloaded resources.");
+    Q("5. Xit.");
 }
 
 void Interface::addOptions()
@@ -58,7 +59,8 @@ void Interface::addOptions()
     options.insert(make_pair(1, &Interface::enlistLocalResources));
     options.insert(make_pair(2, &Interface::enlistRemoteResources));
     options.insert(make_pair(3, &Interface::enlistRevokedResources));
-    options.insert(make_pair(4, &Interface::stop));
+    options.insert(make_pair(4, &Interface::enlistDownloadingResources));
+    options.insert(make_pair(5, &Interface::stop));
 }
 
 void Interface::enlistLocalResources()
@@ -139,6 +141,37 @@ void Interface::enlistRevokedResources()
     Q(str);
 }
 
+
+void Interface::enlistDownloadingResources()
+{
+    options.clear();
+    Q("");
+    Q("Local Resources:");
+    vector<ResourceIdentifier> resources = ResourceManager::getInstance().getLocalResourcesInfo();
+    int i;
+    std::string str;
+    for(i = 1; i <= resources.size(); i++)
+    {
+        str += i+48;
+        str.append(". " + resources[i-1].getName());
+        Q(str);
+        str.clear();
+        options.insert(make_pair(i, &Interface::revokeResource));
+    }
+    str += i+48;
+    str.append(". Add new local resource.");
+    options.insert(make_pair(i, &Interface::addLocalResource));
+    Q(str);
+    str.clear();
+    i++;
+    str += i+48;
+    str.append(". Back.");
+    options.insert(make_pair(i, &Interface::back));
+    Q(str);
+}
+
+
+
 void Interface::stop()
 {
     isFinished = true;
@@ -200,3 +233,4 @@ void Interface::back() {
     menu();
     addOptions();
 }
+

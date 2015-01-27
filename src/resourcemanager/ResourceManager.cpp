@@ -116,6 +116,17 @@ std::vector<ResourceIdentifier> ResourceManager::getRevokedResourcesInfo()
 }
 
 
+std::vector<std::pair<std::string, double>> ResourceManager::getProgressInfo()
+{
+    std::vector<std::pair<std::string, double>> result;
+    for(int i = 0; i < downloadedData.size(); i++)
+    {
+        std::pair<std::string, double> pair(downloadedData[i]->getResourceIdentifier().getName())
+        result.push_back(downloadedData[i].getDownloadingProgress());
+    }
+}
+
+
 std::vector<Source> ResourceManager::getSources(const ResourceIdentifier &identifier)
 {
     boost::shared_ptr<RemoteResource> resource = remoteData[identifier.getID()];

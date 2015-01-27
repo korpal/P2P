@@ -38,6 +38,8 @@ private:
     void enlistRevokedResources();
         void revertResource();
 
+    void enlistDownloadingResources();
+
         void back();
 
     void stop();

@@ -73,3 +73,8 @@ ResourceIdentifier &DownloadedResource::getResourceIdentifier()
 {
     return identifier;
 }
+
+double DownloadedResource::getDownloadingProgress()
+{
+    return std::count(partsDownloaded.begin(), partsDownloaded.end(), true)/partsCount;
+}

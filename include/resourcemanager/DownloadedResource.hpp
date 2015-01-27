@@ -16,6 +16,7 @@ public:
     int getIdOfPartForDownloading();
     unsigned getPartsCount();
     ResourceIdentifier& getResourceIdentifier();
+    double getDownloadingProgress();
 
 private:
     bool isComplete();

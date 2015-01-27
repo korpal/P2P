@@ -36,6 +36,9 @@ public:
     // Returns a set of information about revoked resources
     std::vector<ResourceIdentifier> getRevokedResourcesInfo();
 
+    // Returns information about downloading progress
+    std::vector<std::pair<std::string, double>> ResourceManager::getProgressInfo();
+
     // Returns sources for indentifier
     std::vector<Source> getSources(const ResourceIdentifier& identifier);
 
