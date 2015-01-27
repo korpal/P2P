@@ -1,5 +1,6 @@
 #include <iostream>
 #include <istream>
+#include <sstream>
 #include "../../include/interface/Interface.hpp"
 #include "../../include/resourcemanager/ResourceManager.hpp"
 #include "../../include/controller/Events.hpp"
@@ -144,31 +145,22 @@ void Interface::enlistRevokedResources()
 
 void Interface::enlistDownloadingResources()
 {
-    /*options.clear();
+    options.clear();
     Q("");
-    Q("Local Resources:");
+    Q("Downloading progress:");
     std::vector<std::pair<std::string, double>> resources = ResourceManager::getInstance().getProgressInfo();
     int i;
     std::string str;
     for(i = 1; i <= resources.size(); i++)
     {
-        str += i+48;
-
-        str.append(". " + resources.second + " " + resources[i-1].first);
+        ostringstream ss;
+        ss << (int)resources[i-1].second;
+        str = ss.str() + "% " + resources[i-1].first;
         Q(str);
-        str.clear();
-        options.insert(make_pair(i, &Interface::revokeResource));
     }
-    str += i+48;
-    str.append(". Add new local resource.");
-    options.insert(make_pair(i, &Interface::addLocalResource));
+    str.append("1 Back.");
+    options.insert(make_pair(1, &Interface::back));
     Q(str);
-    str.clear();
-    i++;
-    str += i+48;
-    str.append(". Back.");
-    options.insert(make_pair(i, &Interface::back));
-    Q(str);*/
 }
 
 

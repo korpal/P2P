@@ -123,7 +123,7 @@ std::vector<std::pair<std::string, double>> ResourceManager::getProgressInfo()
     {
         std::pair<std::string, double> pair(
                 downloadedData[i]->getResourceIdentifier().getName(),
-                downloadedData[i]->getDownloadingProgress());
+                downloadedData[i]->getDownloadingProgress()*100);
         result.push_back(pair);
     }
     return result;
