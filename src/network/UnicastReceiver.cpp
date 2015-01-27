@@ -50,7 +50,7 @@ void UnicastReceiver::run()
 
     while(!isFinished())
     {
-        printf("Unicast Receiver: waiting for data...\n");
+        //printf("Unicast Receiver: waiting for data...\n");
         fflush(stdout);
 
         if ((recv_len = recvfrom(s, buf, buffSize, 0, (struct sockaddr *) &si_other, &slen)) < 0)
@@ -58,8 +58,8 @@ void UnicastReceiver::run()
             printf("recvfrom() error");
         }
 
-        printf("UnicastReceiver: Received packet from %s:%d\n", inet_ntoa(si_other.sin_addr), ntohs(si_other.sin_port));
-        printf("UnicastReceiver: Size: %d\n" , recv_len);
+        //printf("UnicastReceiver: Received packet from %s:%d\n", inet_ntoa(si_other.sin_addr), ntohs(si_other.sin_port));
+        //printf("UnicastReceiver: Size: %d\n" , recv_len);
         UnicastMessage bm = (UnicastMessage &)buf;
 
         switch(bm.getType())
@@ -86,14 +86,14 @@ void UnicastReceiver::handleIncomingResource(UnicastResource &msg, char* address
 
 void UnicastReceiver::handleIncomingPartRequest(UnicastPartRequest &msg, char* address)
 {
-    std::cout << "Poproszono mnie part nr " << msg.getPartId() << std::endl;
+    //std::cout << "Poproszono mnie part nr " << msg.getPartId() << std::endl;
     IncomingPartRequestEvent *event = new IncomingPartRequestEvent(msg.getResourceIdentifier(), msg.getPartId(), *(new Source(address)));
     EventQueue::getInstance().push(event);
 }
 
 void UnicastReceiver::handleIncomingPart(UnicastPart &msg, char* address)
 {
-    std::cout << "Otrzymalem part nr " << msg.getPart().getId() << std::endl;// << "  Rozmiar jego danych to " << msg.getPart().getSize() << std::endl;
+    //std::cout << "Otrzymalem part nr " << msg.getPart().getId() << std::endl;// << "  Rozmiar jego danych to " << msg.getPart().getSize() << std::endl;
     IncomingPartEvent *event = new IncomingPartEvent(msg.getPart(), *(new Source(address)));
     EventQueue::getInstance().push(event);
 }

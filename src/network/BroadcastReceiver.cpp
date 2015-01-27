@@ -50,7 +50,7 @@ void BroadcastReceiver::run()
 
     while(!isFinished())
     {
-        printf("Broadcast Receiver: waiting for data...\n");
+        //printf("Broadcast Receiver: waiting for data...\n");
         fflush(stdout);
 
         if ((recv_len = (int) recvfrom(s, buf, buffSize, 0, (struct sockaddr *) &si_other, &slen)) < 0)
@@ -80,14 +80,14 @@ void BroadcastReceiver::run()
 
 void BroadcastReceiver::handleIncomingAllResources(BroadcastAllResources &msg, char* address)
 {
-    printf("Received BroadcastAllResources\n");
+    //printf("Received BroadcastAllResources\n");
     IncomingAllResourcesRequestEvent *event = new IncomingAllResourcesRequestEvent(*(new Source(address)));
     EventQueue::getInstance().push(event);
 }
 
 void BroadcastReceiver::handleIncomingRevoke(BroadcastRevoke &msg)
 {
-    printf("Received BroadcastRevoke\n");
+    //printf("Received BroadcastRevoke\n");
     IncomingRevokeRequestEvent *event = new IncomingRevokeRequestEvent(msg.getResourceIdentifier());
     EventQueue::getInstance().push(event);
 }
