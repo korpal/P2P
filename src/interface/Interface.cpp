@@ -144,16 +144,17 @@ void Interface::enlistRevokedResources()
 
 void Interface::enlistDownloadingResources()
 {
-    options.clear();
+    /*options.clear();
     Q("");
     Q("Local Resources:");
-    vector<ResourceIdentifier> resources = ResourceManager::getInstance().getLocalResourcesInfo();
+    std::vector<std::pair<std::string, double>> resources = ResourceManager::getInstance().getProgressInfo();
     int i;
     std::string str;
     for(i = 1; i <= resources.size(); i++)
     {
         str += i+48;
-        str.append(". " + resources[i-1].getName());
+
+        str.append(". " + resources.second + " " + resources[i-1].first);
         Q(str);
         str.clear();
         options.insert(make_pair(i, &Interface::revokeResource));
@@ -167,7 +168,7 @@ void Interface::enlistDownloadingResources()
     str += i+48;
     str.append(". Back.");
     options.insert(make_pair(i, &Interface::back));
-    Q(str);
+    Q(str);*/
 }
 
 
