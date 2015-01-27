@@ -59,7 +59,7 @@ int DownloadedResource::getIdOfPartForDownloading()
     }
     for(int i = 0; i < getPartsCount(); i++)
     {
-        if(!partsDownloaded[i])4
+        if(!partsDownloaded[i])
         {
             partsTimeout[i] = actualTime + Configuration::PARTS_TIMEOUT_IN_SECONDS*1000;
             return i;

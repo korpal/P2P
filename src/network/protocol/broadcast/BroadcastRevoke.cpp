@@ -2,12 +2,12 @@
 #include "../../../../include/resourcemanager/ResourceIdentifier.hpp"
 
 
-BroadcastRevoke::BroadcastRevoke() : BroadcastMessage(BroadcastMessage::Type::RESOURCE) {}
+BroadcastRevoke::BroadcastRevoke() :
+        BroadcastMessage(BroadcastMessage::Type::REVOKE) {}
 
 BroadcastRevoke::BroadcastRevoke(ResourceIdentifier &ri) :
-        BroadcastMessage(BroadcastMessage::Type::RESOURCE),
-        resourceIdentifier(ri)
-{}
+        BroadcastMessage(BroadcastMessage::Type::REVOKE),
+        resourceIdentifier(ri) {}
 
 
 ResourceIdentifier& BroadcastRevoke::getResourceIdentifier()
