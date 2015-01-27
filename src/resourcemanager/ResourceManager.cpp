@@ -119,12 +119,14 @@ std::vector<ResourceIdentifier> ResourceManager::getRevokedResourcesInfo()
 std::vector<std::pair<std::string, double>> ResourceManager::getProgressInfo()
 {
     std::vector<std::pair<std::string, double>> result;
-    for(int i = 0; i < downloadedData.size(); i++)
+    typedef boost::shared_ptr<DownloadedResource> PTR_RR;
+    typedef std::pair<unsigned int, PTR_RR> PAIR;
+
+    for(PAIR tmpPair : downloadedData)
     {
-        std::pair<std::string, double> pair(
-                downloadedData[i]->getResourceIdentifier().getName(),
-                downloadedData[i]->getDownloadingProgress()*100);
-        result.push_back(pair);
+        result.push_back(*(new std::pair<std::string, double>(
+                tmpPair.second->getResourceIdentifier().getName(),
+                tmpPair.second->getDownloadingProgress()*100)));
     }
     return result;
 }
