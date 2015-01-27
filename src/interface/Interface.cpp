@@ -148,7 +148,8 @@ void Interface::enlistDownloadingResources()
     options.clear();
     Q("");
     Q("Downloading progress:");
-    std::vector<std::pair<std::string, double>> resources = ResourceManager::getInstance().getProgressInfo();
+    std::vector<std::pair<std::string, double>> resources =
+            ResourceManager::getInstance().getProgressInfo();
     int i;
     std::string str;
     for(i = 1; i <= resources.size(); i++)
@@ -158,6 +159,7 @@ void Interface::enlistDownloadingResources()
         str = ss.str() + "% " + resources[i-1].first;
         Q(str);
     }
+    str.clear();
     str.append("1 Back.");
     options.insert(make_pair(1, &Interface::back));
     Q(str);

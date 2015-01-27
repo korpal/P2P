@@ -59,7 +59,7 @@ int DownloadedResource::getIdOfPartForDownloading()
     }
     for(int i = 0; i < getPartsCount(); i++)
     {
-        if(!partsDownloaded[i])
+        if(!partsDownloaded[i])4
         {
             partsTimeout[i] = actualTime + Configuration::PARTS_TIMEOUT_IN_SECONDS*1000;
             return i;
@@ -76,5 +76,5 @@ ResourceIdentifier &DownloadedResource::getResourceIdentifier()
 
 double DownloadedResource::getDownloadingProgress()
 {
-    return std::count(partsDownloaded.begin(), partsDownloaded.end(), true)/partsCount;
+    return (std::count(partsDownloaded.begin(), partsDownloaded.end(), true)/(double)partsCount);
 }
